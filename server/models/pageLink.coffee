@@ -1,7 +1,7 @@
 Sequelize = require 'sequelize'
 _         = Sequelize.Utils._
 
-module.exports = (sequelize) ->
+module.exports = (App, sequelize) ->
   return sequelize.define('pageLink', {
     id:
       type: Sequelize.STRING

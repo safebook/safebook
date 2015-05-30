@@ -47,31 +47,7 @@ io.on 'connection', (socket) =>
 # Load all App.Models in models/
 sequelize = new Sequelize(null, null, null, dialect: 'sqlite', storage: 'db.sqlite')
 for model in _.map(fs.readdirSync("#{__dirname}/models"), (f)-> f.split('.')[0])
-  App.Models[model] = sequelize.import("#{__dirname}/models/#{model}")
-
-# before
-# CREATE TABLE IF NOT EXISTS `Friends` (`UserId` VARCHAR(255) NOT NULL REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `FriendId` VARCHAR(255) NOT NULL REFERENCES `Users` (`id`), PRIMARY KEY (`UserId`, `FriendId`));
-# CREATE TABLE IF NOT EXISTS `friends` (`UserId` VARCHAR(255) NOT NULL REFERENCES `Users` (`id`), `FriendId` VARCHAR(255) NOT NULL REFERENCES `Users` (`id`), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`UserId`, `FriendId`));
-# )
-
-App.Models.friends = sequelize.define('friends',
-        {
-            UserId: {
-                type: Sequelize.STRING,
-                references: App.Models.user,
-                referencesKey: 'id',
-                # primaryKey: true
-            },
-            FriendId: {
-                type: Sequelize.STRING,
-                references: App.Models.user,
-                referencesKey: 'id',
-                # primaryKey: true
-            },
-            Confirmed: {
-                type: Sequelize.INTEGER
-            }
-        }, { timestamps: false }) # A FINIR
+  App.Models[model] = require("#{__dirname}/models/#{model}")(App, sequelize)
 
 App.Models.user.belongsToMany(App.Models.user, { as: 'Friends', through: App.Models.friends, foreignKey: 'UserId', constraints: false})
 App.Models.user.belongsToMany(App.Models.user, { as: 'Friends2', through: App.Models.friends, foreignKey: 'FriendId', constraints: false})
@@ -81,22 +57,6 @@ App.Models.user.belongsToMany(App.Models.user, { as: 'Friends2', through: App.Mo
 # Load all App.Controllers in controllers/
 for ctrl in _.map(fs.readdirSync("#{__dirname}/controllers"), (f)-> f.split('.')[0])
   App.Controllers[ctrl] = require("#{__dirname}/controllers/#{ctrl}")(App, sequelize)
-
-# ###
-# Server routes
-# ###
-
-# ###
-# /login draft
-# [
-#   App.Controller.Users.auth,  // finish with req.data = {}; req.data.user = user
-#   App.Controller.Links.fetch,
-#   App.Controller.Pages.fetch,
-#   App.Controller.Messages.fetch,
-#   App.Controller.Users.fetch,
-#   App.Middleware.send_req_data
-# ]
-# ###
 
 app.post   '/user', App.Controllers.users.create
 app.get    '/user/:pseudo', App.Controllers.users.find

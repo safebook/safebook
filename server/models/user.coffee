@@ -6,7 +6,7 @@ _         = Sequelize.Utils._
 # Soit 1 requete dans la validation
 # Soit des contraintes sur la bdd
 
-module.exports = (sequelize) ->
+module.exports = (App, sequelize) ->
   return sequelize.define('User', {
     id:
       type: Sequelize.STRING
