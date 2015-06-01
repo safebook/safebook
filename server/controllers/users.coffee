@@ -11,7 +11,7 @@ module.exports = (App, sequelize) ->
     App.Models.user.create(user).then((user) ->
       req.session.user_id = user.id
       res.status(201).send(user)).error (error) ->
-        return res.status(401).end()
+        res.status(401).end()
 
   find: (req, res) ->
     return unless req.session.user_id
@@ -36,11 +36,11 @@ module.exports = (App, sequelize) ->
           App.io.to(req.params.user_id).emit('add', user.public())
           res.status(201).json({status: 'success'})
         .catch (error) ->
-          return res.status(401).end()
+          res.status(401).end()
       .catch (error) ->
-        return res.status(401).end()
+        res.status(401).end()
     .catch (error) ->
-      return res.status(401).end()
+      res.status(401).end()
 
   accept_request: (req, res) ->
     console.log 1
@@ -54,12 +54,25 @@ module.exports = (App, sequelize) ->
           App.io.to(req.params.user_id).emit('accept', user.public())
           res.status(201).json({status: 'success'})
         .catch (error) ->
-          console.log error
-          return res.status(401).end()
+          res.status(401).end()
       .catch (error) ->
-        return res.status(401).end()
+        res.status(401).end()
     .catch (error) ->
-      return res.status(401).end()
+      res.status(401).end()
+
+  decline_request: (req, res) ->
+    console.log 1
+    return unless req.session.user_id
+    App.Models.user.find(req.session.user_id).then (user) ->
+      console.log 2
+      App.Models.user.find(req.params.user_id).then (contact) ->
+        console.log 3
+        #user.has(contact).then (hasContact) ->
+        user.addContact(contact, blocked: true).then (result) ->
+          res.status(201).json({status: 'success'})
+        .catch (error) -> res.status(401).end()
+      .catch (error) -> res.status(401).end()
+    .catch (error) -> res.status(401).end()
 
   ## ###
   # Login Middleware

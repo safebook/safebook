@@ -61,6 +61,7 @@ app.get    '/user/:pseudo', App.Controllers.users.find
 
 app.get    '/friend_requests/:user_id/add', App.Controllers.users.send_request
 app.get    '/friend_requests/:user_id/accept', App.Controllers.users.accept_request
+app.get    '/friend_requests/:user_id/block', App.Controllers.users.decline_request
 
 app.post   '/login', [
     App.Controllers.users.auth,

@@ -33,7 +33,9 @@ class App.Views.Index extends Backbone.View
     App.I.set(res.I).bare_mainkey().bare_ecdh()
 
     for contact in res.contacts
-      if contact.added
+      if contact.blocked
+        null
+      else if contact.added
         App.Users.push(contact)
       else
         App.FriendRequests.push(contact)

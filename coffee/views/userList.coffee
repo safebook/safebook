@@ -2,11 +2,36 @@ class App.Views.userList extends Backbone.View
 
   initialize: =>
     @listenTo(App.Users, 'add', @render)
+    @listenTo(App.Users, 'remove', @render)
 
   render: =>
     if App.Users.length > 0
       template = Handlebars.compile $("#userListTemplate").html()
-      @$el.html template(users: App.Users.toJSON())
+      @$el.html template()
+
+      @$el.empty()
+      App.Users.each (user) =>
+        user_view = new App.Views.user(model: user)
+        user_view.render()
+        @$el.append(user_view.el)
+    @
+
+class App.Views.user extends Backbone.View
+
+  events:
+    'click .block': 'block'
+
+  block: (e) =>
+    e.preventDefault()
+    $.ajax url: '/friend_requests/' + @model.get('id') + '/block', success: (res) =>
+      App.Users.remove @model
+    , error: =>
+      alert 'Error while accepting the request.'
+
+  render: =>
+    if App.Users.length > 0
+      template = Handlebars.compile $("#userTemplate").html()
+      @$el.html template(@model.toJSON())
     @
 
 class App.Views.userRequestList extends Backbone.View
@@ -34,13 +59,21 @@ class App.Views.userRequestList extends Backbone.View
 class App.Views.userRequest extends Backbone.View
 
   events:
-    'click a': 'accept_request'
+    'click .accept': 'accept_request'
+    'click .block':  'decline_request'
 
   accept_request: (e) =>
     e.preventDefault()
     $.ajax url: '/friend_requests/' + @model.get('id') + '/accept', success: (res) =>
       App.FriendRequests.remove @model
       App.Users.push @model
+    , error: =>
+      alert 'Error while accepting the request.'
+
+  decline_request: (e) =>
+    e.preventDefault()
+    $.ajax url: '/friend_requests/' + @model.get('id') + '/block', success: (res) =>
+      App.FriendRequests.remove @model
     , error: =>
       alert 'Error while accepting the request.'
 

@@ -98,15 +98,27 @@
     <script type="text/template" id="userListTemplate">
       <div class="panel panel-success">
         <div class="panel-heading text-center">Talks</div>
-        <ul class="list-group">
+        <ul class="list-group" id="users_list">
           {{#each users}}
-            <li class="text-center list-group-item">
-              <a href="#user/{{id}}">{{pseudo}}</a>
-              <span class="badge">0</span>
-            </li>
           {{/each}}
         </ul>
       </div>
+    </script>
+
+    <!-- User template -->
+    <script type="text/template" id="userTemplate">
+      <li class="text-center list-group-item">
+        {{#if confirmed}}
+          <a href="#user/{{id}}">{{pseudo}}</a>
+          -
+          <a href="#" class="block btn btn-default btn-xs glyphicon glyphicon-minus-sign"></a>
+        {{else}}
+          <a href="#user/{{id}}">{{pseudo}}</a>
+          (waiting)
+          -
+          <a href="#" class="block btn btn-default btn-xs glyphicon glyphicon-minus-sign"></a>
+        {{/if}}
+      </li>
     </script>
 
     <!-- User request list template -->
@@ -121,7 +133,9 @@
     <!-- User request template -->
     <script type="text/template" id="userRequestTemplate">
       <li class="text-center list-group-item">
-        {{pseudo}} <a href="#" class="btn btn-default btn-xs glyphicon glyphicon-ok"></a>
+        {{pseudo}}
+        <a href="#" class="accept btn btn-default btn-xs glyphicon glyphicon-plus-sign"></a>
+        <a href="#" class="block  btn btn-default btn-xs glyphicon glyphicon-minus-sign"></a>
       </li>
     </script>
 
@@ -143,7 +157,7 @@
     <!-- Search result template -->
     <script type="text/template" id="searchResultTemplate">
       <li class="text-center list-group-item">
-        {{pseudo}} <a href="#" class="btn btn-default btn-xs glyphicon glyphicon-plus"></a>
+        {{pseudo}} <a href="#" class="btn btn-default btn-xs glyphicon glyphicon-plus-sign"></a>
       </li>
     </script>
 

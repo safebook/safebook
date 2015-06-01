@@ -1,5 +1,5 @@
 class App.Socket
-  
+
   init: ->
     @io = io()
 
@@ -16,11 +16,14 @@ class App.Socket
         sender.messages_collection.push message
 
     @io.on 'add', (user) ->
-      user = new App.Models.User user
+      user = new App.Models.User(user)
+      user.set 'confirmed', true
       App.FriendRequests.push(user)
 
     @io.on 'accept', (user) ->
       user = new App.Models.User user
+      user.set 'added', true
+      user.set 'confirmed', true
       App.Users.push(user)
 
     @io.on 'pageLink:add', (page) ->
