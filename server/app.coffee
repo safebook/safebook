@@ -28,9 +28,7 @@ app.use (req, res, next) ->
   next()
 app.use express.static(__dirname + '/../public')
 
-
-
-# tests with socket.io
+# === socket.io ===
 io = App.io = require('socket.io')(server)
 
 io.use (socket, next) ->
@@ -49,10 +47,10 @@ sequelize = new Sequelize(null, null, null, dialect: 'sqlite', storage: 'db.sqli
 for model in _.map(fs.readdirSync("#{__dirname}/models"), (f)-> f.split('.')[0])
   App.Models[model] = require("#{__dirname}/models/#{model}")(App, sequelize)
 
-App.Models.user.belongsToMany(App.Models.user, { as: 'Friends', through: App.Models.friends, foreignKey: 'UserId', constraints: false})
-App.Models.user.belongsToMany(App.Models.user, { as: 'Friends2', through: App.Models.friends, foreignKey: 'FriendId', constraints: false})
-# App.Models.user.belongsToMany(App.Models.user, { as: 'Friends', through: 'Friends'})
-# App.Models.user.belongsToMany(App.Models.user, { as: 'FriendRequests', through: 'FriendRequests'})
+App.Models.user.belongsToMany(App.Models.user,
+  {as: 'Contacts', through: 'friends', foreignKey: 'user_id', constraints: false})
+App.Models.user.belongsToMany(App.Models.user,
+  {as: 'RequestedContacts', through: 'friends', foreignKey: 'friend_id', constraints: false })
 
 # Load all App.Controllers in controllers/
 for ctrl in _.map(fs.readdirSync("#{__dirname}/controllers"), (f)-> f.split('.')[0])

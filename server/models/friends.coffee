@@ -8,18 +8,19 @@ _         = Sequelize.Utils._
 
 module.exports = (App, sequelize) ->
   return sequelize.define('friends', {
-    UserId:
-      type: Sequelize.STRING,
-      references: App.Models.user,
-      referencesKey: 'id',
-      # primaryKey: true
-    FriendId:
-      type: Sequelize.STRING,
-      references: App.Models.user,
-      referencesKey: 'id',
-      # primaryKey: true
-    Confirmed:
+    id:
       type: Sequelize.INTEGER
+      primaryKey: true
+    user_id:
+      type: Sequelize.STRING,
+      references: App.Models.user,
+      referencesKey: 'id',
+    friend_id:
+      type: Sequelize.STRING,
+      references: App.Models.user,
+      referencesKey: 'id',
+    blocked:
+      type: Sequelize.BOOLEAN
   }, {
     timestamps: false
   }) # A FINIR

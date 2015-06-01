@@ -32,11 +32,12 @@ class App.Views.Index extends Backbone.View
   load_data: (res) =>
     App.I.set(res.I).bare_mainkey().bare_ecdh()
 
-    _.each res.Friends, (friend) ->
-      if friend.Confirmed == 1
-        App.Users.push(friend)
+    for contact in res.contacts
+      if contact.added
+        App.Users.push(contact)
       else
-        App.FriendRequests.push(friend)
+        App.FriendRequests.push(contact)
+
     App.PageLinks.push(res.pageLinks)
     App.Pages.push(res.created_pages)
     App.Pages.push(res.accessible_pages)
