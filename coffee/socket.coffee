@@ -7,6 +7,7 @@ class App.Socket
     @io.emit('join', App.I.id, App.I.attributes.id)
 
     # future improvement: move all of this in the corresponding views
+    # maybe better: move all in the main view (ex: home)
 
     @io.on 'message', (message) ->
       sender = App.Users.findWhere(id: message.user_id)
@@ -15,16 +16,13 @@ class App.Socket
       if sender and sender.messages_collection
         sender.messages_collection.push message
 
-    @io.on 'add', (user) ->
-      user = new App.Models.User(user)
-      user.set 'confirmed', true
-      App.FriendRequests.push(user)
-
-    @io.on 'accept', (user) ->
-      user = new App.Models.User user
-      user.set 'added', true
-      user.set 'confirmed', true
-      App.Users.push(user)
+    @io.on 'user:add', (msg) ->
+      user = App.Users.findWhere(id: msg.id)
+      unless user
+        msg.confirmed = true
+        App.Users.push new App.Models.User(msg)
+      else
+        user.set confirmed: true
 
     @io.on 'pageLink:add', (page) ->
       console.log 'new page'

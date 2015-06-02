@@ -24,50 +24,21 @@ module.exports = (App, sequelize) ->
     .error (err) ->
       console.log(err)
 
-  send_request: (req, res) ->
-    console.log 1
-    return unless req.session.user_id
+  add: (req, res) ->
+    return res.status(401).end() unless req.session.user_id
     App.Models.user.find(req.session.user_id).then (user) ->
-      console.log 2
       App.Models.user.find(req.params.user_id).then (contact) ->
-        console.log 3
         user.addContact(contact).then ->
-          console.log 4
-          App.io.to(req.params.user_id).emit('add', user.public())
+          App.io.to(req.params.user_id).emit('user:add', user.public())
           res.status(201).json({status: 'success'})
-        .catch (error) ->
-          res.status(401).end()
-      .catch (error) ->
-        res.status(401).end()
-    .catch (error) ->
-      res.status(401).end()
+        .catch (error) -> res.status(401).end()
+      .catch (error) -> res.status(401).end()
+    .catch (error) -> res.status(401).end()
 
-  accept_request: (req, res) ->
-    console.log 1
+  block: (req, res) ->
     return unless req.session.user_id
     App.Models.user.find(req.session.user_id).then (user) ->
-      console.log 2
       App.Models.user.find(req.params.user_id).then (contact) ->
-        console.log 3
-        user.addContact(contact).then ->
-          console.log 4
-          App.io.to(req.params.user_id).emit('accept', user.public())
-          res.status(201).json({status: 'success'})
-        .catch (error) ->
-          res.status(401).end()
-      .catch (error) ->
-        res.status(401).end()
-    .catch (error) ->
-      res.status(401).end()
-
-  decline_request: (req, res) ->
-    console.log 1
-    return unless req.session.user_id
-    App.Models.user.find(req.session.user_id).then (user) ->
-      console.log 2
-      App.Models.user.find(req.params.user_id).then (contact) ->
-        console.log 3
-        #user.has(contact).then (hasContact) ->
         user.addContact(contact, blocked: true).then (result) ->
           res.status(201).json({status: 'success'})
         .catch (error) -> res.status(401).end()
@@ -96,11 +67,13 @@ module.exports = (App, sequelize) ->
           requestedContacts = (_.pick(c, 'id', 'pseudo', 'pubkey') for c in res)
 
           req.data.contacts = []
-          until contacts.length is 0 and requestedContacts.length is 0
+          loop
+            if contacts.length is 0 and requestedContacts.length is 0
+              break
             if contacts.length is 0
               req.data.contacts.push requestedContacts.shift()
             else if requestedContacts.length is 0
-              req.data.contacts.push contacts.shift()
+              req.data.contacts.push _.merge(contacts.shift(), added: true)
             else if contacts[0].id == requestedContacts[0].id
               req.data.contacts.push _.merge({added: true, confirmed: true}, contacts.shift())
               requestedContacts.shift()

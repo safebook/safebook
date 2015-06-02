@@ -56,12 +56,11 @@ App.Models.user.belongsToMany(App.Models.user,
 for ctrl in _.map(fs.readdirSync("#{__dirname}/controllers"), (f)-> f.split('.')[0])
   App.Controllers[ctrl] = require("#{__dirname}/controllers/#{ctrl}")(App, sequelize)
 
-app.post   '/user', App.Controllers.users.create
+app.post   '/user',         App.Controllers.users.create
 app.get    '/user/:pseudo', App.Controllers.users.find
 
-app.get    '/friend_requests/:user_id/add', App.Controllers.users.send_request
-app.get    '/friend_requests/:user_id/accept', App.Controllers.users.accept_request
-app.get    '/friend_requests/:user_id/block', App.Controllers.users.decline_request
+app.get    '/friend_requests/:user_id/add',   App.Controllers.users.add
+app.get    '/friend_requests/:user_id/block', App.Controllers.users.block
 
 app.post   '/login', [
     App.Controllers.users.auth,
