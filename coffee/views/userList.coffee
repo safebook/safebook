@@ -8,7 +8,7 @@ class App.Views.userList extends Backbone.View
     @$("#users_list").append(view.render().el)
 
   add_all: =>
-    _(App.Users.where(added: true)).each(@add_one)
+    _(App.Users.filter((u) -> u.get('added') and not u.get('blocked'))).each(@add_one)
 
   render: =>
     @$el.html Handlebars.compile($("#userListTemplate").html())()
@@ -21,9 +21,9 @@ class App.Views.user extends Backbone.View
 
   block: (e) =>
     e.preventDefault()
-    $.ajax url: "/friend_requests/#{@model.get('id')}/block"
+    $.ajax url: "/user/#{@model.get('id')}/block"
     , success: (res) =>
-      App.Users.remove @model
+      @model.set blocked: true
     , error: =>
       alert 'Error while blocking the user.'
 
@@ -40,7 +40,6 @@ class App.Views.userRequestList extends Backbone.View
   render_list: =>
     @$('#requests_list').empty()
     _(App.Users.reject((u) -> u.get('added') or u.get('blocked'))).each (user) =>
-      console.log user
       user_request_view = new App.Views.userRequest(model: user)
       user_request_view.render()
       @$('#requests_list').append(user_request_view.el)
@@ -58,20 +57,54 @@ class App.Views.userRequest extends Backbone.View
 
   accept_request: (e) =>
     e.preventDefault()
-    $.ajax url: '/friend_requests/' + @model.get('id') + '/add', success: (res) =>
-      @model.set added: true
+    $.ajax url: '/user/' + @model.get('id') + '/add', success: (res) =>
+      @model.set added: true, blocked: false
     , error: =>
       alert 'Error while accepting the request.'
 
   decline_request: (e) =>
     e.preventDefault()
-    $.ajax url: '/friend_requests/' + @model.get('id') + '/block', success: (res) =>
+    $.ajax url: '/user/' + @model.get('id') + '/block', success: (res) =>
       @model.set blocked: true
     , error: =>
       alert 'Error while accepting the request.'
 
   render: =>
     template = Handlebars.compile $("#userRequestTemplate").html()
+    @$el.html template(@model.toJSON())
+    @
+
+class App.Views.userBlockList extends Backbone.View
+
+  initialize: =>
+    @listenTo(App.Users, 'add remove change', @render)
+
+  render_list: =>
+    @$('#blocks_list').empty()
+    _(App.Users.where(blocked: true)).each (user) =>
+      view = new App.Views.userBlocked(model: user)
+      view.render()
+      @$('#blocks_list').append(view.el)
+
+  render: =>
+    template = Handlebars.compile $("#userBlockListTemplate").html()
+    @$el.html template()
+    @render_list()
+
+class App.Views.userBlocked extends Backbone.View
+
+  events:
+    'click .unblock': 'unblock'
+
+  unblock: (e) =>
+    e.preventDefault()
+    $.ajax url: '/user/' + @model.get('id') + '/add', success: (res) =>
+      @model.set added: true, blocked: false
+    , error: =>
+      alert 'Error while accepting the request.'
+
+  render: =>
+    template = Handlebars.compile $("#userBlockTemplate").html()
     @$el.html template(@model.toJSON())
     @
 
@@ -110,7 +143,7 @@ class App.Views.searchResult extends Backbone.View
 
   add_friend: (e) =>
     e.preventDefault()
-    $.ajax url: '/friend_requests/' + @model.get('id') + '/add', success: =>
+    $.ajax url: '/user/' + @model.get('id') + '/add', success: =>
       App.SearchResults.reset()
       $("#userSearchTemplate").val("")
       $("#search_user_input").val("")

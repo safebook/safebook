@@ -80,9 +80,11 @@
       <div class="col-sm-3">
         <div id="userList">
         </div>
+        <div id="userSearch">
+        </div>
         <div id="userRequestList">
         </div>
-        <div id="userSearch">
+        <div id="userBlockList">
         </div>
         <div id="pageList">
         </div>
@@ -133,9 +135,26 @@
     <!-- User request template -->
     <script type="text/template" id="userRequestTemplate">
       <li class="text-center list-group-item">
-        {{pseudo}}
+        <a href="#user/{{id}}">{{pseudo}}</a>
         <a href="#" class="accept btn btn-default btn-xs glyphicon glyphicon-plus-sign"></a>
         <a href="#" class="block  btn btn-default btn-xs glyphicon glyphicon-minus-sign"></a>
+      </li>
+    </script>
+
+    <!-- User block list template -->
+    <script type="text/template" id="userBlockListTemplate">
+      <div class="panel panel-success">
+        <div class="panel-heading text-center">Blocked (dev)</div>
+        <ul class="list-group" id="blocks_list">
+        </ul>
+      </div>
+    </script>
+
+    <!-- User block template -->
+    <script type="text/template" id="userBlockTemplate">
+      <li class="text-center list-group-item">
+        <a href="#user/{{id}}">{{pseudo}}</a>
+        <a href="#" class="unblock btn btn-default btn-xs glyphicon glyphicon-plus-sign"></a>
       </li>
     </script>
 

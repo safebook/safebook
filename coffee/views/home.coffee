@@ -7,7 +7,10 @@ class App.Views.home extends Backbone.View
     App.Views.UserList = new App.Views.userList(el: $("#userList"))
     App.Views.UserList.render()
 
-    App.Views.UserRequestList = new App.Views.userRequestList(el: $("#userRequestList"), collection: App.FriendRequests)
+    App.Views.UserRequestList = new App.Views.userRequestList(el: $("#userRequestList"))
+    App.Views.UserRequestList.render()
+
+    App.Views.UserRequestList = new App.Views.userBlockList(el: $("#userBlockList"))
     App.Views.UserRequestList.render()
 
     App.Views.UserSearch = new App.Views.userSearch(el: $("#userSearch"), collection: App.SearchResults)

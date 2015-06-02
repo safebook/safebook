@@ -59,8 +59,8 @@ for ctrl in _.map(fs.readdirSync("#{__dirname}/controllers"), (f)-> f.split('.')
 app.post   '/user',         App.Controllers.users.create
 app.get    '/user/:pseudo', App.Controllers.users.find
 
-app.get    '/friend_requests/:user_id/add',   App.Controllers.users.add
-app.get    '/friend_requests/:user_id/block', App.Controllers.users.block
+app.get    '/user/:user_id/add',   App.Controllers.users.add
+app.get    '/user/:user_id/block', App.Controllers.users.block
 
 app.post   '/login', [
     App.Controllers.users.auth,

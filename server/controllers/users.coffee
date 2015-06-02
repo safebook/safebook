@@ -28,7 +28,7 @@ module.exports = (App, sequelize) ->
     return res.status(401).end() unless req.session.user_id
     App.Models.user.find(req.session.user_id).then (user) ->
       App.Models.user.find(req.params.user_id).then (contact) ->
-        user.addContact(contact).then ->
+        user.addContact(contact, blocked: false).then ->
           App.io.to(req.params.user_id).emit('user:add', user.public())
           res.status(201).json({status: 'success'})
         .catch (error) -> res.status(401).end()
