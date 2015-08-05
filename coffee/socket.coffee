@@ -11,6 +11,8 @@ class App.Socket
 
     @io.on 'message', (message) ->
       sender = App.Users.findWhere(id: message.user_id)
+      unless sender
+        sender = App.Pages.findWhere(id: message.destination_id)
       message = new App.Models.Message message
       App.Messages.push(message)
       if sender and sender.messages_collection

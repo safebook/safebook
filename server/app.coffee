@@ -41,6 +41,11 @@ io.on 'connection', (socket) =>
     console.log(name + ' joined')
     socket.handshake.session and console.log 'sessID: ' + socket.handshake.session.user_id
     socket.join(id)
+    App.Models.user.find(where: id: id).then (user) ->
+      user.getPages().then (pages) ->
+        socket.join(page.id) for page in pages
+      .catch (err) -> console.log err
+    .catch (err) -> console.log err
 
 # Load all App.Models in models/
 sequelize = new Sequelize(null, null, null, dialect: 'sqlite', storage: 'db.sqlite')
@@ -51,6 +56,15 @@ App.Models.user.belongsToMany(App.Models.user,
   {as: 'Contacts', through: 'friends', foreignKey: 'user_id', constraints: false})
 App.Models.user.belongsToMany(App.Models.user,
   {as: 'RequestedContacts', through: 'friends', foreignKey: 'friend_id', constraints: false })
+
+App.Models.user.belongsToMany(App.Models.page,
+  {as: 'Pages', through: 'pageLink', foreignKey: 'user_id', constraints: false})
+App.Models.user.hasMany(App.Models.page,
+  {as: 'CreatedPages', foreignKey: 'user_id', constraints: false })
+
+App.Models.page.belongsToMany(App.Models.user,
+  {as: 'Users', through: 'pageLink', foreignKey: 'page_id', constraints: false})
+App.Models.page.hasMany(App.Models.user, {as: 'Creators', constraints: false, foreignKey: 'page_id'})
 
 # Load all App.Controllers in controllers/
 for ctrl in _.map(fs.readdirSync("#{__dirname}/controllers"), (f)-> f.split('.')[0])
@@ -70,6 +84,7 @@ app.post   '/login', [
 #    App.Controllers.messages.fetch,
 #    App.Controllers.users.fetch,
     (req, res, next) ->
+      console.log "##### FINAL DATA"
       console.log(req.data)
       next()
     ,(req, res) -> res.json(req.data)

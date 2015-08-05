@@ -8,8 +8,12 @@ module.exports = (App, sequelize) ->
       primaryKey: true
     page_id:
       type: Sequelize.STRING
+      references: App.Models.page,
+      referencesKey: 'id',
     user_id:
       type: Sequelize.STRING
+      references: App.Models.user,
+      referencesKey: 'id',
     hidden_key:
       type: Sequelize.STRING
   }, {
