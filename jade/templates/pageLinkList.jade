@@ -1,0 +1,19 @@
+.panel.panel-success
+  .panel-heading.text-center
+    | Page Users
+  ul.list-group
+    | {{#each users}}
+    li.text-center.list-group-item
+      a(href='#user/{{id}}')
+        | {{pseudo}}
+      .pull-right
+        | {{#if creator}}
+        | (Creator)
+        | {{else}}
+        | {{#if auth}}
+        a.delete(data-id='{{id}}', href='#') (Remove)
+        |       {{else}}
+        a.create(data-id='{{id}}', href='#') (Add)
+        |       {{/if}}
+        |       {{/if}}
+    | {{/each}}

@@ -1,0 +1,16 @@
+.panel.panel-success
+  .panel-heading.text-center Pages
+  ul.list-group
+    | {{#each pages}}
+    li.text-center.list-group-item
+      a(href='#page/{{id}}')
+        | {{name}}
+      |       (
+      a(href='#user/{{user_id}}')
+        | {{user_name}}
+      |       )
+      span.badge 0
+    |       {{/each}}
+    li.list-group-item
+      input#create_page_input.form-control.text-center(type='text', placeholder='Create a new group')
+
