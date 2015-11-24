@@ -14,71 +14,54 @@ html(lang='en')
     script(type='text/javascript', src='js/socket.io.js')
     script(type='text/javascript', src='js/app.js')
 
-    // Login template
-    script#logViewTemplate(type='text/template')
+    script#loginTemplate(type='text/template')
       include templates/login.jade
 
-    // Login file progress bar template 1
     script#StartHashFileTemplate(type='text/template')
-      include templates/startHash.jade
+      include templates/startHashFile.jade
 
-    // Login file progress bar template 2
     script#EndHashFileTemplate(type='text/template')
-      include templates/endHash.jade
+      include templates/endHashFile.jade
 
-    // Home template
     script#homeViewTemplate(type='text/template')
       include templates/home.jade
 
-    // User list template
     script#userListTemplate(type='text/template')
       include templates/userList.jade
 
-    // User template
     script#userTemplate(type='text/template')
       include templates/user.jade
 
-    // User request list template
     script#userRequestListTemplate(type='text/template')
       include templates/userRequestList.jade
 
-    // User request template
     script#userRequestTemplate(type='text/template')
       include templates/userRequest.jade
 
-    // User block list template
     script#userBlockListTemplate(type='text/template')
-      include templates/userBlock.jade
+      include templates/userBlockList.jade
 
-    // User block template
     script#userBlockTemplate(type='text/template')
       include templates/userBlockList.jade
 
-    // User search template
     script#userSearchTemplate(type='text/template')
       include templates/userSearch.jade
 
-    // Search result template
     script#searchResultTemplate(type='text/template')
       include templates/searchResult.jade
 
-    // Page list template
     script#pageListTemplate(type='text/template')
       include templates/pageList.jade
 
-    // Message list template
     script#messageListTemplate(type='text/template')
       include templates/messageList.jade
 
-    // UserTalk template
     script#userTalkTemplate(type='text/template')
       include templates/userTalk.jade
 
-    // PageTalk template
     script#pageTalkTemplate(type='text/template')
       include templates/pageTalk.jade
 
-    // PageUserList template
     script#pageLinkListTemplate(type='text/template')
       include templates/pageLinkList.jade
 

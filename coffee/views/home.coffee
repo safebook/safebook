@@ -1,7 +1,7 @@
 class App.Views.home extends Backbone.View
 
   render: =>
-    template = Handlebars.compile $("#homeViewTemplate").html()
+    template = Handlebars.compile $("#homeTemplate").html()
     @$el.html template(I: App.I.get('pseudo'))
 
     App.Views.UserList = new App.Views.userList(el: $("#userList"))

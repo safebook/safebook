@@ -1,6 +1,6 @@
 class App.Views.Index extends Backbone.View
   render: =>
-    @$el.html $("#logViewTemplate").html()
+    @$el.html $("#loginTemplate").html()
     @
 
   events:
@@ -9,11 +9,11 @@ class App.Views.Index extends Backbone.View
     'click #signup': 'signup'
 
   hash_file: (e) =>
-    template = $("#StartHashFileTemplate").html()
+    template = $("#startHashFileTemplate").html()
     @$("#file_password_input").replaceWith(_.template(template))
 
     FileHasher e.target.files[0], (result) ->
-      template = $("#EndHashFileTemplate").html()
+      template = $("#endHashFileTemplate").html()
       @$(".progress").replaceWith(_.template(template))
       @$(".progress").addClass("progress-bar-success")
       $('#file_password_result_input').val(result)
