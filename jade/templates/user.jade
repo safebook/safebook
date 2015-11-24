@@ -1,0 +1,11 @@
+li.text-center.list-group-item
+  | {{#if confirmed}}
+  a(href='#user/{{id}}') {{pseudo}}
+  |       -
+  a.block.btn.btn-default.btn-xs.glyphicon.glyphicon-minus-sign(href='#')
+  |       {{else}}
+  a(href='#user/{{id}}') {{pseudo}}
+  |       (waiting)
+  |       -
+  a.block.btn.btn-default.btn-xs.glyphicon.glyphicon-minus-sign(href='#')
+  |       {{/if}}
