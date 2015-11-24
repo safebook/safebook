@@ -17,6 +17,13 @@ module.exports = (grunt) ->
           ]
         options: bare: true
 
+    jade:
+      client:
+        files:
+          'public/index.html': [
+            'jade/index.jade'
+          ]
+
     watch:
       all:
         files: ['coffee/**/*']
@@ -25,5 +32,6 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-jade'
 
   grunt.registerTask 'default', ['coffee', 'watch']
