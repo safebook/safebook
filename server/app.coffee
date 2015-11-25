@@ -28,9 +28,7 @@ app.use (req, res, next) ->
   next()
 app.use express.static(__dirname + '/../public')
 
-
-
-# tests with socket.io
+# === socket.io ===
 io = App.io = require('socket.io')(server)
 
 io.use (socket, next) ->
@@ -43,66 +41,40 @@ io.on 'connection', (socket) =>
     console.log(name + ' joined')
     socket.handshake.session and console.log 'sessID: ' + socket.handshake.session.user_id
     socket.join(id)
+    App.Models.user.find(where: id: id).then (user) ->
+      user.getPages().then (pages) ->
+        socket.join(page.id) for page in pages
+      .catch (err) -> console.log err
+    .catch (err) -> console.log err
 
 # Load all App.Models in models/
 sequelize = new Sequelize(null, null, null, dialect: 'sqlite', storage: 'db.sqlite')
 for model in _.map(fs.readdirSync("#{__dirname}/models"), (f)-> f.split('.')[0])
-  App.Models[model] = sequelize.import("#{__dirname}/models/#{model}")
+  App.Models[model] = require("#{__dirname}/models/#{model}")(App, sequelize)
 
-# before
-# CREATE TABLE IF NOT EXISTS `Friends` (`UserId` VARCHAR(255) NOT NULL REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `FriendId` VARCHAR(255) NOT NULL REFERENCES `Users` (`id`), PRIMARY KEY (`UserId`, `FriendId`));
-# CREATE TABLE IF NOT EXISTS `friends` (`UserId` VARCHAR(255) NOT NULL REFERENCES `Users` (`id`), `FriendId` VARCHAR(255) NOT NULL REFERENCES `Users` (`id`), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`UserId`, `FriendId`));
-# )
+App.Models.user.belongsToMany(App.Models.user,
+  {as: 'Contacts', through: 'friends', foreignKey: 'user_id', constraints: false})
+App.Models.user.belongsToMany(App.Models.user,
+  {as: 'RequestedContacts', through: 'friends', foreignKey: 'friend_id', constraints: false })
 
-App.Models.friends = sequelize.define('friends',
-        {
-            UserId: {
-                type: Sequelize.STRING,
-                references: App.Models.user,
-                referencesKey: 'id',
-                # primaryKey: true
-            },
-            FriendId: {
-                type: Sequelize.STRING,
-                references: App.Models.user,
-                referencesKey: 'id',
-                # primaryKey: true
-            },
-            Confirmed: {
-                type: Sequelize.INTEGER
-            }
-        }, { timestamps: false }) # A FINIR
+App.Models.user.belongsToMany(App.Models.page,
+  {as: 'Pages', through: 'pageLink', foreignKey: 'user_id', constraints: false})
+App.Models.user.hasMany(App.Models.page,
+  {as: 'CreatedPages', foreignKey: 'user_id', constraints: false })
 
-App.Models.user.belongsToMany(App.Models.user, { as: 'Friends', through: App.Models.friends, foreignKey: 'UserId', constraints: false})
-App.Models.user.belongsToMany(App.Models.user, { as: 'Friends2', through: App.Models.friends, foreignKey: 'FriendId', constraints: false})
-# App.Models.user.belongsToMany(App.Models.user, { as: 'Friends', through: 'Friends'})
-# App.Models.user.belongsToMany(App.Models.user, { as: 'FriendRequests', through: 'FriendRequests'})
+App.Models.page.belongsToMany(App.Models.user,
+  {as: 'Users', through: 'pageLink', foreignKey: 'page_id', constraints: false})
+App.Models.page.hasMany(App.Models.user, {as: 'Creators', constraints: false, foreignKey: 'page_id'})
 
 # Load all App.Controllers in controllers/
 for ctrl in _.map(fs.readdirSync("#{__dirname}/controllers"), (f)-> f.split('.')[0])
   App.Controllers[ctrl] = require("#{__dirname}/controllers/#{ctrl}")(App, sequelize)
 
-# ###
-# Server routes
-# ###
-
-# ###
-# /login draft
-# [
-#   App.Controller.Users.auth,  // finish with req.data = {}; req.data.user = user
-#   App.Controller.Links.fetch,
-#   App.Controller.Pages.fetch,
-#   App.Controller.Messages.fetch,
-#   App.Controller.Users.fetch,
-#   App.Middleware.send_req_data
-# ]
-# ###
-
-app.post   '/user', App.Controllers.users.create
+app.post   '/user',         App.Controllers.users.create
 app.get    '/user/:pseudo', App.Controllers.users.find
 
-app.get    '/friend_requests/:user_id/add', App.Controllers.users.send_request
-app.get    '/friend_requests/:user_id/accept', App.Controllers.users.accept_request
+app.get    '/user/:user_id/add',   App.Controllers.users.add
+app.get    '/user/:user_id/block', App.Controllers.users.block
 
 app.post   '/login', [
     App.Controllers.users.auth,
@@ -112,6 +84,7 @@ app.post   '/login', [
 #    App.Controllers.messages.fetch,
 #    App.Controllers.users.fetch,
     (req, res, next) ->
+      console.log "##### FINAL DATA"
       console.log(req.data)
       next()
     ,(req, res) -> res.json(req.data)

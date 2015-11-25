@@ -1,0 +1,21 @@
+| {{#each messages}}
+.panel.panel-success
+  .panel-heading
+    | From
+    a(href='#user/{{source.id}}')
+      | {{source.pseudo}}
+    |       to
+    |       {{#if destination.pseudo}}
+    a(href='#user/{{destination.id}}')
+      | {{destination.pseudo}}
+    |       {{/if}}
+    |       {{#if destination.name}}
+    a(href='#page/{{destination.id}}')
+      | {{destination.name}}
+    |       {{/if}}
+    |       at
+    |       {{createdAt}}
+  .panel-body
+    | {{content}}
+| {{/each}}
+button#load_older_messages Load older messages

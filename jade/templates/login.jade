@@ -1,0 +1,32 @@
+.col-sm-6.col-sm-offset-3
+	.form-group
+		label(for='pseudo_input')
+			u A-Side
+			| : Pseudo
+		input#pseudo_input.form-control(type='text', placeholder='Your Pseudo', autofocus='')
+	.form-group
+		label(for='string_password_input')
+			u B-Side (1)
+			| : Use a string as a password
+		input#string_password_input.form-control(type='password', placeholder='Password')
+		p.help-block
+			| You need something random with at least 
+			b 12 characters
+			| , numbers and 
+			b other characters
+	.form-group
+		label(for='file_password_input')
+			u B-Side (2)
+			| : And/Or use a file as a password
+		input#file_password_input(type='file')
+		input#file_password_result_input(type='hidden')
+		p.help-block
+			| You can use any file (picture, document, ...) but 
+			b make sure that you are the only owner of this file
+	.form-group
+		input#remember_input(type='checkbox')
+		span Remember me
+	.col-sm-6
+		button#signin.btn.btn-block.btn-success(type='submit') Sign In
+	.col-sm-6
+		button#signup.btn.btn-block.btn-warning(type='submit') Sign Up

@@ -1,0 +1,78 @@
+html(lang='en')
+  head
+    meta(charset='utf8')
+    title Safebook
+    // CSS files
+    link(rel='stylesheet', type='text/css', href='css/bootstrap.min.css')
+    // JS files
+    script(type='text/javascript', src='js/jquery-2.1.1.js')
+    script(type='text/javascript', src='js/jquery.autosize.js')
+    script(type='text/javascript', src='js/handlebars-v2.0.0.js')
+    script(type='text/javascript', src='js/underscore.js')
+    script(type='text/javascript', src='js/backbone.js')
+    script(type='text/javascript', src='js/sjcl.js')
+    script(type='text/javascript', src='js/socket.io.js')
+    script(type='text/javascript', src='js/app.js')
+
+    script#loginTemplate(type='text/template')
+      include templates/login.jade
+
+    script#StartHashFileTemplate(type='text/template')
+      include templates/startHashFile.jade
+
+    script#EndHashFileTemplate(type='text/template')
+      include templates/endHashFile.jade
+
+    script#homeTemplate(type='text/template')
+      include templates/home.jade
+
+    script#userListTemplate(type='text/template')
+      include templates/userList.jade
+
+    script#userTemplate(type='text/template')
+      include templates/user.jade
+
+    script#userRequestListTemplate(type='text/template')
+      include templates/userRequestList.jade
+
+    script#userRequestTemplate(type='text/template')
+      include templates/userRequest.jade
+
+    script#userBlockListTemplate(type='text/template')
+      include templates/userBlockList.jade
+
+    script#userBlockTemplate(type='text/template')
+      include templates/userBlockList.jade
+
+    script#userSearchTemplate(type='text/template')
+      include templates/userSearch.jade
+
+    script#searchResultTemplate(type='text/template')
+      include templates/searchResult.jade
+
+    script#pageListTemplate(type='text/template')
+      include templates/pageList.jade
+
+    script#messageListTemplate(type='text/template')
+      include templates/messageList.jade
+
+    script#userTalkTemplate(type='text/template')
+      include templates/userTalk.jade
+
+    script#pageTalkTemplate(type='text/template')
+      include templates/pageTalk.jade
+
+    script#pageLinkListTemplate(type='text/template')
+      include templates/pageLinkList.jade
+
+  body.container
+    #header.row
+      .col-sm-4
+        a(href='#home')
+          img.col-sm-offset-1(src='logo.png', style='margin-bottom: 10px; margin-top: 10px')
+      .col-sm-6
+        h1 This is the header !
+      .col-sm-2
+        a(href='#logout')
+          h2 Logout
+    #content.row

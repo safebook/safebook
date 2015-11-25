@@ -1,13 +1,15 @@
 Sequelize = require 'sequelize'
 _         = Sequelize.Utils._
 
-module.exports = (sequelize) ->
+module.exports = (App, sequelize) ->
   return sequelize.define('Page', {
     id:
       type: Sequelize.STRING
       primaryKey: true
     user_id:
       type: Sequelize.STRING
+      references: App.Models.user,
+      referencesKey: 'id',
     name:
       type: Sequelize.TEXT
     hidden_key:

@@ -1,0 +1,18 @@
+.col-sm-4
+  .panel.panel-success
+    .panel-heading
+      h3.panel-title.text-center
+        | User Talk
+    .panel-body
+      p.text-center
+        | Pseudo: 
+        b {{user.pseudo}}
+      p.text-center
+        | Id: 
+        b {{user.id}}
+  button#back_button.btn.btn-block.btn-success(type='button') Back
+.col-sm-8
+  .well
+    textarea#message_input.form-control(placeholder='Send a message...')
+    button#send_message.btn.btn-success(type='button') Hide and send
+  #messageList
