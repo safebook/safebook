@@ -1,7 +1,8 @@
 <template>
   <div id="signup">
     <p id="hello">Bonjour <input type="text" placeholder="Alice"></p>
-    <p>Voici votre addresse unique:
+    <p>Voici votre addresse unique:</p>
+    <p>{{ address }}</p>
     <p id="address"><b>SBhPXPB3bNHec6YvBdtRjLcFrzHzjgwiVUnWSFQmEtfMMmpM82</b></p>
     <p>
       Voici votre mot de passe :
@@ -29,6 +30,7 @@
       <span>dial</span>
       <span>flame</span>
     </p>
+    <p>Stop</p>
     <p>
       <br />
       <br />
@@ -40,8 +42,17 @@
 </template>
 
 <script>
+let safebook = require("safebook")
+
+let account = safebook.generate_account()
+
 export default {
-  name: 'HelloWorld'
+  name: 'Signup',
+  data: () => {
+    return {
+      account
+    }
+  }
 }
 </script>
 
