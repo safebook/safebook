@@ -1,15 +1,18 @@
 <template>
-  <div>
-    <div id="header">
-      <div id="title">Safebook</div>
-      <div id="address">{{ myAddress }}</div>
-      <div id="signin"><a>changer</a></div>
+  <div id="user">
+    <div id="side">
+      <div id="qrcode">
+        <vue-qr :text="address" :size="100"></vue-qr>
+        <AddressSquared :address="address" />
+      </div>
     </div>
-    <div id="signup">
-      <p class="center">
-        <span id="send">Envoyer vers {{ address }}</span>
-      </p>
+    <div id="main">
+      <p>Bonjour, je suis qqn</p>
+      <p>Je raconte des choses</p>
+      <p>Et des machins</p>
+      <div id="address">{{ myAddress }}</div>
       <p>
+        <span id="send">Envoyer vers {{ address }}</span>
         <textarea v-model="message" placeholder="Votre message"></textarea>
         <button @click="send()">Envoyer</button>
       </p>
@@ -19,9 +22,15 @@
 
 <script>
 const safebook = require('safebook')
+import AddressSquared from "./AddressSquared"
+import VueQr from 'vue-qr/src/packages/vue-qr.vue'
 
 export default {
   name: 'Signup',
+  components: {
+    AddressSquared,
+    VueQr
+  },
   data() {
     let account = this.$store.state.account
     if (!account)
@@ -50,6 +59,21 @@ export default {
 </script>
 
 <style scoped>
+#user {
+  min-height: 300px;
+}
+#side {
+ display: table-cell;
+ height: 100%;
+ width: 33%;
+ border-right: 2px solid green;
+}
+#main {
+ display: table-cell;
+ height: 100%;
+ width: 66%;
+}
+
  #title {
   display: inline-block;
   font-weight: bold;
