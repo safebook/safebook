@@ -27,6 +27,9 @@ export default {
 </script>
 
 <style scoped>
+#home {
+  margin-top: 60px;
+}
 h3 {
   margin: 40px 0 0;
 }

@@ -1,12 +1,21 @@
 <template>
   <div id="app">
+    <Header />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Header from './components/Header'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: { Header },
+  computed: {
+    account() {
+      return this.$store.state.account
+    }
+  }
 }
 </script>
 
@@ -24,7 +33,6 @@ body {
   margin: 0 auto;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 .center {
   text-align: center;

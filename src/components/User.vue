@@ -3,19 +3,16 @@
     <div id="side">
       <div id="qrcode">
         <vue-qr :text="address" :size="100"></vue-qr>
-        <AddressSquared :address="address" />
       </div>
+      <AddressSquared :address="address" />
     </div>
     <div id="main">
+      <p id="send">Envoyer un message privée</p>
+      <textarea v-model="message" placeholder="Votre message"></textarea>
+      <button @click="send()">Envoyer</button>
       <p>Bonjour, je suis qqn</p>
       <p>Je raconte des choses</p>
       <p>Et des machins</p>
-      <div id="address">{{ myAddress }}</div>
-      <p>
-        <span id="send">Envoyer vers {{ address }}</span>
-        <textarea v-model="message" placeholder="Votre message"></textarea>
-        <button @click="send()">Envoyer</button>
-      </p>
     </div>
   </div>
 </template>
@@ -48,6 +45,9 @@ export default {
     send() {
       let ciphertext = safebook.encrypt(this.$store.state.account.pubkey, this.message, this.address)
       console.log(ciphertext)
+    },
+    logout() {
+      this.$router.push('/')
     }
   },
   computed: {
@@ -60,18 +60,26 @@ export default {
 
 <style scoped>
 #user {
+  width: 100%;
   min-height: 300px;
+  display: table;
 }
 #side {
  display: table-cell;
  height: 100%;
- width: 33%;
+ width: 40%;
  border-right: 2px solid green;
 }
 #main {
  display: table-cell;
  height: 100%;
- width: 66%;
+ width: 60%;
+}
+
+#qrcode {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
 }
 
  #title {
