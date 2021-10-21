@@ -3,7 +3,7 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <h3>Safebook</h3>
     <p>
-      cryptographic social network
+      a cryptographic social network
     </p>
     <p>
       <a @click="createAccount()">Créer un compte</a>
