@@ -1,6 +1,6 @@
 <template>
   <div id="signup">
-    <h3>Bonjour, voici votre addresse...</h3>
+    <h3>Bonjour, voici votre addresse :</h3>
     <div>
       <AddressSquared :address="account.address" />
       <div id="or">
@@ -24,13 +24,13 @@
         <a href="#" @click="showPassphrase = !showPassphrase">({{showPassphrase ? "cacher" : "afficher" }})</a>
       </p>
       <p id="passphrase" v-if="showPassphrase">
-        <span v-for="word in account.mnemonic.split(' ')" :key='word'>
+        <span class="word" v-for="word in account.mnemonic.split(' ')" :key='word'>
           <span>{{ word }} </span>
         </span>
       </p>
       <p class='center'>
-        <button id="start" @click="start()">Commencer</button>
-        <button id="regenerate" @click="regenerate()">Regenerer</button>
+        <button class="button" id="start" @click="start()">Commencer</button>
+        <button class="button" id="regenerate" @click="regenerate()">Regenerer</button>
       </p>
     </div>
   </div>
@@ -57,6 +57,15 @@ export default {
   computed: {
     account() {
       return this.$store.state.account
+    },
+    splittedMnemonic() {
+      let words = this.account.mnemonic.split(" ")
+      return [
+        words.slice(0,3),
+        words.slice(3,6),
+        words.slice(6,9),
+        words.slice(9)
+      ];
     }
   },
   methods: {
@@ -132,20 +141,11 @@ export default {
   width: 50%;
   margin-left: 25%;
 }
-#passphrase span {
+.word {
   display: inline-block;
-  width: 25%;
+  width: 33%;
 }
-#start, #regenerate {
-  padding: 6px 30px 6px 30px;
-  margin: 0px 10px 0px 10px;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 15px;
-}
-#start:hover, #regenerate:hover {
-  box-shadow: inset 0 0 1px 1px #9eed1e, 0 0 1px 3px rgba(0, 0, 0, 0.15);
-}
+
 #start {
   background-color: green;
 }

@@ -1,16 +1,19 @@
 <template>
-  <div id="user">
+  <div id="user" class="table">
     <div id="side">
       <AddressQR :address="address" />
       <AddressSquared :address="address" />
     </div>
     <div id="main">
-      <p id="send">Envoyer un message privée</p>
-      <textarea v-model="message" placeholder="Votre message"></textarea>
-      <button @click="send()">Envoyer</button>
-      <p>Bonjour, je suis qqn</p>
-      <p>Je raconte des choses</p>
-      <p>Et des machins</p>
+      <PostInput />
+      <div class="post" v-for="post in posts" :key="post">
+        <div class="author">
+          King Kong
+        </div>
+        <div class="message">
+          {{ post }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -19,12 +22,14 @@
 const safebook = require('safebook')
 import AddressSquared from "./AddressSquared"
 import AddressQR from "./AddressQR"
+import PostInput from "./PostInput"
 
 export default {
   name: 'Signup',
   components: {
     AddressSquared,
-    AddressQR
+    AddressQR,
+    PostInput
   },
   data() {
     let account = this.$store.state.account
@@ -36,12 +41,17 @@ export default {
     return {
       message: '',
       address: this.$route.params.address,
-      account: account
+      account: account,
+      posts: [
+        "Viva la vida",
+        "Je raconte des choses",
+        "Et des machins"
+      ]
     }
   },
   methods: {
     send() {
-      let ciphertext = safebook.encrypt(this.$store.state.account.pubkey, this.message, this.address)
+      let ciphertext = safebook.encrypt(this.account, this.message, this.address)
       console.log(ciphertext)
     },
     logout() {
@@ -62,24 +72,11 @@ export default {
   min-height: 300px;
   display: table;
 }
-#side {
- display: table-cell;
- height: 100%;
- width: 40%;
- border-right: 2px solid green;
-}
-#main {
- display: table-cell;
- height: 100%;
- width: 60%;
-}
-
 #qrcode {
   display: inline-block;
   padding: 0;
   margin: 0;
 }
-
  #title {
   display: inline-block;
   font-weight: bold;
@@ -93,5 +90,25 @@ export default {
  #signin {
   display: inline-block;
   width: 20%;
+ }
+ .post {
+  border: 2px solid green;
+  border-radius: 15px;
+  margin: 10px 30px 0 30px;
+ }
+ .author {
+  text-align: left;
+  margin: 10px;
+  font-weight: bold;
+ }
+ .message {
+  margin-bottom: 10px;
+ }
+ #send {
+  text-align: right;
+ }
+ #send button {
+  background-color: green;
+  color: white;
  }
 </style>
