@@ -1,17 +1,41 @@
 <template>
   <div id="user" class="table">
     <div id="side">
-      <AddressQR :address="address" />
-      <AddressSquared :address="address" />
+      <div id="name">
+        <input v-if="myself" type="text" placeholder="Votre nom" v-model="name" />
+        <h3 v-if="!myself">{{ name }}</h3>
+      </div>
+      <div v-if="showImg == 'avatar'" id="avatar">
+        <img :src="avatarUrl" />
+      </div>
+      <AddressQR v-if="showImg == 'qr'" :address="address" />
+      <div id="address">
+        <AddressSquared v-if="showImg == 'address'" :address="address" />
+      </div>
+      <div id="qr">
+        <a @click="showAvatar()" v-bind:class="{ selected: showImg == 'avatar' }">Avatar</a>
+        - 
+        <a @click="showQR()" v-bind:class="{ selected: showImg == 'qr' }">QRCode</a>
+        -
+        <a @click="showAddress()" v-bind:class="{ selected: showImg == 'address' }">Address</a>
+      </div>
     </div>
     <div id="main">
+      <div id="scope">
+        <h4 class="scope-title">
+          Publications
+        </h4>
+        <h4 class="scope-title">
+          Messages privés
+        </h4>
+      </div>
       <PostInput />
       <div class="post" v-for="post in posts" :key="post">
         <div class="author">
           King Kong
         </div>
         <div class="message">
-          {{ post }}
+          {{ post.content }}
         </div>
       </div>
     </div>
@@ -23,6 +47,7 @@ const safebook = require('safebook')
 import AddressSquared from "./AddressSquared"
 import AddressQR from "./AddressQR"
 import PostInput from "./PostInput"
+import config from "../config"
 
 export default {
   name: 'Signup',
@@ -42,11 +67,11 @@ export default {
       message: '',
       address: this.$route.params.address,
       account: account,
-      posts: [
-        "Viva la vida",
-        "Je raconte des choses",
-        "Et des machins"
-      ]
+      name: 'Stitch',
+      avatarUrl: require("@/assets/stitch.jpg"),
+      showImg: 'avatar',
+      myself: this.$route.params.address == account.address,
+      posts: []
     }
   },
   methods: {
@@ -56,12 +81,27 @@ export default {
     },
     logout() {
       this.$router.push('/')
-    }
+    },
+    showQR() { this.showImg = 'qr' },
+    showAddress() { this.showImg = 'address' },
+    showAvatar() { this.showImg = 'avatar' }
   },
   computed: {
     myAddress() {
       return this.$store.state.account.address
     }
+  },
+  created() {
+    const that = this
+    console.log("Hello")
+    console.log(config)
+    console.log(`${config.url}/${this.address}/posts`)
+    fetch(`${config.url}/${this.address}/posts`)
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data)
+        that.posts = data
+      })
   }
 }
 </script>
@@ -87,6 +127,9 @@ export default {
   color: grey;
   width: 60%;
  }
+ #avatar {
+  height: 138px;
+ }
  #signin {
   display: inline-block;
   width: 20%;
@@ -110,5 +153,33 @@ export default {
  #send button {
   background-color: green;
   color: white;
+ }
+ #name input {
+  margin-top: 15px;
+  text-align: center;
+  margin-bottom: 5px;
+ }
+ #name h3 {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+ }
+ #address div {
+  margin-bottom: 45px;
+  margin-right: 40px;
+ }
+ #qr {
+  margin-top: -25px;
+  font-size: 0.85em;
+ }
+ .selected {
+  color: black;
+  text-decoration: none;
+  cursor: none;
+  font-weight: bold;
+ }
+ .scope-title {
+  display: inline-block;
+  text-align: center;
+  width: 50%;
  }
 </style>

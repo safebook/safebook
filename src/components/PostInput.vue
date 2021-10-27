@@ -1,10 +1,10 @@
 <template>
   <div>
     <div>
-      <textarea id="textbox" v-model="message" placeholder="Votre message" rows=1 @keydown="autogrow"></textarea>
+      <textarea id="textbox" v-model="message" placeholder="Votre message" rows=1 @keydown="autogrow" autofocus></textarea>
     </div>
     <div id="send">
-      <button class="button" @click="send()">Envoyer</button>
+      <button class="button" @click="send()">Publier</button>
     </div>
   </div>
 </template>
@@ -19,8 +19,8 @@ export default {
   },
   methods: {
     send () {
-      const contact = this.contacts[this.contactIndex]
-      this.$emit('post', this.message, contact.alias, contact.pubkey)
+      console.log(1)
+      this.$store.commit('post', this.message)
       this.currentMessage = ''
       this.autogrow()
     },
