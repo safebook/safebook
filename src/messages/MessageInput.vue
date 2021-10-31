@@ -4,6 +4,7 @@
       <textarea id="textbox" v-model="content" placeholder="Votre message privé" rows=1 @keydown="autogrow" autofocus></textarea>
     </div>
     <div id="send">
+      <button class="button" @click="refresh()">Refresh</button>
       <button class="button" @click="send()">Envoyer</button>
     </div>
   </div>
@@ -27,6 +28,12 @@ export default {
       })
       this.content = ''
       this.autogrow()
+    },
+    refresh() {
+      this.$store.commit({
+        type: 'loadMessages',
+        address: this.address
+      });
     },
     autogrow () {
       setTimeout(() => {

@@ -31,26 +31,18 @@ export default new Vuex.Store({
     },
     loadMessages(state, payload) {
       state.messages = []
-      fetch(`${config.url}/${payload.address}/inbox`)
+      fetch(`${config.url}/${state.account.address}/${payload.address}/messages`)
         .then(response => response.json())
         .then((data) => {
           for (let i = 0; i < data.length; i++)
           {
             try {
-              data[i].content = safebook.decrypt(state.account, data[i].author, data[i].hidden_content)
-            } catch (e) {
-              data[i].content = "Error"
-            }
-          }
-          state.messages = state.messages.concat(data)
-        })
-      fetch(`${config.url}/${payload.address}/outbox`)
-        .then(response => response.json())
-        .then((data) => {
-          for (let i = 0; i < data.length; i++)
-          {
-            try {
-              data[i].content = safebook.decrypt(state.account, data[i].author, data[i].hidden_content)
+              console.log(state.account, data[i].author, data[i].hidden_content)
+              console.log(safebook.decrypt(state.account, data[i].author, data[i].hidden_content))
+              if (data[i].author == state.account.address)
+                data[i].content = safebook.decrypt(state.account, data[i].receiver, data[i].hidden_content)
+              else
+                data[i].content = safebook.decrypt(state.account, data[i].author, data[i].hidden_content)
             } catch (e) {
               data[i].content = "Error"
             }
@@ -87,7 +79,9 @@ export default new Vuex.Store({
         content: payload.content,
         hidden_content: hidden_content
       })
-      fetch(`${config.url}/${payload.address}/inbox`, {
+      console.log(state.account, payload.address, hidden_content)
+      console.log(safebook.decrypt(state.account, payload.address, hidden_content))
+      fetch(`${config.url}/${payload.address}/messages`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
