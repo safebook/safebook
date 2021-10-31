@@ -2,14 +2,16 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import safebook from 'safebook'
 import config from './config'
+import router from './router'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     account: null,
-    signedMessages: [],
-    privateMessages: []
+    inbox: [],
+    outbox: [],
+    pms: []
   },
   mutations: {
     createAccount(state) {
@@ -24,8 +26,9 @@ export default new Vuex.Store({
     loadAccount(state, payload) {
       try {
         state.account = safebook.load(payload.mnemonic)
-        this.$router.push('/signup')
-      } catch {
+        localStorage.setItem("mnemonic", state.account.mnemonic)
+        router.push('/signup')
+      } catch (e) {
         window.alert("Mot de passe invalide")
       }
     },
@@ -33,15 +36,21 @@ export default new Vuex.Store({
       state.account = null
       localStorage.removeItem("mnemonic")
     },
-    loadSignedMessages(state, payload) {
-      state.signedMessages = []
+    loadInbox(state, payload) {
+      state.inbox = []
       fetch(`${config.url}/${payload.address}/inbox`)
         .then(response => response.json())
-        .then((data) => { state.signedMessages = data })
+        .then((data) => { state.inbox = data })
     },
-    loadPrivateMessages(state, payload) {
-      state.privateMessages = []
-      fetch(`${config.url}/${state.account.address}/${payload.address}`)
+    loadOutbox(state, payload) {
+      state.outbox = []
+      fetch(`${config.url}/${payload.address}/outbox`)
+        .then(response => response.json())
+        .then((data) => { state.outbox = data })
+    },
+    loadPrivateMessages(state) {
+      state.pms = []
+      fetch(`${config.url}/${state.account.address}/private_messages`)
         .then(response => response.json())
         .then((data) => {
           for (let i = 0; i < data.length; i++)
@@ -57,7 +66,7 @@ export default new Vuex.Store({
               data[i].content = "Error"
             }
           }
-          state.messages = state.privateMessages.concat(data)
+          state.pms = state.pms.concat(data)
         })
     },
     sendSignedMessage(state, payload) {
@@ -74,7 +83,9 @@ export default new Vuex.Store({
         body: JSON.stringify(message)
       }).then((res) => { console.log(res) })
       .catch((res) => { console.log(res) })
-      state.signedMessages.push(message)
+      state.inbox.push(message)
+      if (message.receiver == state.account.address)
+        state.outbox.push(message)
     },
     sendPrivateMessage(state, payload) {
       console.log(state.account, payload.receiver, payload.content)
@@ -84,13 +95,13 @@ export default new Vuex.Store({
         receiver: payload.receiver,
         hidden_content: hidden_content
       }
-      fetch(`${config.url}/${state.account.address}/${payload.address}`, {
+      fetch(`${config.url}/${state.account.address}/private_messages`, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify(message)
       }).then((res) => { console.log(res) })
       .catch((res) => { console.log(res) })
-      state.privateMessages.push({...message, ...{content: payload.content}});
+      state.pms.push({...message, ...{content: payload.content}});
     }
   },
   /*

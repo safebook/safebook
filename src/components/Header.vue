@@ -1,18 +1,24 @@
 <template>
   <div id="header">
-    <div class="col-25" id="logo">
+    <div class="col-20" id="logo">
       <router-link to="/">
         Safebook
       </router-link>
     </div>
-    <div class="col-50">
+    <div class="col-40">
       <span id="address" v-if="account">{{ account.name.join(' ') }}</span>
     </div>
-    <div class="col-25" id="logout">
-      <router-link v-if="!account" to="signin">Connexion</router-link>
-      <a v-if="account" @click="goToAccount()">Mon compte</a>
-      <div class="space"></div>
-      <a v-if="account" @click="logout()">Déconnexion</a>
+    <div class="col-40" id="logout">
+      <div v-if="!account" class="text-right">
+        <router-link v-if="!account" to="signin">Connexion</router-link>
+      </div>
+      <div v-if="account">
+        <a @click="goToAccount()">Ma page</a>
+        <div class="space"></div>
+        <a @click="goToMessaging()">Messagerie</a>
+        <div class="space"></div>
+        <a @click="logout()">Déconnexion</a>
+      </div>
     </div>
   </div>
 </template>
@@ -27,6 +33,9 @@ export default {
     },
     goToAccount() {
       this.$router.push(`/u/${this.$store.state.account.address}`);
+    },
+    goToMessaging() {
+      this.$router.push(`/m`);
     }
   },
   computed: {
@@ -37,13 +46,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #header {
   border-bottom: 1px solid green;
 }
-.col-50, .col-25 { display: inline-block; }
-.col-50 { width: 50% }
-.col-25 { width: 25% }
+.col-40, .col-20 {
+  display: inline-block;
+  text-align: center;
+}
+.col-40 { width: 40% }
+.col-20 { width: 20% }
 #logo a {
   color: green;
   font-weight: bold;
@@ -57,6 +69,9 @@ export default {
 .space {
   display: inline-block;
   width: 10px;
+}
+.text-right {
+  text-align: right;
 }
 </style>
 

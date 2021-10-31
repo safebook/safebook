@@ -21,10 +21,10 @@
       <a @click="showAddress()" v-bind:class="{ selected: showImg == 'address' }">Address</a>
     </div>
     <div>
-      <button id="edit" class="button">Modifier</button>
+      <!--button id="edit" class="button">Modifier</button-->
     </div>
     <div>
-      <button id="account" class="button" v-if="myself" @click="goToAccount()">Mon compte</button>
+      <!--button id="account" class="button" v-if="myself" @click="goToAccount()">Mon compte</button-->
     </div>
   </div>
 </template>
