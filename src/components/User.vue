@@ -16,8 +16,8 @@
           </a>
         </h4>
       </div>
-      <Posts v-if="scope == 0" :posts="posts" />
-      <PMs   v-if="scope == 1" :messages="messages" :address="address" />
+      <Posts    v-if="scope == 0" :posts="posts" />
+      <Messages v-if="scope == 1" :messages="messages" :address="address" />
     </div>
   </div>
 </template>
@@ -25,13 +25,13 @@
 <script>
 const safebook = require('safebook')
 import Avatar from "./Avatar"
-import PMs from "./PMs"
-import Posts from "./Posts"
+import Messages from "@/messages/Messages"
+import Posts from "@/posts/Posts"
 
 export default {
   name: 'Signup',
   components: {
-    Posts, PMs,
+    Posts, Messages,
     Avatar
   },
   data() {
