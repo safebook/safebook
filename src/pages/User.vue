@@ -24,7 +24,7 @@
 
 <script>
 const safebook = require('safebook')
-import Avatar from "./Avatar"
+import Avatar from "@/components/Avatar"
 import Messages from "@/messages/Messages"
 import Posts from "@/posts/Posts"
 
