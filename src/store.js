@@ -8,30 +8,40 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     account: null,
-    posts: [],
-    messages: []
+    signedMessages: [],
+    privateMessages: []
   },
   mutations: {
     createAccount(state) {
       state.account = safebook.generate_account()
+      localStorage.setItem("mnemonic", state.account.mnemonic)
+    },
+    restoreAccount(state) {
+      let mnemonic = localStorage.getItem("mnemonic")
+      if (mnemonic)
+        state.account = safebook.load(mnemonic)
     },
     loadAccount(state, payload) {
-      state.account = safebook.load(payload.mnemonic)
+      try {
+        state.account = safebook.load(payload.mnemonic)
+        this.$router.push('/signup')
+      } catch {
+        window.alert("Mot de passe invalide")
+      }
     },
     logout(state) {
       state.account = null
+      localStorage.removeItem("mnemonic")
     },
-    loadPosts(state, payload) {
-      state.posts = []
-      fetch(`${config.url}/${payload.address}/posts`)
+    loadSignedMessages(state, payload) {
+      state.signedMessages = []
+      fetch(`${config.url}/${payload.address}/inbox`)
         .then(response => response.json())
-        .then((data) => {
-          state.posts = data
-        })
+        .then((data) => { state.signedMessages = data })
     },
-    loadMessages(state, payload) {
-      state.messages = []
-      fetch(`${config.url}/${state.account.address}/${payload.address}/messages`)
+    loadPrivateMessages(state, payload) {
+      state.privateMessages = []
+      fetch(`${config.url}/${state.account.address}/${payload.address}`)
         .then(response => response.json())
         .then((data) => {
           for (let i = 0; i < data.length; i++)
@@ -47,53 +57,40 @@ export default new Vuex.Store({
               data[i].content = "Error"
             }
           }
-          state.messages = state.messages.concat(data)
+          state.messages = state.privateMessages.concat(data)
         })
     },
-    post(state, message) {
-      const sig = safebook.sign(state.account, message)
-      state.posts.push({
+    sendSignedMessage(state, payload) {
+      const sig = safebook.sign(state.account, payload.content) // TODO: also sign metadata
+      const message = {
         author: state.account.address,
-        content: message,
-        sig
-      })
-      fetch(`${config.url}/${state.account.address}/posts`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          author: state.account.address, // TODO: useless
-          content: message,
-          sig
-        })
-      }).then((res) => { console.log(res) })
-      .catch((res) => { console.log(res) })
-    },
-    message(state, payload) {
-      const hidden_content = safebook.encrypt(state.account, payload.address, payload.content)
-      state.messages.push({
-        author: state.account.address,
-        receiver: payload.address,
+        receiver: payload.receiver,
         content: payload.content,
-        hidden_content: hidden_content
-      })
-      console.log(state.account, payload.address, hidden_content)
-      console.log(safebook.decrypt(state.account, payload.address, hidden_content))
-      fetch(`${config.url}/${payload.address}/messages`, {
+        sig
+      }
+      fetch(`${config.url}/${state.account.address}/inbox`, {
         method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          author: state.account.address,
-          receiver: payload.address, // TODO: useless
-          hidden_content: hidden_content
-        })
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(message)
       }).then((res) => { console.log(res) })
       .catch((res) => { console.log(res) })
+      state.signedMessages.push(message)
+    },
+    sendPrivateMessage(state, payload) {
+      console.log(state.account, payload.receiver, payload.content)
+      const hidden_content = safebook.encrypt(state.account, payload.receiver, payload.content)
+      const message = {
+        author: state.account.address,
+        receiver: payload.receiver,
+        hidden_content: hidden_content
+      }
+      fetch(`${config.url}/${state.account.address}/${payload.address}`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(message)
+      }).then((res) => { console.log(res) })
+      .catch((res) => { console.log(res) })
+      state.privateMessages.push({...message, ...{content: payload.content}});
     }
   },
   /*

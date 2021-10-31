@@ -9,11 +9,15 @@
     </div>
     <div id="main">
       <div>
+        <h4>Votre mot de passe ou phrase mnémotechnique :</h4>
         <input id="password" type="password"
-          v-model="password" placeholder="Votre mot de passe ou phrase mnémotechnique" />
+          v-model="password" placeholder="Mot de passe" />
       </div>
       <div>
-        <button class="button" @click="signin()">Se connecter</button>
+        <button id="signin" class="button"
+          @click="signin()" v-bind:class="{ active: password.length > 0 }">
+          Se connecter
+        </button>
       </div>
       <p>
         --- ou ---
@@ -24,7 +28,7 @@
       </button>
       </div>
       <div>
-      <button class="button" id="signup">
+      <button class="button" id="doc">
         Documentation
       </button>
       </div>
@@ -50,7 +54,6 @@ export default {
         type: 'loadAccount',
         mnemonic: this.password.trim()
       })
-      this.$router.push('/signup')
     }
   }
 }
@@ -63,18 +66,24 @@ export default {
 h3 {
   margin: 20px 0 0;
 }
-#signup {
+#signin.active, #signup {
   color: white;
   background-color: green;
 }
 #password {
   width: 350px;
+  height: 25px;
   text-align: center;
   margin-bottom: 20px;
+  border-radius: 5px;
+  border-color: green;
 }
 #main {
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 50px;
+}
+#doc {
+  margin: 15px;
 }
 </style>
 

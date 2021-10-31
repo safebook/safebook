@@ -4,20 +4,27 @@
       <Avatar :address="address" />
     </div>
     <div id="main">
+      <MessageInput :address="address" />
       <div id="scope">
-        <h4 class="scope-title">
-          <a @click="goToScope(0)" v-bind:class="{ selected: scope == 0 }">
-            Publications
-          </a>
-        </h4>
-        <h4 class="scope-title">
-          <a @click="goToScope(1)" v-bind:class="{ selected: scope == 1 }">
-            Messages privés
-          </a>
-        </h4>
+        <h4><a v-bind:class="{ active: scope == 'author' }" @click="scope = 'author'">
+            Auteur ({{ authorMessages.length }})
+        </a></h4>
+        <h4><a v-bind:class="{ active: scope == 'public' }" @click="scope = 'public'">
+            Publiques ({{ signedMessages.length }})
+        </a></h4>
+        <h4><a v-bind:class="{ active: scope == 'private' }" @click="scope = 'private'">
+            Privés ({{ privateMessages.length }})
+        </a></h4>
       </div>
-      <Posts    v-if="scope == 0" :posts="posts" />
-      <Messages v-if="scope == 1" :messages="messages" :address="address" />
+      <div v-if="scope == 'author'">
+        <SignedMessage v-for="(message, index) in authorMessages" :message="message" :key="index" />
+      </div>
+      <div v-if="scope == 'public'">
+        <SignedMessage v-for="(message, index) in signedMessages" :message="message" :key="index" />
+      </div>
+      <div v-if="scope == 'private'">
+        <PrivateMessage v-for="(message, index) in privateMessages" :message="message" :key="index" />
+      </div>
     </div>
   </div>
 </template>
@@ -25,15 +32,13 @@
 <script>
 const safebook = require('safebook')
 import Avatar from "@/components/Avatar"
-import Messages from "@/messages/Messages"
-import Posts from "@/posts/Posts"
+import MessageInput   from "@/messages/MessageInput"
+import PrivateMessage from "@/messages/PrivateMessage"
+import SignedMessage  from "@/messages/SignedMessage"
 
 export default {
   name: 'Signup',
-  components: {
-    Posts, Messages,
-    Avatar
-  },
+  components: { Avatar, MessageInput, PrivateMessage, SignedMessage },
   data() {
     let account = this.$store.state.account
     if (!account)
@@ -43,18 +48,24 @@ export default {
     }
     return {
       message: '',
-      address: this.$route.params.address,
       account: account,
-      scope: 0,
+      scope: 'author',
       myself: this.$route.params.address == account.address,
     }
   },
   computed: {
-    myAddress() {
-      return this.$store.state.account.address
+    address() {
+      return this.$route.params.address
     },
-    posts() { return this.$store.state.posts },
-    messages() { return this.$store.state.messages }
+    authorMessages() {
+      return this.$store.state.signedMessages.filter(msg => msg.author == this.address)
+    },
+    signedMessages() {
+      return this.$store.state.signedMessages
+    },
+    privateMessages() {
+      return this.$store.state.privateMessages
+    },
   },
   methods: {
     send() {
@@ -64,15 +75,15 @@ export default {
     logout() {
       this.$router.push('/')
     },
-    goToScope(s) { this.scope = s }
+    goToScope(s) { this.scope = s },
   },
   created() {
     this.$store.commit({
-      type: 'loadPosts',
+      type: 'loadSignedMessages',
       address: this.address
     });
     this.$store.commit({
-      type: 'loadMessages',
+      type: 'loadPrivateMessages',
       address: this.address
     });
   }
@@ -148,4 +159,13 @@ export default {
  #edit {
   margin-top: 20px;
  }
+
+#scope h4 {
+  display: inline-block;
+  width: 33%;
+}
+.active {
+  text-decoration: none;
+  color: black;
+}
 </style>

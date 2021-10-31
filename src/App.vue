@@ -11,10 +11,8 @@ import Header from './components/Header'
 export default {
   name: 'App',
   components: { Header },
-  computed: {
-    account() {
-      return this.$store.state.account
-    }
+  mounted() {
+    this.$store.commit('restoreAccount')
   }
 }
 </script>
