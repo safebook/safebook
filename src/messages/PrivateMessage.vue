@@ -1,11 +1,8 @@
 <template>
-  <div id="post">
-    <div id="header">
-      {{ author_name().join(" ") }} -> {{ receiver_name().join(" ") }}
-    </div>
-    <div id="message">
+  <div id="messageBox" v-bind:class="{ sent: sent }">
+    <span id="message" v-bind:class="{ sent: sent }">
       {{ message.content }}
-    </div>
+    </span>
   </div>
 </template>
 
@@ -14,7 +11,7 @@ import safebook from "safebook"
 
 export default {
   name: 'Message',
-  props: ['message'],
+  props: ['message', 'sent'],
   methods: {
     author_name() { return safebook.name(this.message.author) },
     receiver_name() { return safebook.name(this.message.receiver) }
@@ -23,16 +20,29 @@ export default {
 </script>
 
 <style>
-#post {
- border: 2px solid green;
- border-radius: 15px;
- margin: 10px 30px 10px 30px;
+#messageBox {
+  text-align: left;
 }
-#header {
- text-align: left;
- margin: 10px;
+#messageBox.sent {
+  text-align: right;
 }
 #message {
- margin-bottom: 10px;
+  border: 2px solid green;
+  border-radius: 15px;
+  margin: 10px 30px 10px 30px;
+  display: inline-block;
+  margin: 5px;
+  text-align: left;
+}
+#message {
+  padding: 6px;
+  background-color: green;
+  color: white;
+  border: 1px solid green !important;
+}
+#message.sent {
+  text-align: right;
+  background-color: blue;
+  border: 1px solid blue !important;
 }
 </style>

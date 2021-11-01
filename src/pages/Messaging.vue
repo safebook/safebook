@@ -1,12 +1,20 @@
 <template>
   <div id="messaging">
     <div id="side">
-      <div class="user">{{ get_name(address) }}</div>
-      <div class="user" v-for="user in users" :key="user">{{ get_name(user) }}</div>
+      <div class="user">
+        <a @click="goToUser(address)">
+          {{ get_name(address) }}
+        </a>
+      </div>
+      <div class="user" v-for="user in users" :key="user">
+        <a @click="goToUser(user)">
+          {{ get_name(user) }}
+        </a>
+      </div>
     </div>
     <div id="main">
       <PrivateMessageInput :address="address" />
-      <PrivateMessage v-for="(message, index) in pms" :message="message" :key="index" />
+      <PrivateMessage v-for="(message, index) in pms" :message="message" :key="index" :sent="message.author == address" />
     </div>
   </div>
 </template>
@@ -24,6 +32,9 @@ export default {
     get_name(address) {
       if (!address) return ""
       return safebook.name(address).join(" ")
+    },
+    goToUser(user) {
+      this.$router.push(`/m/${user}`)
     }
   },
   computed: {
