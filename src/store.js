@@ -49,15 +49,12 @@ export default new Vuex.Store({
         .then((data) => { state.outbox = data })
     },
     loadPrivateMessages(state) {
-      state.pms = []
       fetch(`${config.url}/${state.account.address}/private_messages`)
         .then(response => response.json())
         .then((data) => {
           for (let i = 0; i < data.length; i++)
           {
             try {
-              console.log(state.account, data[i].author, data[i].hidden_content)
-              console.log(safebook.decrypt(state.account, data[i].author, data[i].hidden_content))
               if (data[i].author == state.account.address)
                 data[i].content = safebook.decrypt(state.account, data[i].receiver, data[i].hidden_content)
               else
@@ -66,7 +63,7 @@ export default new Vuex.Store({
               data[i].content = "Error"
             }
           }
-          state.pms = state.pms.concat(data)
+          state.pms = data
         })
     },
     sendSignedMessage(state, payload) {

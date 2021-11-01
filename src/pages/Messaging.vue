@@ -1,10 +1,8 @@
 <template>
   <div id="messaging">
     <div id="side">
-      <div class="user">
-        <a @click="goToUser(address)">
-          {{ get_name(address) }}
-        </a>
+      <div class="user top">
+        <b>{{ get_name(address) }}</b>
       </div>
       <div class="user" v-for="user in users" :key="user">
         <a @click="goToUser(user)">
@@ -61,6 +59,9 @@ export default {
     this.$nextTick(() =>
       this.$store.commit('loadPrivateMessages')
     )
+    setInterval(() => {
+      this.$store.commit('loadPrivateMessages')
+    }, 3000)
   }
 }
 </script>
@@ -70,6 +71,9 @@ export default {
   width: 100%;
   min-height: 300px;
   display: table;
+}
+.user {
+  margin: 10px;
 }
 </style>
 
