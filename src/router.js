@@ -5,6 +5,7 @@ import Signup from '@/pages/Signup.vue'
 import Signin from '@/pages/Signin.vue'
 import User from '@/pages/User.vue'
 import Messaging from '@/pages/Messaging.vue'
+import Documentation from '@/pages/Documentation.vue'
 
 Vue.use(Router)
 
@@ -36,6 +37,10 @@ export default new Router({
       path: '/m/:address',
       name: 'messaging',
       component: Messaging
+    }, {
+      path: '/doc',
+      name: 'documentation',
+      component: Documentation
     },
   ]
 })
