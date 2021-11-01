@@ -1,7 +1,6 @@
 <template>
   <div id="avatar">
     <div id="name">
-      <!--NameInput v-if="myself" :old-name="name" /-->
       <h3>{{ name }}</h3>
     </div>
     <!--div v-if="showImg == 'avatar'" id="avatar">
@@ -20,12 +19,6 @@
       -
       <a @click="showAddress()" v-bind:class="{ selected: showImg == 'address' }">Address</a>
     </div>
-    <div>
-      <!--button id="edit" class="button">Modifier</button-->
-    </div>
-    <div>
-      <!--button id="account" class="button" v-if="myself" @click="goToAccount()">Mon compte</button-->
-    </div>
   </div>
 </template>
 
@@ -36,7 +29,7 @@ import AddressQR from "./AddressQR"
 //import NameInput from "./NameInput"
 
 export default {
-  name: 'Signup',
+  name: 'Avatar',
   components: {
     AddressSquared, AddressQR, /*NameInput*/
   },
@@ -44,17 +37,13 @@ export default {
   data() {
     return {
       avatarUrl: require("@/assets/stitch.jpg"),
-      showImg: 'qr',
-      myself: this.$store.state.account.address == this.address
+      showImg: 'qr'
     }
   },
   computed: {
     name() {
       return safebook.name(this.address).join(" ")
     },
-    posts() {
-      return this.$store.state.posts
-    }
   },
   methods: {
     showQR() { this.showImg = 'qr' },
@@ -133,11 +122,6 @@ export default {
  }
  #edit {
   margin-top: 20px;
- }
- #account {
-  margin: 10px 0 30px 0;
-  background-color: green;
-  color: white;
  }
 </style>
 

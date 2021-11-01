@@ -1,6 +1,6 @@
-let url = '';
 // if (production??)
 // url = "https://safebook.fr"
 // else
-url = "http://localhost:3000"
-export default { url }
+let url = "http://localhost:3000"
+let vue_url = "http://localhost:8080"
+export default { url, vue_url }
