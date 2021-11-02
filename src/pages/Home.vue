@@ -27,10 +27,12 @@
         Créer un compte
       </button>
       </div>
-      <hr />
-      <div>
-        <button class="button" id="doc" @click="goToDoc()">
-          Documentation
+      <div id="doc">
+        <button class="button" @click="goToUserDoc()">
+          Documentation utilisateur
+        </button>
+        <button class="button" @click="goToTechnicalDoc()">
+          Documentation technique
         </button>
       </div>
     </div>
@@ -56,8 +58,11 @@ export default {
         mnemonic: this.password.trim()
       })
     },
-    goToDoc() {
+    goToUserDoc() {
       this.$router.push('/doc')
+    },
+    goToTechnicalDoc() {
+      window.location = 'https://github.com/mjal/safebook-doc/blob/master/technical.org';
     }
   }
 }
@@ -88,6 +93,9 @@ h3 {
 }
 #doc {
   margin: 15px;
+}
+#doc button {
+  margin: 5px;
 }
 </style>
 

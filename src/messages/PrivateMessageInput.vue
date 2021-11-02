@@ -20,11 +20,7 @@ export default {
   props: ['address'],
   methods: {
     sendPrivateMessage () {
-      this.$store.commit({
-        type: 'sendPrivateMessage',
-        content: this.content,
-        receiver: this.address
-      })
+      this.$emit('post', this.content)
       this.content = ''
       this.autogrow()
     },
