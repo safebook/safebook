@@ -1,46 +1,34 @@
-<template>
-  <div id="user" class="table">
-    <Side :address="address" :owned="myself" />
-    <div id="side">
-      <Avatar :address="address" />
-      <div v-if="myself">
-        <button id="account" class="button" @click="$router.push(`/signup`)">Mon compte</button>
-      </div>
-      <div v-if="!myself">
-        <button id="privateMessage" class="button" @click="goToMessaging()">Envoyer un message privé</button>
-        <button id="addContact" class="button" @click="addContact()">Ajouter comme contact</button>
-      </div>
-      <h4 class="follow-title">{{following.length}} following</h4>
-      <Contact v-for='(address, idx) in following' :key="idx" :address='address' />
-      <h4 class="follow-title">{{followers.length}} followers</h4>
-      <Contact v-for='(address, idx) in followers' :key="idx" :address='address' />
-    </div>
-    <div id="main">
-      <SignedMessageInput :address="address" />
-      <div id="scope">
-        <hr />
-        <h4><a v-bind:class="{ active: scope == 'published' }" @click="scope = 'published'">
-            Publiés ({{ published.length }})
-        </a></h4>
-        <h4><a v-bind:class="{ active: scope == 'inbox' }" @click="scope = 'inbox'">
-            Reçus ({{ inbox.length }})
-        </a></h4>
-        <h4><a v-bind:class="{ active: scope == 'outbox' }" @click="scope = 'outbox'">
-            Envoyés ({{ outbox.length }})
-        </a></h4>
-        <hr />
-      </div>
-      <div v-if="scope == 'published'">
-        <Publication v-for="(message, index) in published" :message="message" :key="index" />
-      </div>
-      <div v-if="scope == 'inbox'">
-        <SignedMessage v-for="(message, index) in inbox" :message="message" :key="index" />
-      </div>
-      <div v-if="scope == 'outbox'">
-        <SignedMessage v-for="(message, index) in outbox" :message="message" :key="index" />
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  #user.table
+    // Side(:address="address" :owned="myself")
+    #side
+      Avatar(:address="address")
+      div(v-if="myself")
+        button#account.button(@click="$router.push(`/signup`)") Mon compte
+      div(v-if="!myself")
+        button#privateMessage.button(@click="goToMessaging()") Envoyer un message privé
+        button#addContact.button(@click="addContact()") Ajouter comme contact
+      h4.follow-title {{following.length}} following
+      Contact(v-for='(address, idx) in following' :key="idx" :address='address')
+      h4.follow-title {{followers.length}} followers
+      Contact(v-for='(address, idx) in followers' :key="idx" :address='address')
+    #main
+      SignedMessageInput(:address="address")
+      #scope
+        hr
+        h4: a(v-bind:class="{ active: scope == 'published' }" @click="scope = 'published'")
+            | Publiés ({{ published.length }})
+        h4: a(v-bind:class="{ active: scope == 'inbox' }" @click="scope = 'inbox'")
+            | Reçus ({{ inbox.length }})
+        h4: a(v-bind:class="{ active: scope == 'outbox' }" @click="scope = 'outbox'")
+            | Envoyés ({{ outbox.length }})
+        hr
+      div(v-if="scope == 'published'")
+        Publication(v-for="(message, index) in published" :message="message" :key="index")
+      div(v-if="scope == 'inbox'")
+        SignedMessage(v-for="(message, index) in inbox" :message="message" :key="index")
+      div(v-if="scope == 'outbox'")
+        SignedMessage(v-for="(message, index) in outbox" :message="message" :key="index")
 </template>
 
 <script>
