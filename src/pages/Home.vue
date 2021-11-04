@@ -1,4 +1,4 @@
-<template>
+<template lang="pug">
   <div id="home" class="table">
     <div id="side">
       <img alt="Vue logo" src="../assets/logo.png">
