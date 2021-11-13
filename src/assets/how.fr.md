@@ -36,7 +36,7 @@ ou, plus souvent, pour communiquer de manière chiffré avec l'utilisateur.
 
 Elle peut être absente ou présente sur le serveur dans un message d'annonce.
 
-# Message d'annonce.
+# Message d'annonce
 
 Le message d'annonce est un message auto-signé par le propriétaire du compte.
 
