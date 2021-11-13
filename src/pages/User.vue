@@ -1,17 +1,14 @@
 <template lang="pug">
   #user.table
-    // Side(:address="address" :owned="myself")
+    //Side(:address="address" :owned="myself")
     #side
       Avatar(:address="address")
       div(v-if="myself")
         button#account.button(@click="$router.push(`/signup`)") Mon compte
       div(v-if="!myself")
         button#privateMessage.button(@click="goToMessaging()") Envoyer un message privé
+        button#privateMessage.button(@click="goToMessaging()") Envoyer un lettre
         button#addContact.button(@click="addContact()") Ajouter comme contact
-      h4.follow-title {{following.length}} following
-      Contact(v-for='(address, idx) in following' :key="idx" :address='address')
-      h4.follow-title {{followers.length}} followers
-      Contact(v-for='(address, idx) in followers' :key="idx" :address='address')
     #main
       SignedMessageInput(:address="address")
       #scope

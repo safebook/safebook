@@ -7,8 +7,8 @@ div
   p
     | Contrairement aux réseaux sociaux traditionels,
     | Safebook utilise la cryptographie pour assuer la souvraineté des utilisateurs.<br />
-    | Les utilisateurs chiffrent et verifient eux-même le contenu. <br />
-    | Ce qui garantie le bon fonctionnement sans avoir besoin de faire confiance à un tier (entreprise, serveur, ...).
+    | Les utilisateurs ont le contrôle sur le chiffrement et la verification du contenu. <br />
+    | Ce qui garantie le bon fonctionnement sans avoir besoin de faire confiance à un tier (une entreprise, un serveur, ...).
 
   h3 Carte d'identité
   p
@@ -17,7 +17,7 @@ div
     | .<br />
     | Elle permet à d'autres personnes de s'assurer de votre identité cryptographique.
 
-  p Elle peut être sous forme de QR code :
+  p Elle peut être sous forme d'un QR code :
 
   p: img(alt="QRCode" src="../assets/qr.png")
 
@@ -32,18 +32,15 @@ div
 
   p
     | Vous pouvez envoyer des messages privés. <br />
-    | Ils sont chiffrés de tel manière que seul vous et vos interlocuteurs pourront les lire
-  
+    | Ils sont chiffrés de tel manière que seul vous et vos interlocuteurs pourront les lire.
 
-  p Connaitre l'addresse d'un utilisateur permet de lui envoyer des messages privés <br /> et de verifier la provenance des messages publics sans avoir besoin d'un tiers (serveur, ...).</p>
-
-  p: small On peut imaginer de l'imprimer sur un papier, un mug, un T-shirt, ...
+  p: small On peut imaginer de l'imprimer sur un sticker, un mug, un T-shirt, ...
   
   h3 Coffre fort
   p
     | Vous possedez également un coffre-fort cryptographique.<br />
+    | Il garantit mathématiquement l'accés au compte.<br />
     | C'est comme un mot de passe qui vous permet d'accéder à vos clés de chiffrement.<br />
-    | Il garantit mathématiquement l'accés au compte.
 
   p Il se présente sous la forme d'un un mot de passe comme celui ci:
   

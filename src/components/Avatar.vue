@@ -42,7 +42,10 @@ export default {
   },
   computed: {
     name() {
-      return safebook.name(this.address).join(" ")
+      if (this.address)
+        return safebook.name(this.address).join(" ")
+      else
+        return "Sans nom"
     },
   },
   methods: {
@@ -50,6 +53,10 @@ export default {
     showAddress() { this.showImg = 'address' },
     showAvatar() { this.showImg = 'avatar' },
     goToAccount() { this.$router.push('/signup') }
+  },
+  mounted() {
+    console.log(1)
+    console.log(this.address)
   }
 }
 </script>
