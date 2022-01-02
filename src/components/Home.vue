@@ -3,7 +3,12 @@
     <h3>Safebook</h3>
     <p>
       cryptographic social network
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">Hello world</a>.
+    </p>
+    <p>
+      <router-link to="/signup">Signup</router-link>
+    </p>
+    <p>
+      <router-link to="/hello_world">Vue hello world</router-link>
     </p>
   </div>
 </template>
