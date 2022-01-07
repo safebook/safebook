@@ -2,8 +2,7 @@
   <div id="signup">
     <p id="hello">Bonjour <input type="text" placeholder="Alice"></p>
     <p>Voici votre addresse unique:</p>
-    <p>{{ address }}</p>
-    <p id="address"><b>SBhPXPB3bNHec6YvBdtRjLcFrzHzjgwiVUnWSFQmEtfMMmpM82</b></p>
+    <p id="address"><b>{{ account.address }}</b></p>
     <p>
       Voici votre mot de passe :
     </p>
@@ -14,21 +13,9 @@
       Ou vous pouvez utiliser cette phrase mnémotechnique
     </p>
     <p id="passphrase">
-      <span>faint</span>
-      <span>guess</span>
-      <span>captain</span>
-      <br />
-      <span>atom</span>
-      <span>bench</span>
-      <span>access</span>
-      <br />
-      <span>harbor</span>
-      <span>inherit</span>
-      <span>mother</span>
-      <br />
-      <span>warfare</span>
-      <span>dial</span>
-      <span>flame</span>
+      <span v-for="word in account.mnemonic.split(' ')" :key='word'>
+        <span>{{ word }}</span>
+      </span>
     </p>
     <p>Stop</p>
     <p>
@@ -80,7 +67,7 @@ export default {
 }
 #passphrase span {
   display: inline-block;
-  width: 80px;
+  width: 15%;
 }
 </style>
 
