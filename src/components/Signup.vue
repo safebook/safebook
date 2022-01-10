@@ -1,6 +1,10 @@
 <template>
   <div id="signup">
-    <h3 class="center">Bonjour</h3>
+    <h3 class="center">Bonjour, nous créons votre compte...</h3>
+    <p class="center">
+      Si vous ne souhaitez pas que votre addresse commence par sb, <br />
+      vous pouvez <a @click="stop()" href="#">arreter ici</a>
+    </p>
     <p class="center">
       <span id="address">{{ account.address }}</span>
     </p>
@@ -14,7 +18,7 @@
       </span>
     </p>
     <p class="center">
-      Ou votre mot de passe
+      Ou votre entropie
       <a href="#" @click="showPassword = !showPassword">({{showPassword ? "cacher" : "afficher" }})</a>
     </p>
     <p id="password" v-if="showPassword">
@@ -36,7 +40,7 @@ export default {
     return {
       showPassword: true,
       showPassphrase: true,
-      generating: false
+      generating: true
     }
   },
   computed: {
@@ -47,6 +51,9 @@ export default {
   methods: {
     regenerate() {
       this.$store.commit('createAccount');
+    },
+    stop() {
+      this.generating = false
     }
   },
   beforeCreate() {
