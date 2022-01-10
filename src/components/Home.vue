@@ -5,17 +5,23 @@
       cryptographic social network
     </p>
     <p>
-      <router-link to="/signup">Signup</router-link>
+      <a @click="createAccount()">Créer un compte</a>
     </p>
     <p>
-      <router-link to="/hello_world">Vue hello world</router-link>
+      <router-link to="/signin">Se connecter</router-link>
     </p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld'
+  name: 'HelloWorld',
+  methods: {
+    createAccount() {
+      this.$store.commit('createAccount');
+      this.$router.push('/signup')
+    }
+  }
 }
 </script>
 
@@ -25,6 +31,8 @@ h3 {
 }
 a {
   color: #42b983;
+  cursor: pointer;
+  text-decoration: underline;
 }
 </style>
 

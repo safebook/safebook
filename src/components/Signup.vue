@@ -1,44 +1,57 @@
 <template>
   <div id="signup">
-    <p id="hello">Bonjour <input type="text" placeholder="Alice"></p>
-    <p>Voici votre addresse unique:</p>
-    <p id="address"><b>{{ account.address }}</b></p>
-    <p>
-      Voici votre mot de passe :
+    <h3 class="center">Bonjour</h3>
+    <p class="center">
+      <span id="address">{{ account.address }}</span>
     </p>
-    <p id="password">
-      8Xii3jPyGyAwX8fDWL8uE9p7ExXyCzTJgBTVvVtKjupDrAvmF2
+    <p class="center">
+      Gardez précieusement votre phrase mnémotechnique
+      <a href="#" @click="showPassphrase = !showPassphrase">({{showPassphrase ? "cacher" : "afficher" }})</a>
     </p>
-    <p>
-      Ou vous pouvez utiliser cette phrase mnémotechnique
-    </p>
-    <p id="passphrase">
+    <p id="passphrase" v-if="showPassphrase">
       <span v-for="word in account.mnemonic.split(' ')" :key='word'>
-        <span>{{ word }}</span>
+        <span>{{ word }} </span>
       </span>
     </p>
-    <p>Stop</p>
-    <p>
-      <br />
-      <br />
-      <router-link to="/">Téléverser mon compte</router-link>
-      <br />
-      <router-link to="/">J'ai déjà un compte</router-link>
+    <p class="center">
+      Ou votre mot de passe
+      <a href="#" @click="showPassword = !showPassword">({{showPassword ? "cacher" : "afficher" }})</a>
+    </p>
+    <p id="password" v-if="showPassword">
+      {{ account.entropy }}
+    </p>
+    <p class='center'>
+      <button v-if="generating" @click="regenerate()">Stop</button>
+      <button v-if="!generating" @click="regenerate()">Regenerate</button>
     </p>
   </div>
 </template>
 
 <script>
-let safebook = require("safebook")
-
-let account = safebook.generate_account()
+//const safebook = require('safebook')
 
 export default {
   name: 'Signup',
-  data: () => {
+  data() {
     return {
-      account
+      showPassword: true,
+      showPassphrase: true,
+      generating: false
     }
+  },
+  computed: {
+    account() {
+      return this.$store.state.account
+    }
+  },
+  methods: {
+    regenerate() {
+      this.$store.commit('createAccount');
+    }
+  },
+  beforeCreate() {
+    if (!this.$store.state.account)
+      this.$router.push('/')
   }
 }
 </script>
