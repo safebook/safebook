@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <router-view></router-view>
   </div>
 </template>
@@ -29,5 +28,10 @@ body {
 }
 .center {
   text-align: center;
+}
+a {
+  color: #42b983;
+  cursor: pointer;
+  text-decoration: underline;
 }
 </style>

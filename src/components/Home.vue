@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png">
     <h3>Safebook</h3>
     <p>
       cryptographic social network
@@ -28,11 +29,6 @@ export default {
 <style scoped>
 h3 {
   margin: 40px 0 0;
-}
-a {
-  color: #42b983;
-  cursor: pointer;
-  text-decoration: underline;
 }
 </style>
 

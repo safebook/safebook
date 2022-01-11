@@ -12,6 +12,9 @@ export default new Vuex.Store({
     createAccount: (state) => {
       state.account = safebook.generate_account()
     },
+    createVanityAccount: (state) => {
+      state.account = safebook.create()
+    },
     loadAccount: (state, payload) => {
       state.account = safebook.load(payload.mnemonic)
     }
