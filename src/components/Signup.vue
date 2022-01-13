@@ -2,9 +2,7 @@
   <div id="signup">
     <h3>Bonjour, voici votre addresse...</h3>
     <div>
-      <div id="address">
-        <p v-for="a in addressSquared" :key="a">{{ a }}</p>
-      </div>
+      <AddressSquared :address="account.address" />
       <div id="or">
         ou
       </div>
@@ -12,15 +10,19 @@
         <vue-qr :text="account.address" :size="100"></vue-qr>
       </div>
     </div>
-    <p v-if="!generating" id="vanity">
-      <a @click="vanity()">Vous pouvez aussi calculer une address qui commencer par "SB"</a>
-    </p>
     <p v-if="generating" id="generating">
       <a @click="stop()" href="#">arreter maintenant</a>
     </p>
     <div v-if="!generating">
-      <p class="center">
-        Gardez précieusement votre phrase mnémotechnique
+      <p>
+        Gardez précieusement votre mot de passe
+        <a href="#" @click="showPassword = !showPassword">({{showPassword ? "cacher" : "afficher" }})</a>
+      </p>
+      <p id="password" v-if="showPassword">
+        {{ account.entropy }}
+      </p>
+      <p>
+        Ou votre phrase mnémotechnique
         <a href="#" @click="showPassphrase = !showPassphrase">({{showPassphrase ? "cacher" : "afficher" }})</a>
       </p>
       <p id="passphrase" v-if="showPassphrase">
@@ -28,48 +30,36 @@
           <span>{{ word }} </span>
         </span>
       </p>
-      <p class="center">
-        Ou votre entropie
-        <a href="#" @click="showPassword = !showPassword">({{showPassword ? "cacher" : "afficher" }})</a>
-      </p>
-      <p id="password" v-if="showPassword">
-        {{ account.entropy }}
-      </p>
       <p class='center'>
-        <button>Suivant</button>
-        <button @click="regenerate()">Regenerer</button>
+        <button id="start" @click="start()">Commencer</button>
+        <button id="regenerate" @click="regenerate()">Regenerer</button>
       </p>
+      <p>[Experimental name] {{ account.name.join(" ") }}</p>
     </div>
   </div>
 </template>
 
 <script>
 //const safebook = require('safebook')
-const QRious = require('qrious')
+import AddressSquared from "./AddressSquared"
 import VueQr from 'vue-qr/src/packages/vue-qr.vue'
 
 export default {
   name: 'Signup',
-  components: {VueQr},
+  components: {
+    VueQr,
+    AddressSquared
+  },
   data() {
     return {
       showPassword: false,
       showPassphrase: false,
-      generating: false
+      generating: false,
     }
   },
   computed: {
     account() {
       return this.$store.state.account
-    },
-    addressSquared() {
-      if (!this.account)
-        return []
-      return [
-        this.account.address.substr(0,17),
-        this.account.address.substr(17,17),
-        this.account.address.substr(34)
-      ]
     }
   },
   methods: {
@@ -82,20 +72,15 @@ export default {
     stop() {
       this.generating = false
     },
-    qrCode() {
-      var qr = new QRious({
-        element: document.getElementById('qrcode'),
-        value: 'https://github.com/neocotic/qrious'
-      });
-      qr;
-    }
+    start() {
+      this.$router.push(`/u/${this.account.address}`)
+    },
   },
   beforeCreate() {
     if (!this.$store.state.account)
       this.$router.push('/')
   },
   created() {
-    this.qrCode()
   }
 }
 </script>
@@ -112,6 +97,10 @@ export default {
   display: inline-block;
   width: 20%;
   margin-left: 2%;
+}
+#address p {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #or {
   display: inline-block;
@@ -147,5 +136,18 @@ export default {
 #passphrase span {
   display: inline-block;
   width: 25%;
+}
+#start, #regenerate {
+  padding: 6px 30px 6px 30px;
+  margin: 0px 10px 0px 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 15px;
+}
+#start:hover, #regenerate:hover {
+  box-shadow: inset 0 0 1px 1px #9eed1e, 0 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+#start {
+  background-color: green;
 }
 </style>
