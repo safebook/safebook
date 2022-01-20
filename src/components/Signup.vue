@@ -6,9 +6,7 @@
       <div id="or">
         ou
       </div>
-      <div id="qrcode">
-        <vue-qr :text="account.address" :size="100"></vue-qr>
-      </div>
+      <AddressQR :address="account.address" />
     </div>
     <p v-if="generating" id="generating">
       <a @click="stop()" href="#">arreter maintenant</a>
@@ -34,7 +32,6 @@
         <button id="start" @click="start()">Commencer</button>
         <button id="regenerate" @click="regenerate()">Regenerer</button>
       </p>
-      <p>[Experimental name] {{ account.name.join(" ") }}</p>
     </div>
   </div>
 </template>
@@ -42,12 +39,12 @@
 <script>
 //const safebook = require('safebook')
 import AddressSquared from "./AddressSquared"
-import VueQr from 'vue-qr/src/packages/vue-qr.vue'
+import AddressQR from "./AddressQR"
 
 export default {
   name: 'Signup',
   components: {
-    VueQr,
+    AddressQR,
     AddressSquared
   },
   data() {
@@ -104,14 +101,16 @@ export default {
 }
 #or {
   display: inline-block;
-  width: 5%;
+  vertical-align: top;
+  margin-top: 50px;
+  width: 10%;
 }
 #qrcode {
   display: inline-block;
   width: 20%;
   margin-left: -30px;
   margin-bottom: -10px;
-  height: 100px;
+  height: 130px;
   overflow: hidden;
 }
 #vanity {

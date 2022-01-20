@@ -17,6 +17,9 @@ export default new Vuex.Store({
     },
     loadAccount: (state, payload) => {
       state.account = safebook.load(payload.mnemonic)
+    },
+    logout: (state) => {
+      state.account = null
     }
   },
   /*

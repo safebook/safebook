@@ -33,6 +33,8 @@ export default {
   display: inline-block;
   width: 20%;
   margin-left: 2%;
+  vertical-align: top;
+  margin-top: 25px;
 }
 .line {
   margin-top: 5px;

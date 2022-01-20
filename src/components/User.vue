@@ -1,9 +1,7 @@
 <template>
   <div id="user">
     <div id="side">
-      <div id="qrcode">
-        <vue-qr :text="address" :size="100"></vue-qr>
-      </div>
+      <AddressQR :address="address" />
       <AddressSquared :address="address" />
     </div>
     <div id="main">
@@ -20,13 +18,13 @@
 <script>
 const safebook = require('safebook')
 import AddressSquared from "./AddressSquared"
-import VueQr from 'vue-qr/src/packages/vue-qr.vue'
+import AddressQR from "./AddressQR"
 
 export default {
   name: 'Signup',
   components: {
     AddressSquared,
-    VueQr
+    AddressQR
   },
   data() {
     let account = this.$store.state.account

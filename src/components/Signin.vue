@@ -1,8 +1,9 @@
 <template>
   <div id="signin">
+    <h3>Entrez votre mot de passe ou phrase mnémotechnique</h3>
     <textarea v-model="passphrase" placeholder="Votre mot de passe"></textarea>
     <p><button @click="loadAccount()">Se connecter</button></p>
-    <p><router-link to="/signup">Creer un compte</router-link></p>
+    <p><a @click="signup()">Creer un compte</a></p>
   </div>
 </template>
 
@@ -24,6 +25,10 @@ export default {
         type: 'loadAccount',
         mnemonic: this.passphrase.trim()
       })
+      this.$router.push('/signup')
+    },
+    signup() {
+      this.$store.commit("createAccount")
       this.$router.push('/signup')
     }
   }
