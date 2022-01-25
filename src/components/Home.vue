@@ -1,25 +1,48 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <h3>Safebook</h3>
-    <p>
-      a cryptographic social network
-    </p>
-    <p>
-      <a @click="createAccount()">Créer un compte</a>
-    </p>
-    <p>
-      <router-link to="/signin">Se connecter</router-link>
-    </p>
+  <div id="home" class="table">
+    <div id="side">
+      <img alt="Vue logo" src="../assets/logo.png">
+      <h3>Safebook</h3>
+      <p>
+        a cryptographic social network
+      </p>
+    </div>
+    <div id="main">
+      <div>
+        <input id="password" type="password"
+          v-model="password" placeholder="Votre mot de passe ou phrase mnémotechnique" />
+      </div>
+      <div>
+        <button class="button" @click="signin()">Se connecter</button>
+      </div>
+      <p>
+        --- ou ---
+      </p>
+      <button class="button" id="signup" @click="createAccount()">
+        Créer un compte
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
+  data() {
+    return {
+      password: ''
+    }
+  },
   methods: {
     createAccount() {
       this.$store.commit('createAccount');
+      this.$router.push('/signup')
+    },
+    signin() {
+      this.$store.commit({
+        type: 'loadAccount',
+        mnemonic: this.password.trim()
+      })
       this.$router.push('/signup')
     }
   }
@@ -29,9 +52,22 @@ export default {
 <style scoped>
 #home {
   margin-top: 60px;
+  width: 100%;
 }
 h3 {
   margin: 40px 0 0;
+}
+#signup {
+  color: white;
+  background-color: green;
+}
+#password {
+  width: 350px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+#main {
+  padding-top: 100px;
 }
 </style>
 
