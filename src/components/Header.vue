@@ -10,6 +10,7 @@
     </div>
     <div class="col-25" id="logout">
       <router-link v-if="!account" to="signin">Connection</router-link>
+      <a v-if="account" @click="goToAccount()">Mon compte</a>
       <div class="space"></div>
       <a v-if="account" @click="logout()">Déconnexion</a>
     </div>
@@ -23,6 +24,9 @@ export default {
     logout() {
       this.$store.commit('logout');
       this.$router.push('/');
+    },
+    goToAccount() {
+      this.$router.push(`/u/${this.$store.state.account.address}`);
     }
   },
   computed: {
