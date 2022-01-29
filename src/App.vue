@@ -22,6 +22,7 @@ export default {
 <style>
 body {
   text-align: center;
+  margin-top: 0;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -33,6 +34,7 @@ body {
   margin: 0 auto;
   text-align: center;
   color: #2c3e50;
+  border: 1px solid green;
 }
 .center {
   text-align: center;

@@ -18,16 +18,23 @@
       <p>
         --- ou ---
       </p>
+      <div>
       <button class="button" id="signup" @click="createAccount()">
         Créer un compte
       </button>
+      </div>
+      <div>
+      <button class="button" id="signup">
+        Documentation
+      </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   data() {
     return {
       password: ''
@@ -51,11 +58,10 @@ export default {
 
 <style scoped>
 #home {
-  margin-top: 60px;
   width: 100%;
 }
 h3 {
-  margin: 40px 0 0;
+  margin: 20px 0 0;
 }
 #signup {
   color: white;
@@ -68,6 +74,7 @@ h3 {
 }
 #main {
   padding-top: 100px;
+  padding-bottom: 50px;
 }
 </style>
 

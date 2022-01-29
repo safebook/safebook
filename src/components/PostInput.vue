@@ -19,9 +19,8 @@ export default {
   },
   methods: {
     send () {
-      console.log(1)
       this.$store.commit('post', this.message)
-      this.currentMessage = ''
+      this.message = ''
       this.autogrow()
     },
     autogrow () {
@@ -41,7 +40,7 @@ export default {
 
 <style>
 textarea {
-  width: 100%;
+  width: 400px;
   margin: 10px;
   border: 2px solid green;
   border-radius: 10px;
@@ -49,6 +48,7 @@ textarea {
 }
 #send {
   text-align: right;
+  margin-right: 20px;
 }
 button {
   background-color: green;

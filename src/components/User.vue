@@ -1,60 +1,38 @@
 <template>
   <div id="user" class="table">
     <div id="side">
-      <div id="name">
-        <input v-if="myself" type="text" placeholder="Votre nom" v-model="name" />
-        <h3 v-if="!myself">{{ name }}</h3>
-      </div>
-      <div v-if="showImg == 'avatar'" id="avatar">
-        <img :src="avatarUrl" />
-      </div>
-      <AddressQR v-if="showImg == 'qr'" :address="address" />
-      <div id="address">
-        <AddressSquared v-if="showImg == 'address'" :address="address" />
-      </div>
-      <div id="qr">
-        <a @click="showAvatar()" v-bind:class="{ selected: showImg == 'avatar' }">Avatar</a>
-        - 
-        <a @click="showQR()" v-bind:class="{ selected: showImg == 'qr' }">QRCode</a>
-        -
-        <a @click="showAddress()" v-bind:class="{ selected: showImg == 'address' }">Address</a>
-      </div>
+      <Avatar :address="address" />
     </div>
     <div id="main">
       <div id="scope">
         <h4 class="scope-title">
-          Publications
+          <a @click="goToScope(0)" v-bind:class="{ selected: scope == 0 }">
+            Publications
+          </a>
         </h4>
         <h4 class="scope-title">
-          Messages privés
+          <a @click="goToScope(1)" v-bind:class="{ selected: scope == 1 }">
+            Messages privés
+          </a>
         </h4>
       </div>
-      <PostInput />
-      <div class="post" v-for="post in posts" :key="post">
-        <div class="author">
-          King Kong
-        </div>
-        <div class="message">
-          {{ post.content }}
-        </div>
-      </div>
+      <Posts v-if="scope == 0" :posts="posts" />
+      <PMs   v-if="scope == 1" :messages="messages" :address="address" />
     </div>
   </div>
 </template>
 
 <script>
 const safebook = require('safebook')
-import AddressSquared from "./AddressSquared"
-import AddressQR from "./AddressQR"
-import PostInput from "./PostInput"
-import config from "../config"
+import Avatar from "./Avatar"
+import PMs from "./PMs"
+import Posts from "./Posts"
 
 export default {
   name: 'Signup',
   components: {
-    AddressSquared,
-    AddressQR,
-    PostInput
+    Posts, PMs,
+    Avatar
   },
   data() {
     let account = this.$store.state.account
@@ -67,12 +45,16 @@ export default {
       message: '',
       address: this.$route.params.address,
       account: account,
-      name: 'Stitch',
-      avatarUrl: require("@/assets/stitch.jpg"),
-      showImg: 'avatar',
+      scope: 0,
       myself: this.$route.params.address == account.address,
-      posts: []
     }
+  },
+  computed: {
+    myAddress() {
+      return this.$store.state.account.address
+    },
+    posts() { return this.$store.state.posts },
+    messages() { return this.$store.state.messages }
   },
   methods: {
     send() {
@@ -82,26 +64,17 @@ export default {
     logout() {
       this.$router.push('/')
     },
-    showQR() { this.showImg = 'qr' },
-    showAddress() { this.showImg = 'address' },
-    showAvatar() { this.showImg = 'avatar' }
-  },
-  computed: {
-    myAddress() {
-      return this.$store.state.account.address
-    }
+    goToScope(s) { this.scope = s }
   },
   created() {
-    const that = this
-    console.log("Hello")
-    console.log(config)
-    console.log(`${config.url}/${this.address}/posts`)
-    fetch(`${config.url}/${this.address}/posts`)
-      .then(response => response.json())
-      .then((data) => {
-        console.log(data)
-        that.posts = data
-      })
+    this.$store.commit({
+      type: 'loadPosts',
+      address: this.address
+    });
+    this.$store.commit({
+      type: 'loadMessages',
+      address: this.address
+    });
   }
 }
 </script>
@@ -134,18 +107,8 @@ export default {
   display: inline-block;
   width: 20%;
  }
- .post {
-  border: 2px solid green;
-  border-radius: 15px;
-  margin: 10px 30px 0 30px;
- }
- .author {
-  text-align: left;
-  margin: 10px;
-  font-weight: bold;
- }
- .message {
-  margin-bottom: 10px;
+ #no-posts {
+  margin: 30px 30px 0 30px;
  }
  #send {
   text-align: right;
@@ -174,12 +137,15 @@ export default {
  .selected {
   color: black;
   text-decoration: none;
-  cursor: none;
+  cursor: auto;
   font-weight: bold;
  }
  .scope-title {
   display: inline-block;
   text-align: center;
   width: 50%;
+ }
+ #edit {
+  margin-top: 20px;
  }
 </style>

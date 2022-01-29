@@ -112,6 +112,7 @@ export default {
   display: inline-block;
   vertical-align: top;
   margin-top: 50px;
+  margin-right: 30px;
   width: 10%;
 }
 #qrcode {

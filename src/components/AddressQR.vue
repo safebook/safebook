@@ -6,6 +6,7 @@
 
 <script>
 import VueQr from 'vue-qr/src/packages/vue-qr.vue'
+import config from '../config'
 
 export default {
   name: "AddressQR",
@@ -17,7 +18,7 @@ export default {
   },
   computed: {
     url() {
-      return `https://safebook.github.io/u/${this.address}`;
+      return `${config.url}/u/${this.address}`;
     }
   }
 }
