@@ -8,7 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     account: null,
-    posts: [] // { type: "", content: "", sig: "" }
+    posts: [],
+    messages: []
   },
   mutations: {
     createAccount(state) {
@@ -33,11 +34,27 @@ export default new Vuex.Store({
       fetch(`${config.url}/${payload.address}/inbox`)
         .then(response => response.json())
         .then((data) => {
+          for (let i = 0; i < data.length; i++)
+          {
+            try {
+              data[i].content = safebook.decrypt(state.account, data[i].author, data[i].hidden_content)
+            } catch (e) {
+              data[i].content = "Error"
+            }
+          }
           state.messages = state.messages.concat(data)
         })
       fetch(`${config.url}/${payload.address}/outbox`)
         .then(response => response.json())
         .then((data) => {
+          for (let i = 0; i < data.length; i++)
+          {
+            try {
+              data[i].content = safebook.decrypt(state.account, data[i].author, data[i].hidden_content)
+            } catch (e) {
+              data[i].content = "Error"
+            }
+          }
           state.messages = state.messages.concat(data)
         })
     },
@@ -63,13 +80,12 @@ export default new Vuex.Store({
       .catch((res) => { console.log(res) })
     },
     message(state, payload) {
-      console.log(payload)
-      const hidden_message = safebook.encrypt(state.account, payload.address, payload.message)
+      const hidden_content = safebook.encrypt(state.account, payload.address, payload.content)
       state.messages.push({
         author: state.account.address,
         receiver: payload.address,
-        message: payload.message,
-        hidden_message: hidden_message
+        content: payload.content,
+        hidden_content: hidden_content
       })
       fetch(`${config.url}/${payload.address}/inbox`, {
         method: 'POST',
@@ -80,7 +96,7 @@ export default new Vuex.Store({
         body: JSON.stringify({
           author: state.account.address,
           receiver: payload.address, // TODO: useless
-          content: hidden_message
+          hidden_content: hidden_content
         })
       }).then((res) => { console.log(res) })
       .catch((res) => { console.log(res) })

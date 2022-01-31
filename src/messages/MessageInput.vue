@@ -1,7 +1,7 @@
 <template>
-  <div id="pmInput">
+  <div id="MessageInput">
     <div>
-      <textarea id="textbox" v-model="message" placeholder="Votre message privé" rows=1 @keydown="autogrow" autofocus></textarea>
+      <textarea id="textbox" v-model="content" placeholder="Votre message privé" rows=1 @keydown="autogrow" autofocus></textarea>
     </div>
     <div id="send">
       <button class="button" @click="send()">Envoyer</button>
@@ -11,10 +11,10 @@
 
 <script>
 export default {
-  name: 'PMInput',
+  name: 'MessageInput',
   data () {
     return {
-      message: ''
+      content: ''
     }
   },
   props: ['address'],
@@ -23,9 +23,9 @@ export default {
       this.$store.commit({
         type: 'message',
         address: this.address,
-        message: this.message
+        content: this.content
       })
-      this.message = ''
+      this.content = ''
       this.autogrow()
     },
     autogrow () {
@@ -44,10 +44,6 @@ export default {
 </script>
 
 <style>
-#pmInput {
-  position: absolute;
-  bottom: 30px;
-}
 textarea {
   width: 400px;
   margin: 10px;
