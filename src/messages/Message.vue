@@ -1,8 +1,7 @@
 <template>
   <div id="post">
     <div id="author">
-      Author
-      {{/* message.author.slice(0,12) */}}
+      {{ message.author.slice(0,12) }}
     </div>
     <div id="message">
       {{ message.content }}
