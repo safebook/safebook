@@ -38,8 +38,8 @@
 
 <script>
 //const safebook = require('safebook')
-import AddressSquared from "./AddressSquared"
-import AddressQR from "./AddressQR"
+import AddressSquared from "@/components/AddressSquared"
+import AddressQR from "@/components/AddressQR"
 
 export default {
   name: 'Signup',
