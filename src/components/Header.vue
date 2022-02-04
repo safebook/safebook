@@ -9,7 +9,7 @@
       <span id="address" v-if="account">{{ account.name.join(' ') }}</span>
     </div>
     <div class="col-25" id="logout">
-      <router-link v-if="!account" to="signin">Connection</router-link>
+      <router-link v-if="!account" to="signin">Connexion</router-link>
       <a v-if="account" @click="goToAccount()">Mon compte</a>
       <div class="space"></div>
       <a v-if="account" @click="logout()">Déconnexion</a>

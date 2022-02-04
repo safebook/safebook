@@ -1,7 +1,7 @@
 <template>
   <div id="post">
-    <div id="author">
-      {{ message.author.slice(0,12) }}
+    <div id="header">
+      {{ author_name().join(" ") }} -> {{ receiver_name().join(" ") }}
     </div>
     <div id="message">
       {{ message.content }}
@@ -10,9 +10,15 @@
 </template>
 
 <script>
+import safebook from "safebook"
+
 export default {
   name: 'Message',
   props: ['message'],
+  methods: {
+    author_name() { return safebook.name(this.message.author) },
+    receiver_name() { return safebook.name(this.message.receiver) }
+  }
 }
 </script>
 
@@ -20,12 +26,11 @@ export default {
 #post {
  border: 2px solid green;
  border-radius: 15px;
- margin: 10px 30px 0 30px;
+ margin: 10px 30px 10px 30px;
 }
-#author {
+#header {
  text-align: left;
  margin: 10px;
- font-weight: bold;
 }
 #message {
  margin-bottom: 10px;

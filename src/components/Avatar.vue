@@ -1,19 +1,21 @@
 <template>
   <div id="avatar">
     <div id="name">
-      <NameInput v-if="myself" :old-name="name" />
-      <h3 v-if="!myself">{{ name }}</h3>
+      <!--NameInput v-if="myself" :old-name="name" /-->
+      <h3>{{ name }}</h3>
     </div>
-    <div v-if="showImg == 'avatar'" id="avatar">
+    <!--div v-if="showImg == 'avatar'" id="avatar">
       <img :src="avatarUrl" />
-    </div>
+    </div-->
     <AddressQR v-if="showImg == 'qr'" :address="address" />
     <div id="address">
       <AddressSquared v-if="showImg == 'address'" :address="address" />
     </div>
     <div id="qr">
+    <!--
       <a @click="showAvatar()" v-bind:class="{ selected: showImg == 'avatar' }">Avatar</a>
       - 
+    -->
       <a @click="showQR()" v-bind:class="{ selected: showImg == 'qr' }">QRCode</a>
       -
       <a @click="showAddress()" v-bind:class="{ selected: showImg == 'address' }">Address</a>
@@ -21,32 +23,34 @@
     <div>
       <button id="edit" class="button">Modifier</button>
     </div>
+    <div>
+      <button id="account" class="button" v-if="myself" @click="goToAccount()">Mon compte</button>
+    </div>
   </div>
 </template>
 
 <script>
+const safebook = require('safebook')
 import AddressSquared from "./AddressSquared"
 import AddressQR from "./AddressQR"
-import NameInput from "./NameInput"
+//import NameInput from "./NameInput"
 
 export default {
   name: 'Signup',
   components: {
-    AddressSquared, AddressQR,
-    NameInput
+    AddressSquared, AddressQR, /*NameInput*/
   },
   props: ['address'],
   data() {
     return {
-      name: 'Stitch',
       avatarUrl: require("@/assets/stitch.jpg"),
-      showImg: 'avatar',
-      myself: false
+      showImg: 'qr',
+      myself: this.$store.state.account.address == this.address
     }
   },
   computed: {
-    myAddress() {
-      return this.$store.state.account.address
+    name() {
+      return safebook.name(this.address).join(" ")
     },
     posts() {
       return this.$store.state.posts
@@ -55,7 +59,8 @@ export default {
   methods: {
     showQR() { this.showImg = 'qr' },
     showAddress() { this.showImg = 'address' },
-    showAvatar() { this.showImg = 'avatar' }
+    showAvatar() { this.showImg = 'avatar' },
+    goToAccount() { this.$router.push('/signup') }
   }
 }
 </script>
@@ -128,6 +133,11 @@ export default {
  }
  #edit {
   margin-top: 20px;
+ }
+ #account {
+  margin: 10px 0 30px 0;
+  background-color: green;
+  color: white;
  }
 </style>
 

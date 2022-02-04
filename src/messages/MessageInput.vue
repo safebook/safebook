@@ -4,8 +4,8 @@
       <textarea id="textbox" v-model="content" placeholder="Votre message privé" rows=1 @keydown="autogrow" autofocus></textarea>
     </div>
     <div id="send">
-      <button class="button" @click="refresh()">Refresh</button>
-      <button class="button" @click="send()">Envoyer</button>
+      <button class="button public" @click="sendSignedMessage()">Message publique</button>
+      <button class="button private" @click="sendPrivateMessage()">Message privé</button>
     </div>
   </div>
 </template>
@@ -20,11 +20,20 @@ export default {
   },
   props: ['address'],
   methods: {
-    send () {
+    sendPrivateMessage () {
       this.$store.commit({
-        type: 'message',
-        address: this.address,
+        type: 'sendPrivateMessage',
+        receiver: this.address,
         content: this.content
+      })
+      this.content = ''
+      this.autogrow()
+    },
+    sendSignedMessage () {
+      this.$store.commit({
+        type: 'sendSignedMessage',
+        content: this.content,
+        receiver: this.address
       })
       this.content = ''
       this.autogrow()
@@ -39,7 +48,7 @@ export default {
       setTimeout(() => {
         const el = document.querySelector('textarea')
         el.style.cssText = 'height:auto;'
-        let height = el.scrollHeight
+        let height = el.scrollHeight - 20
         el.style.height = height + 'px'
       }, 0)
     }
@@ -54,7 +63,7 @@ export default {
 textarea {
   width: 400px;
   margin: 10px;
-  border: 2px solid green;
+  border: 2px solid grey;
   border-radius: 10px;
   padding: 10px;
 }
@@ -62,10 +71,17 @@ textarea {
   text-align: right;
   margin-right: 20px;
 }
-button {
+.button {
+  width: 200px;
+  text-align: center;
+}
+.private {
   background-color: green;
   color: white;
-  text-align: right;
+}
+.public {
+  background-color: blue;
+  color: white;
 }
 </style>
 
