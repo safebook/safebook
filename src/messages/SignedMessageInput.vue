@@ -1,11 +1,10 @@
 <template>
   <div id="MessageInput">
     <div>
-      <textarea id="textbox" v-model="content" placeholder="Votre message privé" rows=1 @keydown="autogrow" autofocus></textarea>
+      <textarea id="textbox" v-model="content" placeholder="Votre message publique" rows=1 @keydown="autogrow" autofocus></textarea>
     </div>
     <div id="send">
-      <button class="button public" @click="sendSignedMessage()">Message publique</button>
-      <button class="button private" @click="sendPrivateMessage()">Message privé</button>
+      <button class="button public" @click="sendSignedMessage()">Envoyer un message publique</button>
     </div>
   </div>
 </template>
@@ -20,15 +19,6 @@ export default {
   },
   props: ['address'],
   methods: {
-    sendPrivateMessage () {
-      this.$store.commit({
-        type: 'sendPrivateMessage',
-        receiver: this.address,
-        content: this.content
-      })
-      this.content = ''
-      this.autogrow()
-    },
     sendSignedMessage () {
       this.$store.commit({
         type: 'sendSignedMessage',
@@ -72,7 +62,7 @@ textarea {
   margin-right: 20px;
 }
 .button {
-  width: 200px;
+  width: 300px;
   text-align: center;
 }
 .private {
