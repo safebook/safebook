@@ -27,10 +27,11 @@
         Créer un compte
       </button>
       </div>
+      <hr />
       <div>
-      <button class="button" id="doc">
-        Documentation
-      </button>
+        <button class="button" id="doc" @click="goToDoc()">
+          Documentation
+        </button>
       </div>
     </div>
   </div>
@@ -54,6 +55,9 @@ export default {
         type: 'loadAccount',
         mnemonic: this.password.trim()
       })
+    },
+    goToDoc() {
+      this.$router.push('/doc')
     }
   }
 }
