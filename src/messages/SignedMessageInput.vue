@@ -4,7 +4,7 @@
       <textarea id="textbox" v-model="content" placeholder="Votre message publique" rows=1 @keydown="autogrow" autofocus></textarea>
     </div>
     <div id="send">
-      <button class="button public" @click="sendSignedMessage()">Envoyer un message publique</button>
+      <button class="button public" @click="sendSignedMessage()">Envoyer un message public</button>
     </div>
   </div>
 </template>

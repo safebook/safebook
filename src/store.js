@@ -9,9 +9,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     account: null,
+    user: null,
     inbox: [],
     outbox: [],
-    pms: []
+    pms: [],
+    contacts: []
   },
   mutations: {
     createAccount(state) {
@@ -35,6 +37,9 @@ export default new Vuex.Store({
     logout(state) {
       state.account = null
       localStorage.removeItem("mnemonic")
+    },
+    selectUser(state, payload) {
+      state.user = payload.address
     },
     loadInbox(state, payload) {
       state.inbox = []
@@ -99,13 +104,57 @@ export default new Vuex.Store({
       }).then((res) => { console.log(res) })
       .catch((res) => { console.log(res) })
       state.pms.push({...message, ...{content: payload.content}});
+    },
+    loadContacts(state, payload) {
+      state.contacts = []
+      fetch(`${config.url}/${payload.address}/contacts`)
+        .then(response => response.json())
+        .then((data) => { state.contacts = data })
+    },
+    addContact(state, payload) {
+      const follow = {
+        author: state.account.address,
+        receiver: payload.address
+      }
+      fetch(`${config.url}/${payload.address}/contacts`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(follow)
+      }).then((res) => { console.log(res) })
+      .catch((res) => { console.log(res) })
+      state.contacts.push(follow);
+    },
+    deleteContact(state, payload) {
+      fetch(`${config.url}/${payload.address}/contacts`, {
+        method: 'DELETE',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          author: state.account.address,
+          receiver: payload.address
+        })
+      }).then((res) => { console.log(res) })
+      .catch((res) => { console.log(res) })
     }
   },
-  /*
-  actions: {
-
-  },
+  actions: {},
   getters: {
-
-  }*/
+    published(state) {
+      return state.inbox.filter(m => m.author == m.receiver)
+    },
+    inbox(state) {
+      return state.inbox.filter(m => m.author != m.receiver)
+    },
+    outbox(state) {
+      return state.outbox.filter(m => m.author != m.receiver)
+    },
+    followers(state) {
+      return state.contacts.filter(c => c.receiver == state.user)
+    },
+    followings(state) {
+      return state.contacts.filter(c => c.author == state.user)
+    },
+    isFollowing(state) {
+      return state.contacts.find(c => c.author == state.account.address && c.receiver == state.user)
+    }
+  }
 })

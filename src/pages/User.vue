@@ -2,18 +2,43 @@
   <div id="user" class="table">
     <div id="side">
       <Avatar :address="address" />
-      <button id="privateMessage" class="button" v-if="!myself" @click="goToMessaging()">Envoyer un message privé</button>
-      <button id="account" class="button" v-if="myself" @click="goToAccount()">Mon compte</button>
+      <div v-if="myself">
+        <button id="account" class="button" @click="goToAccount()">Mon compte</button>
+      </div>
+      <div v-if="!myself">
+        <button id="privateMessage" class="button" @click="goToMessaging()">Envoyer un message privé</button>
+        <button id="addContact" class="button" @click="addContact()">Ajouter comme contact</button>
+      </div>
+      <h4>Follow</h4>
+      <div id='contacts'>
+        <div v-for='(contact, idx) in followings' :key="idx" class='contact'>
+          <Contact :address="contact.receiver" />
+        </div>
+      </div>
+      <h4>Followed by</h4>
+      <div id='contacts'>
+        <div v-for='(contact, idx) in followers' :key="idx" class='contact'>
+          <Contact :address="contact.author" />
+        </div>
+      </div>
     </div>
     <div id="main">
       <SignedMessageInput :address="address" />
       <div id="scope">
+        <hr />
+        <h4><a v-bind:class="{ active: scope == 'published' }" @click="scope = 'published'">
+            Publiés ({{ published.length }})
+        </a></h4>
         <h4><a v-bind:class="{ active: scope == 'inbox' }" @click="scope = 'inbox'">
-            Inbox ({{ inbox.length }})
+            Reçus ({{ inbox.length }})
         </a></h4>
         <h4><a v-bind:class="{ active: scope == 'outbox' }" @click="scope = 'outbox'">
-            Outbox ({{ outbox.length }})
+            Envoyés ({{ outbox.length }})
         </a></h4>
+        <hr />
+      </div>
+      <div v-if="scope == 'published'">
+        <Publication v-for="(message, index) in published" :message="message" :key="index" />
       </div>
       <div v-if="scope == 'inbox'">
         <SignedMessage v-for="(message, index) in inbox" :message="message" :key="index" />
@@ -30,45 +55,48 @@ const safebook = require('safebook')
 import Avatar from "@/components/Avatar"
 import SignedMessageInput   from "@/messages/SignedMessageInput"
 import SignedMessage  from "@/messages/SignedMessage"
+import Publication  from "@/messages/Publication"
+import Contact  from "@/components/Contact"
 
 export default {
   name: 'Signup',
-  components: { Avatar, SignedMessageInput, SignedMessage },
+  components: {
+    Avatar, SignedMessageInput,
+    SignedMessage, Publication,
+    Contact
+  },
   data() {
-    let account = this.$store.state.account
-    if (!account)
-    {
-      this.$store.commit('restoreAccount')
-      account = this.$store.state.account
-    }
     return {
-      message: '',
-      account: account,
-      scope: 'inbox',
+      account:    this.$store.state.account,
+      scope:      'published',
     }
   },
   computed: {
+    published() {
+      return this.$store.getters.published
+    },
+    inbox() {
+      return this.$store.getters.inbox
+    },
+    outbox() {
+      return this.$store.getters.outbox
+    },
+    followings() {
+      return this.$store.getters.followings
+    },
+    followers() {
+      return this.$store.getters.followers
+    },
     address() {
       return this.$route.params.address
     },
-    inbox() {
-      return this.$store.state.inbox
-    },
-    outbox() {
-      return this.$store.state.outbox
-    },
-    privateMessages() {
-      return this.$store.state.privateMessages
-    },
     myself() {
-      return this.$route.params.address == this.$store.state.account.address
-    }
+      if (this.account)
+        return this.$route.params.address == this.account.address
+      return false
+    },
   },
   methods: {
-    send() {
-      let ciphertext = safebook.encrypt(this.account, this.message, this.address)
-      console.log(ciphertext)
-    },
     logout() {
       this.$router.push('/')
     },
@@ -77,17 +105,35 @@ export default {
     },
     goToAccount() {
       this.$router.push(`/signup`)
-    }
+    },
+    loadMessages() {
+      this.$store.commit({ type: 'selectUser', address: this.address })
+      this.$store.commit({ type: 'loadInbox', address: this.address })
+      this.$store.commit({ type: 'loadOutbox', address: this.address })
+      this.$store.commit({ type: 'loadContacts', address: this.address })
+      //setTimeout(() => {
+      //  this.published =  this.$store.getters.published
+      //  this.inbox =      this.$store.getters.inbox
+      //  this.outbox =     this.$store.getters.outbox
+      //  this.followings = this.$store.getters.followings
+      //  this.followers =  this.$store.getters.followers
+      //}, 1000)
+      //this.$forceUpdate()
+    },
+    addContact() {
+      this.$store.commit({ type: 'addContact', address: this.address })
+    },
+    nameOf(address) {
+      return safebook.name(address).join(' ')
+    },
   },
   created() {
-    this.$store.commit({
-      type: 'loadInbox',
-      address: this.address
-    })
-    this.$store.commit({
-      type: 'loadOutbox',
-      address: this.address
-    })
+    this.loadMessages()
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.scope = 'published'
+    this.loadMessages()
+    next()
   }
 }
 </script>
@@ -123,13 +169,6 @@ export default {
  #no-posts {
   margin: 30px 30px 0 30px;
  }
- #send {
-  text-align: right;
- }
- #send button {
-  background-color: green;
-  color: white;
- }
  #name input {
   margin-top: 15px;
   text-align: center;
@@ -162,10 +201,6 @@ export default {
   margin-top: 20px;
  }
 
-#scope h4 {
-  display: inline-block;
-  width: 33%;
-}
 .active {
   text-decoration: none;
   color: black;
@@ -175,5 +210,14 @@ export default {
   margin-top: 40px;
   background-color: green;
   color: white;
+}
+
+#scope {
+  font-size: 0.8em;
+}
+#scope h4 {
+  display: inline-block;
+  width: 33%;
+  margin: 0;
 }
 </style>
