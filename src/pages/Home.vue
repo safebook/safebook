@@ -1,4 +1,4 @@
-<template lang="pug">
+<template>
   <div id="home" class="table">
     <div id="side">
       <img alt="Vue logo" src="../assets/logo.png">
@@ -7,11 +7,14 @@
         réseau social cryptographique
       </p>
       <div id="doc">
-        <button class="button" @click="goToUserDoc()">
+        <button class="button" @click="$router.push('/what')">
           Documentation utilisateur
         </button>
-        <button class="button" @click="goToTechnicalDoc()">
+        <button class="button" @click="$router.push('/how')">
           Documentation technique
+        </button>
+        <button class="button" @click="$router.push('/about')">
+          A propos
         </button>
       </div>
     </div>
@@ -59,7 +62,7 @@ export default {
       })
     },
     goToUserDoc() {
-      this.$router.push('/doc')
+      this.$router.push('/what')
     },
     goToTechnicalDoc() {
       window.location = 'https://github.com/mjal/safebook-doc/blob/master/technical.org';
