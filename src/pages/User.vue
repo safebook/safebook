@@ -3,24 +3,16 @@
     <div id="side">
       <Avatar :address="address" />
       <div v-if="myself">
-        <button id="account" class="button" @click="goToAccount()">Mon compte</button>
+        <button id="account" class="button" @click="$router.push(`/signup`)">Mon compte</button>
       </div>
       <div v-if="!myself">
         <button id="privateMessage" class="button" @click="goToMessaging()">Envoyer un message privé</button>
         <button id="addContact" class="button" @click="addContact()">Ajouter comme contact</button>
       </div>
-      <h4>Follow</h4>
-      <div id='contacts'>
-        <div v-for='(contact, idx) in followings' :key="idx" class='contact'>
-          <Contact :address="contact.receiver" />
-        </div>
-      </div>
-      <h4>Followed by</h4>
-      <div id='contacts'>
-        <div v-for='(contact, idx) in followers' :key="idx" class='contact'>
-          <Contact :address="contact.author" />
-        </div>
-      </div>
+      <h4 class="follow-title">{{following.length}} following</h4>
+      <Contact v-for='(address, idx) in following' :key="idx" :address='address' />
+      <h4 class="follow-title">{{followers.length}} followers</h4>
+      <Contact v-for='(address, idx) in followers' :key="idx" :address='address' />
     </div>
     <div id="main">
       <SignedMessageInput :address="address" />
@@ -51,7 +43,8 @@
 </template>
 
 <script>
-const safebook = require('safebook')
+import config from "@/config"
+
 import Avatar from "@/components/Avatar"
 import SignedMessageInput   from "@/messages/SignedMessageInput"
 import SignedMessage  from "@/messages/SignedMessage"
@@ -67,32 +60,24 @@ export default {
   },
   data() {
     return {
-      account:    this.$store.state.account,
       scope:      'published',
+      inbox:      [],
+      outbox:     [],
+      published:  [],
+      followers:  [],
+      following:  []
     }
   },
   computed: {
-    published() {
-      return this.$store.getters.published
-    },
-    inbox() {
-      return this.$store.getters.inbox
-    },
-    outbox() {
-      return this.$store.getters.outbox
-    },
-    followings() {
-      return this.$store.getters.followings
-    },
-    followers() {
-      return this.$store.getters.followers
+    account() {
+      return this.$store.state.account
     },
     address() {
       return this.$route.params.address
     },
     myself() {
       if (this.account)
-        return this.$route.params.address == this.account.address
+        return this.address == this.account.address
       return false
     },
   },
@@ -106,34 +91,38 @@ export default {
     goToAccount() {
       this.$router.push(`/signup`)
     },
-    loadMessages() {
-      this.$store.commit({ type: 'selectUser', address: this.address })
-      this.$store.commit({ type: 'loadInbox', address: this.address })
-      this.$store.commit({ type: 'loadOutbox', address: this.address })
-      this.$store.commit({ type: 'loadContacts', address: this.address })
-      //setTimeout(() => {
-      //  this.published =  this.$store.getters.published
-      //  this.inbox =      this.$store.getters.inbox
-      //  this.outbox =     this.$store.getters.outbox
-      //  this.followings = this.$store.getters.followings
-      //  this.followers =  this.$store.getters.followers
-      //}, 1000)
-      //this.$forceUpdate()
-    },
     addContact() {
-      this.$store.commit({ type: 'addContact', address: this.address })
+      const follow = {
+        author: this.account.address,
+        receiver: this.address
+      }
+      fetch(`${config.url}/${this.address}/contacts`, {
+        method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(follow)
+      }).then((res) => { console.log(res) })
+      .catch((res) => { console.log(res) })
+      this.followers.push(follow.author);
     },
-    nameOf(address) {
-      return safebook.name(address).join(' ')
-    },
+    fetch() {
+      fetch(`${config.api}/u/${this.address}`)
+        .then(response => response.json())
+        .then((data) => {
+          this.published = data.published
+          this.inbox = data.inbox
+          this.outbox = data.outbox
+          this.followers = data.followers
+          this.following = data.following
+        })
+    }
   },
-  created() {
-    this.loadMessages()
-  },
-  beforeRouteUpdate(to, from, next) {
+  mounted() {
     this.scope = 'published'
-    this.loadMessages()
-    next()
+    this.fetch()
+  },
+  watch: {
+    '$route.params.address': function () {
+      this.fetch()
+    }
   }
 }
 </script>
@@ -219,5 +208,8 @@ export default {
   display: inline-block;
   width: 33%;
   margin: 0;
+}
+.follow-title {
+  margin: 10px;
 }
 </style>

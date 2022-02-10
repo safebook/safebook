@@ -10,7 +10,7 @@
     </div>
     <div class="col-40" id="logout">
       <div v-if="!account" class="text-right">
-        <router-link v-if="!account" to="signin">Connexion</router-link>
+        <a @click="signin()">Connexion</a>
       </div>
       <div v-if="account">
         <a @click="goToAccount()">Ma page</a>
@@ -36,6 +36,9 @@ export default {
     },
     goToMessaging() {
       this.$router.push(`/m`);
+    },
+    signin() {
+      this.$router.push(`/signin`);
     }
   },
   computed: {

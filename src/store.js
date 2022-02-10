@@ -111,19 +111,6 @@ export default new Vuex.Store({
         .then(response => response.json())
         .then((data) => { state.contacts = data })
     },
-    addContact(state, payload) {
-      const follow = {
-        author: state.account.address,
-        receiver: payload.address
-      }
-      fetch(`${config.url}/${payload.address}/contacts`, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(follow)
-      }).then((res) => { console.log(res) })
-      .catch((res) => { console.log(res) })
-      state.contacts.push(follow);
-    },
     deleteContact(state, payload) {
       fetch(`${config.url}/${payload.address}/contacts`, {
         method: 'DELETE',
@@ -137,24 +124,5 @@ export default new Vuex.Store({
     }
   },
   actions: {},
-  getters: {
-    published(state) {
-      return state.inbox.filter(m => m.author == m.receiver)
-    },
-    inbox(state) {
-      return state.inbox.filter(m => m.author != m.receiver)
-    },
-    outbox(state) {
-      return state.outbox.filter(m => m.author != m.receiver)
-    },
-    followers(state) {
-      return state.contacts.filter(c => c.receiver == state.user)
-    },
-    followings(state) {
-      return state.contacts.filter(c => c.author == state.user)
-    },
-    isFollowing(state) {
-      return state.contacts.find(c => c.author == state.account.address && c.receiver == state.user)
-    }
-  }
+  getters: {}
 })

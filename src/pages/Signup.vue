@@ -33,7 +33,7 @@
       </p>
       <p class='center'>
         <button class="button" id="regenerate" @click="regenerate()">Regenerer</button>
-        <button class="button" id="start" @click="start()">Commencer</button>
+        <button class="button" id="start" @click="start()">Ma page</button>
       </p>
     </div>
   </div>
