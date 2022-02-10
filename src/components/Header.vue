@@ -6,10 +6,11 @@
       </router-link>
     </div>
     <div class="col-40">
-      <span id="address" v-if="account">{{ account.name.join(' ') }}</span>
     </div>
     <div class="col-40" id="logout">
-      <div v-if="!account" class="text-right">
+      <div v-if="!account">
+        <a @click="goToHome()">Accueil</a>
+        <div class="space"></div> <div class="space"></div>
         <a @click="signin()">Connexion</a>
       </div>
       <div v-if="account">
@@ -31,15 +32,10 @@ export default {
       this.$store.commit('logout');
       this.$router.push('/');
     },
-    goToAccount() {
-      this.$router.push(`/u/${this.$store.state.account.address}`);
-    },
-    goToMessaging() {
-      this.$router.push(`/m`);
-    },
-    signin() {
-      this.$router.push(`/signin`);
-    }
+    goToHome() { this.$router.push(`/`); },
+    goToAccount() { this.$router.push(`/u/${this.$store.state.account.address}`); },
+    goToMessaging() { this.$router.push(`/m`); },
+    signin() { this.$router.push(`/signin`); }
   },
   computed: {
     account() {
@@ -52,6 +48,7 @@ export default {
 <style scoped>
 #header {
   border-bottom: 1px solid green;
+  background-color: green;
 }
 .col-40, .col-20 {
   display: inline-block;
@@ -60,13 +57,15 @@ export default {
 .col-40 { width: 40% }
 .col-20 { width: 20% }
 #logo a {
-  color: green;
+  color: white;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1.2em;
   cursor: pointer;
   text-decoration: none;
+  padding: 10px;
 }
-#logout a {
+a {
+  color: white;
   text-decoration: none;
 }
 .space {

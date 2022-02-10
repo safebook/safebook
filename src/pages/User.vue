@@ -1,5 +1,6 @@
 <template>
   <div id="user" class="table">
+    <Side :address="address" :owned="myself" />
     <div id="side">
       <Avatar :address="address" />
       <div v-if="myself">
@@ -50,13 +51,14 @@ import SignedMessageInput   from "@/messages/SignedMessageInput"
 import SignedMessage  from "@/messages/SignedMessage"
 import Publication  from "@/messages/Publication"
 import Contact  from "@/components/Contact"
+import Side  from "@/components/Side"
 
 export default {
   name: 'Signup',
   components: {
     Avatar, SignedMessageInput,
     SignedMessage, Publication,
-    Contact
+    Contact, Side
   },
   data() {
     return {

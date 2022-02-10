@@ -4,12 +4,28 @@
       <img alt="Vue logo" src="../assets/logo.png">
       <h3>Safebook</h3>
       <p>
-        a cryptographic social network
+        réseau social cryptographique
       </p>
+      <div id="doc">
+        <button class="button" @click="goToUserDoc()">
+          Documentation utilisateur
+        </button>
+        <button class="button" @click="goToTechnicalDoc()">
+          Documentation technique
+        </button>
+      </div>
     </div>
     <div id="main">
       <div>
-        <h4>Votre mot de passe ou phrase mnémotechnique :</h4>
+        <button class="button" id="signup" @click="createAccount()">
+          Créer un compte
+        </button>
+      </div>
+      <p>
+        --- ou ---
+      </p>
+      <div>
+        <h4>Entrez votre mot de passe, <br /> ou votre phrase mnémotechnique</h4>
         <input id="password" type="password"
           v-model="password" placeholder="Mot de passe" />
       </div>
@@ -17,22 +33,6 @@
         <button id="signin" class="button"
           @click="signin()" v-bind:class="{ active: password.length > 0 }">
           Se connecter
-        </button>
-      </div>
-      <p>
-        --- ou ---
-      </p>
-      <div>
-      <button class="button" id="signup" @click="createAccount()">
-        Créer un compte
-      </button>
-      </div>
-      <div id="doc">
-        <button class="button" @click="goToUserDoc()">
-          Documentation utilisateur
-        </button>
-        <button class="button" @click="goToTechnicalDoc()">
-          Documentation technique
         </button>
       </div>
     </div>
@@ -79,13 +79,19 @@ h3 {
   color: white;
   background-color: green;
 }
+#signup {
+  font-size: 1.05em;
+  padding: 10px;
+  margin: 20px;
+}
 #password {
   width: 350px;
   height: 25px;
   text-align: center;
   margin-bottom: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   border-color: green;
+  outline: none;
 }
 #main {
   padding-top: 50px;
@@ -94,8 +100,9 @@ h3 {
 #doc {
   margin: 15px;
 }
-#doc button {
+#doc button, #signin {
   margin: 5px;
+  border: 1px solid green;
 }
 </style>
 

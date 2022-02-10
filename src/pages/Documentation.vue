@@ -1,11 +1,12 @@
 <template>
 <div>
   <h2>Safebook</h2>
-  
+
   <p>Safebook est un réseau social cryptographique.</p>
-  
-  <p>Vous possedez une <a href="#carte-didentité">carte d'identité cryptographique</a> et un <a href="#coffre-fort">coffre-fort</a>.</p>
-  
+
+  <p>Vous possedez une <a href="#carte-didentité">carte d'identité cryptographique</a>
+  et un <a href="#coffre-fort">coffre-fort</a>.</p>
+
   <p>Vous pouvez envoyer des messages privés ou publics.</p>
   
   <p>Tous les messages privés sont chiffrés de bout-en-bout.<br />
