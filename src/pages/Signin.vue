@@ -1,9 +1,9 @@
-<template>
-  <div id="signin">
-    <h3>Entrez votre mot de passe ou phrase mnémotechnique</h3>
-    <textarea v-model="passphrase" placeholder="Votre mot de passe"></textarea>
-    <p><button @click="loadAccount()">Se connecter</button></p>
-    <p><a @click="signup()">Creer un compte</a></p>
+<template lang="pug">
+  #signin
+    h3 Entrez votre mot de passe ou phrase mnémotechnique
+    textarea(v-model="passphrase" placeholder="Votre mot de passe")
+    p: button.button(@click="loadAccount()") Se connecter
+    p: a(@click="signup()") Creer un compte
   </div>
 </template>
 
