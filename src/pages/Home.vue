@@ -2,7 +2,7 @@
   <div id="home" class="table">
     <div id="side">
       <img alt="Vue logo" src="../assets/logo.png">
-      <h3>Safebook</h3>
+      <h3 class="font-extrabold	text-3xl text-green-700">Safebook</h3>
       <p>
         réseau social cryptographique
       </p>
