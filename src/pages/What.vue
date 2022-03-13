@@ -4,7 +4,7 @@ div
 
   p Safebook est un réseau social appartenant à ses utilisateurs.
 
-  p C'est un logiciel de cryptographie libre et décentralisé.
+  p C'est un logiciel libre de <a href>cryptographie</a>, pour un internet décentralisé.
 
   p Vous avez le contrôle sur votre vie privée.
 
