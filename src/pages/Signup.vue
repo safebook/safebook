@@ -97,7 +97,9 @@ export default {
     },
   },
   beforeCreate() {
-    if (!this.$store.state.account) this.$router.push("/");
+    if (!this.$store.state.account) {
+      this.$store.commit("createAccount");
+    }
   },
   created() {},
 };
