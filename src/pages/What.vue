@@ -6,7 +6,7 @@ div
 
   p C'est un logiciel libre de <a href>cryptographie</a>, pour un internet décentralisé.
 
-  p Vous avez le contrôle sur votre vie privée.
+  p Vous avez le contrôle sur votre vie privée, les données sont chiffrés et peuvent être autohébérgés.
 
   p Pas besoin d'internet, un identifiant contient toute l'information nécessaire pour communiquer.
 
