@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+https://github.com/ipfs-examples/js-ipfs-examples/tree/master/examples/browser-ipns-publish
+
 const nacl = require("tweetnacl");
 nacl.util = require("tweetnacl-util");
 const bs58check = require("bs58check");
