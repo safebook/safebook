@@ -8,7 +8,7 @@
 </template>
 
 <script>
-//let safebook = require("safebook")
+//let safebook = require("@/safebook")
 
 //let account = safebook.generate_account()
 
