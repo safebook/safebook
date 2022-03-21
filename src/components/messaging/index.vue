@@ -28,8 +28,8 @@
 <script>
 import safebook from "@/safebook";
 import config from "@/config";
-import PrivateMessageInput from "@/messages/PrivateMessageInput";
-import PrivateMessage from "@/messages/PrivateMessage";
+import PrivateMessageInput from "@/components/messages/PrivateMessageInput";
+import PrivateMessage from "@/components/messages/PrivateMessage";
 
 export default {
   name: "Messaging",
