@@ -1,7 +1,7 @@
 <template>
-<vue-markdown id="markdown">
+<VueMarkdown id="markdown">
   {{ content }}
-</vue-markdown>
+</VueMarkdown>
 </template>
 
 <script>

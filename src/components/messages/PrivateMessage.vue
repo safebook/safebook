@@ -1,6 +1,6 @@
 <template>
-  <div id="messageBox" v-bind:class="{ sent: sent }">
-    <span id="message" v-bind:class="{ sent: sent }">
+  <div id="messageBox" :class="{ sent: sent }">
+    <span id="message" :class="{ sent: sent }">
       {{ message.content }}
     </span>
   </div>

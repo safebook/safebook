@@ -1,6 +1,6 @@
 <template>
   <div id="name-input">
-    <input type="text" placeholder="Votre nom" v-model="name" />
+    <input v-model="name" type="text" placeholder="Votre nom" />
     <button>Send</button>
   </div>
 </template>
@@ -8,12 +8,12 @@
 <script>
 export default {
   name: 'NameInput',
-  props: ['oldName'],
   model() {
     return {
       name: this.oldName
     }
   },
+  props: ['oldName'],
   methods: {
     send() {
       this.$store.commit({

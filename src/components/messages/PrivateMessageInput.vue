@@ -1,7 +1,7 @@
 <template>
   <div id="MessageInput">
     <div>
-      <textarea id="textbox" v-model="content" placeholder="Votre message privé" rows=1 @keydown="autogrow" autofocus></textarea>
+      <textarea id="textbox" v-model="content" placeholder="Votre message privé" rows=1 autofocus @keydown="autogrow"/>
     </div>
     <div id="send">
       <button class="button private" @click="sendPrivateMessage()">Envoyer un message privé</button>
@@ -12,12 +12,15 @@
 <script>
 export default {
   name: 'MessageInput',
+  props: ['address'],
   data () {
     return {
       content: ''
     }
   },
-  props: ['address'],
+  created () {
+    this.autogrow()
+  },
   methods: {
     sendPrivateMessage () {
       this.$emit('post', this.content)
@@ -38,9 +41,6 @@ export default {
         el.style.height = height + 'px'
       }, 0)
     }
-  },
-  created () {
-    this.autogrow()
   }
 }
 </script>

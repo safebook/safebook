@@ -5,7 +5,7 @@
       <div class="user top">
         <b>{{ get_name(receiver) }}</b>
       </div>
-      <div class="user" v-for="user in contacts" :key="user">
+      <div v-for="user in contacts" :key="user" class="user">
         <a @click="goToUser(user)">
           {{ get_name(user) }}
         </a>
@@ -17,8 +17,8 @@
       <PrivateMessageInput :address="receiver" @post="post" />
       <PrivateMessage
         v-for="(message, index) in messages"
-        :message="message"
         :key="index"
+        :message="message"
         :sent="message.author == receiver"
       />
     </div>
@@ -40,9 +40,32 @@ export default {
       loader: 0,
     };
   },
+  computed: {
+    account() {
+      return this.$store.state.account;
+    },
+    receiver() {
+      return this.$route.params.address;
+    },
+    address_name() {
+      return safebook.name(this.address).join(" ");
+    },
+    contacts() {
+      return this.$store.getters.contacts;
+    },
+  },
+  mounted() {
+    this.$nextTick(() => this.loadMessages());
+    this.loader = setInterval(() => {
+      this.loadMessages();
+    }, 5000);
+  },
+  destroyed() {
+    clearInterval(this.loader);
+  },
   methods: {
     get_name(address) {
-      if (!address) return "";
+      if (!address) {return "";}
       return safebook.name(address).join(" ");
     },
     goToUser(user) {
@@ -55,17 +78,17 @@ export default {
           for (let i = 0; i < data.length; i++) {
             try {
               if (data[i].author == this.account.address)
-                data[i].content = safebook.decrypt(
+                {data[i].content = safebook.decrypt(
                   this.$store.state.account,
                   data[i].receiver,
                   data[i].hidden_content
-                );
+                );}
               else
-                data[i].content = safebook.decrypt(
+                {data[i].content = safebook.decrypt(
                   this.$store.state.account,
                   data[i].author,
                   data[i].hidden_content
-                );
+                );}
             } catch (e) {
               data[i].content = "Error";
             }
@@ -100,29 +123,6 @@ export default {
         });
       this.messages.push({ ...message, ...{ content: content } });
     },
-  },
-  computed: {
-    account() {
-      return this.$store.state.account;
-    },
-    receiver() {
-      return this.$route.params.address;
-    },
-    address_name() {
-      return safebook.name(this.address).join(" ");
-    },
-    contacts() {
-      return this.$store.getters.contacts;
-    },
-  },
-  mounted() {
-    this.$nextTick(() => this.loadMessages());
-    this.loader = setInterval(() => {
-      this.loadMessages();
-    }, 5000);
-  },
-  destroyed() {
-    clearInterval(this.loader);
   },
 };
 </script>
