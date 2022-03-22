@@ -2,9 +2,11 @@
 div
   h2 Safebook
 
-  p Safebook est un réseau social cryptographique, libre et décentralisé.
+  p Safebook est un réseau social appartenant à ses utilisateurs.
 
-  p Pas besoin d'internet, votre identifiant contient tout le material pour communiquer avec vous seul.
+  p C'est un logiciel de cryptographie libre et décentralisé.
+
+  p Pas besoin d'internet, un identifiant contient toute l'information nécessaire pour communiquer.
 
   p
     | Contrairement aux réseaux sociaux traditionels,
