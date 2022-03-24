@@ -12,7 +12,7 @@ div.text-center
 
   h3 Carte d'identité
   p
-    | Vous possedez une 
+    | Vous possedez une
     a(href="#carte-didentite") carte d'identité
     | .<br />
     | Elle permet à d'autres personnes de s'assurer de votre identité cryptographique.
@@ -35,7 +35,7 @@ div.text-center
     | Ils sont chiffrés de tel manière que seul vous et vos interlocuteurs pourront les lire.
 
   p: small On peut imaginer de l'imprimer sur un sticker, un mug, un T-shirt, ...
-  
+
   h3 Coffre fort
   p
     | Vous possedez également un coffre-fort cryptographique.<br />
@@ -43,12 +43,12 @@ div.text-center
     | C'est comme un mot de passe qui vous permet d'accéder à vos clés de chiffrement.<br />
 
   p Il se présente sous la forme d'un un mot de passe comme celui ci:
-  
+
   blockquote
     b uPyibSL58eJ1eeCN2scuUf7v5FN4
 
   p Ou d'une liste de mots mnémotechnique comme celle ci :
-  
+
   blockquote: #worldlist
     .word disposer
     .word papoter
@@ -61,17 +61,17 @@ div.text-center
     .word vedette
     .word studieux
     .word meilleur
-    .word tricoter 
+    .word tricoter
 </template>
 
 <script>
 export default {
-  name: "What",
-  data() {
-    return {};
+  name: 'What',
+  data () {
+    return {}
   },
-  methods: {},
-};
+  methods: {}
+}
 </script>
 
 <style>

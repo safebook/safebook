@@ -12,13 +12,13 @@ export default {
     address: String
   },
   computed: {
-    lines() {
+    lines () {
       return [
         this.address.substr(0, 13),
         this.address.substr(13, 13),
         this.address.substr(26, 13),
         this.address.substr(39)
-      ];
+      ]
     }
   }
 }

@@ -53,32 +53,32 @@
 
 <script>
 export default {
-  name: "Home",
-  data() {
+  name: 'Home',
+  data () {
     return {
-      password: "",
-    };
+      password: ''
+    }
   },
   methods: {
-    createAccount() {
-      this.$store.commit("createAccount");
-      this.$router.push("/signup");
+    createAccount () {
+      this.$store.commit('createAccount')
+      this.$router.push('/signup')
     },
-    signin() {
+    signin () {
       this.$store.commit({
-        type: "loadAccount",
-        mnemonic: this.password.trim(),
-      });
+        type: 'loadAccount',
+        mnemonic: this.password.trim()
+      })
     },
-    goToUserDoc() {
-      this.$router.push("/what");
+    goToUserDoc () {
+      this.$router.push('/what')
     },
-    goToTechnicalDoc() {
+    goToTechnicalDoc () {
       window.location =
-        "https://github.com/mjal/safebook-doc/blob/master/technical.org";
-    },
-  },
-};
+        'https://github.com/mjal/safebook-doc/blob/master/technical.org'
+    }
+  }
+}
 </script>
 
 <style scoped>

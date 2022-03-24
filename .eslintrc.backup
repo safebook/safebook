@@ -2,33 +2,53 @@
   "env": {
     "browser": true,
     "jest": true,
-    "jquery": true
+    "jquery": true,
+    "node": true
   },
   "extends": [
     "plugin:vue/recommended",
     "standard",
-    "prettier"
+    "prettier",
+    "plugin:vue/essential",
+    "@vue/standard"
   ],
   "parserOptions": {
     "ecmaVersion": 2020,
-    "sourceType": "module"
+    "sourceType": "module",
+    "parser": "babel-eslint"
   },
-  "plugins": ["vue"],
+  "plugins": [
+    "vue"
+  ],
   "rules": {
-    "camelcase": [2, { "properties": "never" }],
-    "curly": ["error", "all"],
+    "camelcase": [
+      2,
+      {
+        "properties": "never"
+      }
+    ],
+    "curly": [
+      "error",
+      "all"
+    ],
     "new-cap": "off",
     "import/no-webpack-loader-syntax": "off",
-    "no-cond-assign": ["error", "except-parens"],
-    "quotes": ["off"],
+    "no-cond-assign": [
+      "error",
+      "except-parens"
+    ],
+    "quotes": [
+      "off"
+    ],
     "no-new": "off",
     "no-return-assign": "off",
-    "no-console": "error",
     "vue/attributes-order": "error",
     "vue/html-self-closing": [
       "error",
       {
-        "html": { "void": "always" }
+        "html": {
+          "void": "always"
+        }
       }
     ],
     "vue/order-in-components": "error",
@@ -41,7 +61,10 @@
       "PascalCase",
       {
         "registeredComponentsOnly": false,
-        "ignores": ["trix-toolbar", "trix-editor"]
+        "ignores": [
+          "trix-toolbar",
+          "trix-editor"
+        ]
       }
     ],
     "vue/new-line-between-multi-line-property": [
@@ -53,7 +76,9 @@
   },
   "overrides": [
     {
-      "files": ["*.vue"],
+      "files": [
+        "*.vue"
+      ],
       "rules": {
         "indent": "off",
         "no-restricted-globals": [
@@ -65,5 +90,6 @@
         ]
       }
     }
-  ]
+  ],
+  "root": true
 }

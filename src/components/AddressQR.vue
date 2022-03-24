@@ -5,23 +5,23 @@
 </template>
 
 <script>
-import VueQr from "vue-qr/src/packages/vue-qr.vue";
-import config from "../config";
+import VueQr from 'vue-qr/src/packages/vue-qr.vue'
+import config from '../config'
 
 export default {
-  name: "AddressQR",
+  name: 'AddressQR',
   components: {
-    VueQr,
+    VueQr
   },
   props: {
-    address: String,
+    address: String
   },
   computed: {
-    url() {
-      return `${config.url}/u/${this.address}`;
-    },
-  },
-};
+    url () {
+      return `${config.url}/u/${this.address}`
+    }
+  }
+}
 </script>
 
 <style>

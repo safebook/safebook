@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown';
+import VueMarkdown from 'vue-markdown'
 import content from 'raw-loader!@/assets/how.fr.md'
 export default {
   name: 'How',
   components: { VueMarkdown },
-  data() {
+  data () {
     return {
       content
     }
@@ -33,4 +33,3 @@ export default {
   font-weight: bold;
 }
 </style>
-

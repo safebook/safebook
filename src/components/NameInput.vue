@@ -8,14 +8,14 @@
 <script>
 export default {
   name: 'NameInput',
-  model() {
+  model () {
     return {
       name: this.oldName
     }
   },
   props: ['oldName'],
   methods: {
-    send() {
+    send () {
       this.$store.commit({
         type: 'attr',
         kind: 'name',

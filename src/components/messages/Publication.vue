@@ -9,37 +9,37 @@
 </template>
 
 <script>
-import safebook from "@/safebook";
+import safebook from '@/safebook'
 
 export default {
-  name: "Publication",
-  props: ["message"],
+  name: 'Publication',
+  props: ['message'],
   computed: {
-    author_name() {
-      return safebook.name(this.message.author).join(" ");
+    author_name () {
+      return safebook.name(this.message.author).join(' ')
     },
-    receiver_name() {
-      return safebook.name(this.message.receiver).join(" ");
+    receiver_name () {
+      return safebook.name(this.message.receiver).join(' ')
     },
-    address() {
-      return this.$route.params.address;
-    },
+    address () {
+      return this.$route.params.address
+    }
   },
   methods: {
-    goToAuthor() {
+    goToAuthor () {
       this.$router.push({
-        name: "user",
-        params: { address: this.message.author },
-      });
+        name: 'user',
+        params: { address: this.message.author }
+      })
     },
-    goToReceiver() {
+    goToReceiver () {
       this.$router.push({
-        name: "user",
-        params: { address: this.message.receiver },
-      });
-    },
-  },
-};
+        name: 'user',
+        params: { address: this.message.receiver }
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>
