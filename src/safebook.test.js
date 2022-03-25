@@ -1,3 +1,4 @@
+/* eslint-disable */
 safebook = require('./safebook')
 
 mnemonic = 'large intact option tackle document category faith tackle repair myth hint carpet'
