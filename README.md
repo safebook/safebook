@@ -1,11 +1,14 @@
 # Safebook
 
-A (web3) social network
+Immutable social network
+
+The distributed (web3) social network
 
 ## Features
 
 - Serverless. Statically hosted on ipfs and ens (safebook.eth) [TODO]
 - Censorship resistant
+- Offline first
 - 100% open source
 
 ### Personnal page
@@ -52,6 +55,9 @@ Make a hierarchical deterministic wallets (BIP32/44/85) and generate :
 ## Other
 
 - Gitlab open source program
+- https://gitcoin.co/grants
+- games ? (peoples go to social network when they are bored)
+- youtube2ipfs ?
 
 ## Absurd question
 
