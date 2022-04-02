@@ -26,7 +26,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  width: 800px;
+  max-width: 800px;
   display: inline-block;
   margin: 0 auto;
   text-align: center;
