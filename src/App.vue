@@ -1,20 +1,19 @@
 <template lang="pug">
-  .container
+  .container.mx-auto
     Header
     router-view
 </template>
 
 <script>
-import Header from './components/Header'
+import Header from "./components/Header";
 
 export default {
-  name: 'App',
+  name: "App",
   components: { Header },
   mounted() {
-    this.$store.commit('restoreAccount')
-  }
-}
+    this.$store.commit("restoreAccount");
+  },
+};
 </script>
 
-<style>
-</style>
+<style></style>
