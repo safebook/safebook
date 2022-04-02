@@ -1,10 +1,10 @@
 <template>
   <div id="post">
-    <div id="header" v-if="message.author != message.receiver">
-      <div class="right" v-if="message.author != address">
+    <div v-if="message.author != message.receiver" id="header">
+      <div v-if="message.author != address" class="right">
         => <a @click="goToAuthor()">{{ author_name }}</a>
       </div>
-      <div class="left" v-if="message.author == address">
+      <div v-if="message.author == address" class="left">
         <a @click="goToReceiver()">{{ receiver_name }}</a> :
       </div>
     </div>
@@ -20,6 +20,17 @@ import safebook from "@/safebook";
 export default {
   name: "Message",
   props: ["message"],
+  computed: {
+    author_name() {
+      return safebook.name(this.message.author).join(" ");
+    },
+    receiver_name() {
+      return safebook.name(this.message.receiver).join(" ");
+    },
+    address() {
+      return this.$route.params.address;
+    },
+  },
   methods: {
     goToAuthor() {
       this.$router.push({
@@ -32,17 +43,6 @@ export default {
         name: "user",
         params: { address: this.message.receiver },
       });
-    },
-  },
-  computed: {
-    author_name() {
-      return safebook.name(this.message.author).join(" ");
-    },
-    receiver_name() {
-      return safebook.name(this.message.receiver).join(" ");
-    },
-    address() {
-      return this.$route.params.address;
     },
   },
 };

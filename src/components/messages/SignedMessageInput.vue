@@ -6,9 +6,9 @@
         v-model="content"
         placeholder="Votre message publique"
         rows="1"
-        @keydown="autogrow"
         autofocus
-      ></textarea>
+        @keydown="autogrow"
+      />
     </div>
     <div id="send">
       <button class="button public" @click="sendSignedMessage()">
@@ -21,12 +21,15 @@
 <script>
 export default {
   name: "MessageInput",
+  props: ["address"],
   data() {
     return {
       content: "",
     };
   },
-  props: ["address"],
+  created() {
+    this.autogrow();
+  },
   methods: {
     sendSignedMessage() {
       this.$store.commit({
@@ -51,9 +54,6 @@ export default {
         el.style.height = height + "px";
       }, 0);
     },
-  },
-  created() {
-    this.autogrow();
   },
 };
 </script>

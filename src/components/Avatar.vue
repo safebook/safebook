@@ -15,13 +15,13 @@
       <a @click="showAvatar()" v-bind:class="{ selected: showImg == 'avatar' }">Avatar</a>
       - 
     -->
-      <a @click="showQR()" v-bind:class="{ selected: showImg == 'qr' }"
+      <a :class="{ selected: showImg == 'qr' }" @click="showQR()"
         >QRCode</a
       >
       -
       <a
+        :class="{ selected: showImg == 'address' }"
         @click="showAddress()"
-        v-bind:class="{ selected: showImg == 'address' }"
         >Address</a
       >
     </div>
@@ -49,9 +49,13 @@ export default {
   },
   computed: {
     name() {
-      if (this.address) return safebook.name(this.address).join(" ");
-      else return "Sans nom";
+      if (this.address) {return safebook.name(this.address).join(" ");}
+      else {return "Sans nom";}
     },
+  },
+  mounted() {
+    console.log(1);
+    console.log(this.address);
   },
   methods: {
     showQR() {
@@ -66,10 +70,6 @@ export default {
     goToAccount() {
       this.$router.push("/signup");
     },
-  },
-  mounted() {
-    console.log(1);
-    console.log(this.address);
   },
 };
 </script>

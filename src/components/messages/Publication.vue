@@ -14,6 +14,17 @@ import safebook from "@/safebook";
 export default {
   name: "Publication",
   props: ["message"],
+  computed: {
+    author_name() {
+      return safebook.name(this.message.author).join(" ");
+    },
+    receiver_name() {
+      return safebook.name(this.message.receiver).join(" ");
+    },
+    address() {
+      return this.$route.params.address;
+    },
+  },
   methods: {
     goToAuthor() {
       this.$router.push({
@@ -26,17 +37,6 @@ export default {
         name: "user",
         params: { address: this.message.receiver },
       });
-    },
-  },
-  computed: {
-    author_name() {
-      return safebook.name(this.message.author).join(" ");
-    },
-    receiver_name() {
-      return safebook.name(this.message.receiver).join(" ");
-    },
-    address() {
-      return this.$route.params.address;
     },
   },
 };

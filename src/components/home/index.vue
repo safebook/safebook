@@ -18,7 +18,7 @@
     </div>
     <div id="main">
       <div>
-        <button class="button" id="signup" @click="createAccount()">
+        <button id="signup" class="button" @click="createAccount()">
           Créer un compte
         </button>
       </div>
@@ -32,8 +32,8 @@
         </h4>
         <input
           id="password"
-          type="password"
           v-model="password"
+          type="password"
           placeholder="Mot de passe"
         />
       </div>
@@ -41,8 +41,8 @@
         <button
           id="signin"
           class="button"
+          :class="{ active: password.length > 0 }"
           @click="signin()"
-          v-bind:class="{ active: password.length > 0 }"
         >
           Se connecter
         </button>
