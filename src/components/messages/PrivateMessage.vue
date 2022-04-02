@@ -7,20 +7,20 @@
 </template>
 
 <script>
-import safebook from "@/safebook";
+import safebook from '@/safebook'
 
 export default {
-  name: "Message",
-  props: ["message", "sent"],
+  name: 'Message',
+  props: ['message', 'sent'],
   methods: {
-    author_name() {
-      return safebook.name(this.message.author);
+    author_name () {
+      return safebook.name(this.message.author)
     },
-    receiver_name() {
-      return safebook.name(this.message.receiver);
-    },
-  },
-};
+    receiver_name () {
+      return safebook.name(this.message.receiver)
+    }
+  }
+}
 </script>
 
 <style scoped>

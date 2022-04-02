@@ -8,27 +8,27 @@
 </template>
 
 <script>
-//let safebook = require("@/safebook")
+// let safebook = require("@/safebook")
 
-//let account = safebook.generate_account()
+// let account = safebook.generate_account()
 
 export default {
   name: 'Signup',
   data: () => {
     return {
-      passphrase: ""
+      passphrase: ''
     }
   },
   methods: {
-    loadAccount() {
+    loadAccount () {
       this.$store.commit({
         type: 'loadAccount',
         mnemonic: this.passphrase.trim()
       })
       this.$router.push('/signup')
     },
-    signup() {
-      this.$store.commit("createAccount")
+    signup () {
+      this.$store.commit('createAccount')
       this.$router.push('/signup')
     }
   }
@@ -51,4 +51,3 @@ textarea {
   width: 15%;
 }
 </style>
-
