@@ -12,7 +12,7 @@
     "core-js": "^3.19.1",
     "qrious": "^4.0.2",
     "raw-loader": "^4.0.2",
-    "safebook": "file:../safebook",
+    "safebook": "file:../safebook-lib",
     "vue": "^2.6.11",
     "vue-markdown": "^2.2.4",
     "vue-qr": "^3.2.2",
