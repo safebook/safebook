@@ -11,54 +11,67 @@
       <AddressSquared v-if="showImg == 'address'" :address="address" />
     </div>
     <div id="qr">
-    <!--
+      <!--
       <a @click="showAvatar()" v-bind:class="{ selected: showImg == 'avatar' }">Avatar</a>
       - 
     -->
-      <a @click="showQR()" v-bind:class="{ selected: showImg == 'qr' }">QRCode</a>
+      <a @click="showQR()" v-bind:class="{ selected: showImg == 'qr' }"
+        >QRCode</a
+      >
       -
-      <a @click="showAddress()" v-bind:class="{ selected: showImg == 'address' }">Address</a>
+      <a
+        @click="showAddress()"
+        v-bind:class="{ selected: showImg == 'address' }"
+        >Address</a
+      >
     </div>
   </div>
 </template>
 
 <script>
-const safebook = require('safebook')
-import AddressSquared from "./AddressSquared"
-import AddressQR from "./AddressQR"
+const safebook = require("@/safebook");
+import AddressSquared from "./AddressSquared";
+import AddressQR from "./AddressQR";
 //import NameInput from "./NameInput"
 
 export default {
-  name: 'Avatar',
+  name: "Avatar",
   components: {
-    AddressSquared, AddressQR, /*NameInput*/
+    AddressSquared,
+    AddressQR /*NameInput*/,
   },
-  props: ['address'],
+  props: ["address"],
   data() {
     return {
       avatarUrl: require("@/assets/stitch.jpg"),
-      showImg: 'qr'
-    }
+      showImg: "qr",
+    };
   },
   computed: {
     name() {
-      if (this.address)
-        return safebook.name(this.address).join(" ")
-      else
-        return "Sans nom"
+      if (this.address) return safebook.name(this.address).join(" ");
+      else return "Sans nom";
     },
   },
   methods: {
-    showQR() { this.showImg = 'qr' },
-    showAddress() { this.showImg = 'address' },
-    showAvatar() { this.showImg = 'avatar' },
-    goToAccount() { this.$router.push('/signup') }
+    showQR() {
+      this.showImg = "qr";
+    },
+    showAddress() {
+      this.showImg = "address";
+    },
+    showAvatar() {
+      this.showImg = "avatar";
+    },
+    goToAccount() {
+      this.$router.push("/signup");
+    },
   },
   mounted() {
-    console.log(1)
-    console.log(this.address)
-  }
-}
+    console.log(1);
+    console.log(this.address);
+  },
+};
 </script>
 
 <style scoped>
@@ -72,63 +85,62 @@ export default {
   padding: 0;
   margin: 0;
 }
- #title {
+#title {
   display: inline-block;
   font-weight: bold;
   width: 20%;
- }
- #address {
+}
+#address {
   display: inline-block;
   color: grey;
   width: 60%;
- }
- #avatar {
+}
+#avatar {
   height: 138px;
- }
- #signin {
+}
+#signin {
   display: inline-block;
   width: 20%;
- }
- #no-posts {
+}
+#no-posts {
   margin: 30px 30px 0 30px;
- }
- #send {
+}
+#send {
   text-align: right;
- }
- #send button {
+}
+#send button {
   background-color: green;
   color: white;
- }
- #name input {
+}
+#name input {
   margin-top: 15px;
   text-align: center;
   margin-bottom: 5px;
- }
- #name h3 {
+}
+#name h3 {
   margin-bottom: 0px;
   padding-bottom: 0px;
- }
- #address div {
+}
+#address div {
   margin-bottom: 45px;
   margin-right: 40px;
- }
- #qr {
+}
+#qr {
   margin-top: -25px;
   font-size: 0.85em;
- }
- .selected {
+}
+.selected {
   color: black;
   text-decoration: none;
   cursor: auto;
   font-weight: bold;
- }
- .scope-title {
+}
+.scope-title {
   display: inline-block;
   text-align: center;
   width: 50%;
- }
- #edit {
+}
+#edit {
   margin-top: 20px;
- }
+}
 </style>
-

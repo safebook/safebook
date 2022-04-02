@@ -9,39 +9,48 @@
 </template>
 
 <script>
-import safebook from "safebook"
+import safebook from "@/safebook";
 
 export default {
-  name: 'Publication',
-  props: ['message'],
+  name: "Publication",
+  props: ["message"],
   methods: {
     goToAuthor() {
-      this.$router.push({ name: 'user', params: { address: this.message.author } })
+      this.$router.push({
+        name: "user",
+        params: { address: this.message.author },
+      });
     },
     goToReceiver() {
-      this.$router.push({ name: 'user', params: { address: this.message.receiver } })
-    }
+      this.$router.push({
+        name: "user",
+        params: { address: this.message.receiver },
+      });
+    },
   },
   computed: {
-    author_name()   { return safebook.name(this.message.author).join(" ")   },
-    receiver_name() { return safebook.name(this.message.receiver).join(" ") },
+    author_name() {
+      return safebook.name(this.message.author).join(" ");
+    },
+    receiver_name() {
+      return safebook.name(this.message.receiver).join(" ");
+    },
     address() {
-      return this.$route.params.address
-    }
-  }
-}
+      return this.$route.params.address;
+    },
+  },
+};
 </script>
 
 <style scoped>
 #post {
- border: 1px solid grey;
- margin: 10px 30px 10px 30px;
- text-align: right;
- padding: 8px;
+  border: 1px solid grey;
+  margin: 10px 30px 10px 30px;
+  text-align: right;
+  padding: 8px;
 }
 #message {
   margin: 0;
   text-align: left;
 }
 </style>
-

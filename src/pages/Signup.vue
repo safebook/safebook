@@ -1,6 +1,7 @@
 <template>
   <div id="signup">
-    <h3>Bonjour
+    <h3>
+      Bonjour
       <span id="name">{{ account.name.join(" ") }}</span>
     </h3>
     <h3>Votre crypto-addresse :</h3>
@@ -17,22 +18,32 @@
     <div v-if="!generating">
       <p>
         Gardez précieusement votre mot de passe
-        <a href="#" @click="showPassword = !showPassword">({{showPassword ? "cacher" : "afficher" }})</a>
+        <a href="#" @click="showPassword = !showPassword"
+          >({{ showPassword ? "cacher" : "afficher" }})</a
+        >
       </p>
       <p id="password" v-if="showPassword">
         {{ account.entropy }}
       </p>
       <p>
         Ou votre phrase mnémotechnique
-        <a href="#" @click="showPassphrase = !showPassphrase">({{showPassphrase ? "cacher" : "afficher" }})</a>
+        <a href="#" @click="showPassphrase = !showPassphrase"
+          >({{ showPassphrase ? "cacher" : "afficher" }})</a
+        >
       </p>
       <p id="passphrase" v-if="showPassphrase">
-        <span class="word" v-for="word in account.mnemonic.split(' ')" :key='word'>
+        <span
+          class="word"
+          v-for="word in account.mnemonic.split(' ')"
+          :key="word"
+        >
           <span>{{ word }} </span>
         </span>
       </p>
-      <p class='center'>
-        <button class="button" id="regenerate" @click="regenerate()">Regenerer</button>
+      <p class="center">
+        <button class="button" id="regenerate" @click="regenerate()">
+          Regenerer
+        </button>
         <button class="button" id="start" @click="start()">Ma page</button>
       </p>
     </div>
@@ -40,58 +51,56 @@
 </template>
 
 <script>
-//const safebook = require('safebook')
-import AddressSquared from "@/components/AddressSquared"
-import AddressQR from "@/components/AddressQR"
+//const safebook = require('@/safebook')
+import AddressSquared from "@/components/AddressSquared";
+import AddressQR from "@/components/AddressQR";
 
 export default {
-  name: 'Signup',
+  name: "Signup",
   components: {
     AddressQR,
-    AddressSquared
+    AddressSquared,
   },
   data() {
     return {
       showPassword: false,
       showPassphrase: false,
       generating: false,
-    }
+    };
   },
   computed: {
     account() {
-      return this.$store.state.account
+      return this.$store.state.account;
     },
     splittedMnemonic() {
-      let words = this.account.mnemonic.split(" ")
+      let words = this.account.mnemonic.split(" ");
       return [
-        words.slice(0,3),
-        words.slice(3,6),
-        words.slice(6,9),
-        words.slice(9)
+        words.slice(0, 3),
+        words.slice(3, 6),
+        words.slice(6, 9),
+        words.slice(9),
       ];
-    }
+    },
   },
   methods: {
     regenerate() {
-      this.$store.commit('createAccount');
+      this.$store.commit("createAccount");
     },
     vanity() {
-      this.$store.commit('createVanityAccount');
+      this.$store.commit("createVanityAccount");
     },
     stop() {
-      this.generating = false
+      this.generating = false;
     },
     start() {
-      this.$router.push(`/u/${this.account.address}`)
+      this.$router.push(`/u/${this.account.address}`);
     },
   },
   beforeCreate() {
-    if (!this.$store.state.account)
-      this.$router.push('/')
+    if (!this.$store.state.account) this.$router.push("/");
   },
-  created() {
-  }
-}
+  created() {},
+};
 </script>
 
 <style scoped>
