@@ -77,7 +77,7 @@ export default {
         .then((data) => {
           for (let i = 0; i < data.length; i++) {
             try {
-              if (data[i].author == this.account.address) {
+              if (data[i].author === this.account.address) {
                 data[i].content = safebook.decrypt(
                   this.$store.state.account,
                   data[i].receiver,
