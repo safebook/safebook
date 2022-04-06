@@ -62,7 +62,7 @@ export default new Vuex.Store({
         .then((data) => {
           for (let i = 0; i < data.length; i++) {
             try {
-              if (data[i].author == state.account.address) {
+              if (data[i].author === state.account.address) {
                 data[i].content = safebook.decrypt(
                   state.account,
                   data[i].receiver,
@@ -105,11 +105,11 @@ export default new Vuex.Store({
           console.log(res)
         })
       state.inbox.push(message)
-      if (message.receiver == state.account.address) { state.outbox.push(message) }
+      if (message.receiver === state.account.address) { state.outbox.push(message) }
     },
     sendPrivateMessage (state, payload) {
       console.log(state.account, payload.receiver, payload.content)
-      const hidden_content = safebook.encrypt(
+      const hiddenContent = safebook.encrypt(
         state.account,
         payload.receiver,
         payload.content
@@ -117,7 +117,7 @@ export default new Vuex.Store({
       const message = {
         author: state.account.address,
         receiver: payload.receiver,
-        hidden_content: hidden_content
+        hidden_content: hiddenContent
       }
       fetch(`${config.url}/${state.account.address}/private_messages`, {
         method: 'POST',

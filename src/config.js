@@ -3,5 +3,5 @@
 // else
 const url = 'http://localhost:3000'
 const api = 'http://localhost:3000'
-const vue_url = 'http://localhost:8080'
-export default { url, api, vue_url }
+const vueUrl = 'http://localhost:8080'
+export default { url, api, vueUrl }
