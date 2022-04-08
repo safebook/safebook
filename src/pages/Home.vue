@@ -1,18 +1,6 @@
 <template>
-  <div class="flex font-sans">
-    <h3 class="font-extrabold	text-3xl text-green-700">Safebook</h3>
-    <div>
-      <p class="mx-auto">
-        Bonjour
-      </p>
-    </div>
-  </div>
-
-  <!--
   <div id="home" class="table">
     <div id="side">
-      <img alt="Vue logo" src="../assets/logo.png">
-      <h3 class="font-extrabold	text-3xl text-green-700">Safebook</h3>
       <p>
         réseau social cryptographique
       </p>
@@ -38,19 +26,29 @@
         --- ou ---
       </p>
       <div>
-        <h4>Entrez votre mot de passe, <br /> ou votre phrase mnémotechnique</h4>
-        <input id="password" type="password"
-          v-model="password" placeholder="Mot de passe" />
+        <h4>
+          Entrez votre mot de passe, <br />
+          ou votre phrase mnémotechnique
+        </h4>
+        <input
+          id="password"
+          type="password"
+          v-model="password"
+          placeholder="Mot de passe"
+        />
       </div>
       <div>
-        <button id="signin" class="button"
-          @click="signin()" v-bind:class="{ active: password.length > 0 }">
+        <button
+          id="signin"
+          class="button"
+          @click="signin()"
+          v-bind:class="{ active: password.length > 0 }"
+        >
           Se connecter
         </button>
       </div>
     </div>
   </div>
--->
 </template>
 
 <script>
