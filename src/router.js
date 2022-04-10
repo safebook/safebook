@@ -1,14 +1,14 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/pages/Home.vue";
-import Signup from "@/pages/Signup.vue";
-import Signin from "@/pages/Signin.vue";
-import User from "@/pages/User.vue";
-import Messaging from "@/pages/Messaging.vue";
+import Home from "@/components/home";
+import Signup from "@/components/signup";
+import Signin from "@/components/signin";
+import User from "@/components/user";
+import Messaging from "@/components/messaging";
 
-import What from "@/pages/What";
-import How from "@/pages/How";
-import About from "@/pages/About";
+import What from "@/components/what";
+import How from "@/components/how";
+import About from "@/components/about";
 
 Vue.use(Router);
 

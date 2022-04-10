@@ -1,10 +1,10 @@
 <template lang="pug">
-div
-  h2 Safebook
+div.text-center
+  h1 Safebook
 
   p Safebook est un réseau social appartenant à ses utilisateurs.
 
-  p C'est un logiciel libre de <a href>cryptographie</a>, pour un internet décentralisé.
+  p C'est un logiciel libre de <a href class="text-blue-600 underline">cryptographie</a>, pour un internet décentralisé.
 
   p Vous avez le contrôle sur votre vie privée, les données sont chiffrés et peuvent être autohébérgés.
 
@@ -19,7 +19,7 @@ div
 
   p Elle peut être sous forme d'un QR code :
 
-  p: img(alt="QRCode" src="../assets/qr.png")
+  p: img.inline(alt="QRCode" src="../../assets/qr.png")
 
   p Ou sous la forme d'une addresse :
 

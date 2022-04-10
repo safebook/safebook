@@ -1,5 +1,12 @@
 # About
 
+# Similar tools
+
+- Berty
+- Secure Scuttlebutt
+- Status
+- Signal
+
 ## History
 
 Safebook is a personal project that started as a browser plugin encrypting
@@ -19,6 +26,7 @@ implementations (and hopefully a decentralised one)
 ## Other tools
 
 ### PGP/GPG
+
 PGP is the reference.
 It's quite old but it provides state-of-the-art cryptographic. difficult to use
 
@@ -27,6 +35,7 @@ It's quite old but it provides state-of-the-art cryptographic. difficult to use
 ### Bitmessage
 
 ## Crypto libraries
+
 sjcl
 nacl
 celle de l'auteur de real world crypto
