@@ -22,7 +22,7 @@ export default new Vuex.Store({
     },
     restoreAccount(state) {
       let mnemonic = localStorage.getItem("mnemonic");
-      if (mnemonic) state.account = safebook.load(mnemonic);
+      if (mnemonic) {state.account = safebook.load(mnemonic);}
     },
     loadAccount(state, payload) {
       try {
@@ -63,17 +63,17 @@ export default new Vuex.Store({
           for (let i = 0; i < data.length; i++) {
             try {
               if (data[i].author == state.account.address)
-                data[i].content = safebook.decrypt(
+                {data[i].content = safebook.decrypt(
                   state.account,
                   data[i].receiver,
                   data[i].hidden_content
-                );
+                );}
               else
-                data[i].content = safebook.decrypt(
+                {data[i].content = safebook.decrypt(
                   state.account,
                   data[i].author,
                   data[i].hidden_content
-                );
+                );}
             } catch (e) {
               data[i].content = "Error";
             }
@@ -104,7 +104,7 @@ export default new Vuex.Store({
           console.log(res);
         });
       state.inbox.push(message);
-      if (message.receiver == state.account.address) state.outbox.push(message);
+      if (message.receiver == state.account.address) {state.outbox.push(message);}
     },
     sendPrivateMessage(state, payload) {
       console.log(state.account, payload.receiver, payload.content);

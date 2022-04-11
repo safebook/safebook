@@ -1,0 +1,69 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true,
+    "jquery": true
+  },
+  "extends": [
+    "plugin:vue/recommended",
+    "standard",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": ["vue"],
+  "rules": {
+    "camelcase": [2, { "properties": "never" }],
+    "curly": ["error", "all"],
+    "new-cap": "off",
+    "import/no-webpack-loader-syntax": "off",
+    "no-cond-assign": ["error", "except-parens"],
+    "quotes": ["off"],
+    "no-new": "off",
+    "no-return-assign": "off",
+    "no-console": "error",
+    "vue/attributes-order": "error",
+    "vue/html-self-closing": [
+      "error",
+      {
+        "html": { "void": "always" }
+      }
+    ],
+    "vue/order-in-components": "error",
+    "vue/no-v-html": "off",
+    "vue/require-default-prop": "error",
+    "vue/require-prop-types": "error",
+    "vue/require-v-for-key": "error",
+    "vue/component-name-in-template-casing": [
+      "error",
+      "PascalCase",
+      {
+        "registeredComponentsOnly": false,
+        "ignores": ["trix-toolbar", "trix-editor"]
+      }
+    ],
+    "vue/new-line-between-multi-line-property": [
+      "error",
+      {
+        "minLineOfMultilineProperty": 2
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "rules": {
+        "indent": "off",
+        "no-restricted-globals": [
+          "error",
+          {
+            "name": "I18n",
+            "message": "Use this.t instead"
+          }
+        ]
+      }
+    }
+  ]
+}
