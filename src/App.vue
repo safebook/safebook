@@ -1,7 +1,8 @@
-<template lang="pug">
-  .container.mx-auto
-    Header
-    router-view
+<template>
+  <div class="container mx-auto w-1/2">
+    <Header />
+    <router-view />
+  </div>
 </template>
 
 <script>

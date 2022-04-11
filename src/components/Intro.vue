@@ -1,14 +1,57 @@
 <template>
-  <div id="intro">
-    <p>
-      A social network where you own your data. You can even host it yourself.<br />
-      There is no third-parties, no server, just users<br />
-      In fact, we replaced the server by cryptographic rules. Reading access is managed by encryption. Authentification and trust is done through digital signature.<br />
-      Everything is deployed as peer-to-peer network over the internet. But you can choose not to join and use other means (local network, bluetooth, ...).<br />
-      Cryptography helps us have trust in each others, and making informations unfalsifiables and uncensorables (yes we will build a community-based filter for unappropriate content)<br />
-      You can host your own data and encrypt it only to those who can access it<br />
+  <div id="intro" class="pt-10">
+    <p class="py-3">
+      <i>Own your data.</i>
     </p>
-    <h2 class="my-4">Technologies</h2>
+    <h2 class="py-3">What is safebook ?</h2>
+    <p>Safebook is a free and open-source peer-to-peer social network, built from recent innovation in cryptography.</p>
+    <p>It is part of the web3 movement<small>*</small>, where users have full ownership and control over their data.</p>
+    <p>It is decentralised, uncensorable<small>**</small>, naturally multi-devices and can be self-hosted</p>
+    <p class="py-1"></p>
+    <p><small>* here web3 isn't only about cryptocurrencies, but about cryptographic protocols (eg: git and bittorrent)</small></p>
+    <p><small>** spam and unappropriate content is filtered by the user by default</small></p>
+    <h2 class="py-3">Why ?</h2>
+    <ul class="list-disc list-inside">
+      <li>No third party, server or organisation (Code is law).</li>
+      <li>Serverless. No centralized server.</li>
+      <li>You don't have to trust the network or anyone (Trust is inherited from cryptography).</li>
+      <li>Works with or without internet access.</li>
+    </ul>
+    <h2 class="py-3">Governed by mathematical rules</h2>
+    <p>(WIP)
+    <p>Instead of relying on a server to manage access control, it's done by encryption.</p>
+    <p>For identification, no third-party needed thanks to digital signatures</p>
+    <p>Cryptography helps us have trust in each others, and making informations unfalsifiables and uncensorables</p>
+    <h2 class="py-3">Unbreachables accounts</h2>
+    <p class="pb-2">There is no server-side account.</p>
+    <p>At first there is the passphrase. (Safebook generate a cryptographically-strong passphrase for you. Some people may learn it by heart.)
+    <p>Everything is generated from there. That means that if you login from a different device you're already good to go</p>
+    <p class="pt-2">We can derive :</p>
+    <ul class="list-disc list-inside">
+      <li>A signing key for the public profile, if necessary</li>
+      <li>Multiples keys for storage (drive/photos)</li>
+      <li>Multiples keys for private messaging</li>
+      <li>A wallet addresses for bitcoin, ethereum, and other cryptocurrencies</li>
+      <li>A password manager master key (wishlist) <span class="text-xs">(can support both classic hidden_passwords and deterministic passwords (ex: m/58/passwords/website_name))</span></li>
+      <li>PGP keys for compability with other tools (wishlist)</li>
+    </ul>
+    <h2 class="py-3">Public profiles : Lightning fast decentralized websites</h2>
+    <p>Store your website on the decentralized web using IPFS</p>
+    <p>Authentificate your website by signing it with your IPNS private key</p>
+    <p>Build a static pages at compile time to make your website lightning fast</p>
+    <p>Step by step :</p>
+    <ul class="list-disc list-inside">
+      <li>The user add keys to his state (username, picture, various info).</li>
+      <li>The user add messages to his feed.</li>
+      <li>Using a choosen template, a static webpage representing the user profile is generated.</li>
+      <li>The webpage is sent to IPFS and signed as a IPNS link</li>
+    </ul>
+    <h2 class="py-3">Private profile (Wishlist)</h2>
+    <p>(WIP) You can put hidden_data in your profile and give the key only to your friends</p>
+    <h2 class="py-3">Almost invisible messaging (minimal metadata)</h2>
+    <p>(WIP)</p>
+    <p>See here for metadata leak in the Signal protocol</p>
+    <h2 class="py-4">Features and wishlist</h2>
     <ul class="list-disc list-inside">
       <li>No server-side stored account using instead a hierachical deterministic wallet to derive all the secrets</li>
       <li>Authentification and permission management is based on electronic signatures (like in bitcoin)</li>
@@ -16,6 +59,7 @@
       <li>Distributed file storage is base on IPFS and filecoin</li>
       <li>Static feed and personal webpage generator hosted on the decentralized web to allow a fast-accessed trusted (signed) profile (using decentrelized ids and decentralized domains, and hosting the website on the peer-to-peer web using IPFS and IPNS</li>
       <li>Bloom filters are used to avoid giving away rendez-vous points addresses</li>
+      <li>Quantum resistant</li>
     </ul>
     <h2 class="my-4">Similar projects</h2>
     <h3 class="my-2"><a href>Secure Scuttlebutt</a></h3>
