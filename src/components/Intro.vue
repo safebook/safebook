@@ -42,7 +42,7 @@
     <p>Build a static pages at compile time to make your website lightning fast</p>
     <p>Step by step :</p>
     <ul class="list-disc list-inside">
-      <li>The user add keys to his state (username, picture, various info).</li>
+      <li>The user add keys to his state (username, picture, various info, public friends).</li>
       <li>The user add messages to his feed.</li>
       <li>Using a choosen template, a static webpage representing the user profile is generated.</li>
       <li>The webpage is sent to IPFS and signed as a IPNS link</li>
@@ -52,6 +52,8 @@
     <h2 class="py-3">Almost invisible messaging (minimal metadata)</h2>
     <p>(WIP)</p>
     <p>See here for metadata leak in the Signal protocol</p>
+    <h2 class="py-3">Decentralized IDs</h2>
+    <p>Cf blogpost</p>
     <h2 class="py-4">Features and wishlist</h2>
     <ul class="list-disc list-inside">
       <li>No server-side stored account using instead a hierachical deterministic wallet to derive all the secrets</li>
@@ -61,20 +63,38 @@
       <li>Static feed and personal webpage generator hosted on the decentralized web to allow a fast-accessed trusted (signed) profile (using decentrelized ids and decentralized domains, and hosting the website on the peer-to-peer web using IPFS and IPNS</li>
       <li>Bloom filters are used to avoid giving away rendez-vous points addresses</li>
       <li>Quantum resistant</li>
+      <li>Ephemeral messages (time if unread, time after read)</li>
+      <li>False pin code go to false account or delete all messages</li>
     </ul>
     <h2 class="my-4">Similar projects</h2>
-    <h3 class="my-2"><a href>Secure Scuttlebutt</a></h3>
+    <h3 class="my-2"><a class="text-blue-500" href="https://scuttlebutt.nz">Secure Scuttlebutt</a></h3>
     <p>
     A gossip peer-to-peer protocol.<br />
-    Feeds are represented as a hashchain, just like in safebook.
+    Feeds are represented as a hashchain of signed messages.
     </p>
-    <h3 class="my-2"><a href>Berty</a></h3>
+    <h3 class="my-2"><a class="text-blue-500" href="https://berty.tech">Berty</a></h3>
     <p>
     A truly peer-to-peer, uncensorable and offline first messaging app.<br />
-    Like safebook it's based on IPFS
+    Based on IPFS
     </p>
-    <h3 class="my-2"><a href>Lens</a></h3>
-    <p></p>
+    <h3 class="my-2"><a class="text-blue-500" href="https://bitmessage.org">Bitmessage</a></h3>
+    <p>
+      A radical no-metadata messaging app. Every message is a hidden blob that you will try to decipher with all your keys, if you succeed, the message is for you. (Scaling is a issue)<br />
+      TOR-routing of messages is also offered.<br />
+    </p>
+    <h3 class="my-2"><a class="text-blue-500" href="https://lens.xyz">Lens</a></h3>
+    <p>A social network on a blockchain (Polygon).</p>
+    <p>Personnal consideration : I don't know if a pure on-chain approch could scale well, every validator would have to validate every post, comments, likes, ...</p>
+    <p><small>
+      See :
+      <a class="text-blue-500" href="https://lenster.xyz">lenster.xyz</a>
+      ,
+      <a class="text-blue-500" href="https://mirror.xyz">mirror.xyz</a>
+    </small></p>
+    <p><small>
+      Reading : <a class="text-blue-500" href="https://mirror.xyz/toddz.eth/mMs-slqr1C91Y2N3PACbaCHLgXH2Lu2Q5fZwaNnKKco">scalability</a>
+    </small></p>
+    <h3 class="my-2"><a href>Ceramic</a></h3>
   </div>
 </template>
 
