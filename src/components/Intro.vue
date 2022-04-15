@@ -91,9 +91,11 @@
       ,
       <Link href="https://mirror.xyz">mirror.xyz</Link>
     </small></p>
-    <Header3><Link>Ceramic</Link></Header3>
-    <Header3 href="">Others</Header3>
-    <Header3 href="">Zero-Knowledge proofs</Header3>
+    <Header3><Link href="https://ceramic.network/">Ceramic</Link></Header3>
+    <p>https://blog.ceramic.network/tiles-a-browser-for-open-source-information/</p>
+    <Header3><Link href="https://www.datprotocol.com/">DAT</Link></Header3>
+    <Header2>Others</Header2>
+    <Header3>Zero-Knowledge proofs</Header3>
     <p>
       https://twitter.com/LuozhuZhang/status/1530984087061929984?s=20&t=_6d66haeswHBHNn4cEB46A
       <br />
