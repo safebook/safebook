@@ -94,13 +94,19 @@
     <Header3><Link href="https://ceramic.network/">Ceramic</Link></Header3>
     <p>https://blog.ceramic.network/tiles-a-browser-for-open-source-information/</p>
     <Header3><Link href="https://www.datprotocol.com/">DAT</Link></Header3>
-    <Header2>Others</Header2>
+    <Header2>Other technologies</Header2>
     <Header3>Zero-Knowledge proofs</Header3>
     <p>
       https://twitter.com/LuozhuZhang/status/1530984087061929984?s=20&t=_6d66haeswHBHNn4cEB46A
       <br />
       https://research.protocol.ai/sites/snarks/
     </p>
+    <Header2>IPFS and Filecoin hubs</Header2>
+    <ul class="list-disc list-inside">
+      <li><Link href="https://estuary.tech/">Estuary</Link></li>
+    </ul>
+    <Header2>About web3</Header2>
+    <p>https://moxie.org/2022/01/07/web3-first-impressions.html</p>
   </div>
 </template>
 
