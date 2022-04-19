@@ -3,7 +3,7 @@
     <p class="py-3">
       <i>Own your data.</i>
     </p>
-    <Header3><Link href="/signup">Create an account</Link></Header3>
+    <Header3><Link href="/#/signup">Create an account</Link></Header3>
     <Header2>What is safebook ?</Header2>
     <p>Safebook is a free and open-source peer-to-peer social network, built from recent innovation in cryptography.</p>
     <p>It is part of the web3 movement<small>*</small>, where users have full ownership and control over their data.</p>
