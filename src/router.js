@@ -43,11 +43,6 @@ export default new Router({
       component: User
     },
     {
-      path: '/m',
-      name: 'messaging',
-      component: Messaging
-    },
-    {
       path: '/m/:address',
       name: 'messaging',
       component: Messaging
