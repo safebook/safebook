@@ -1,9 +1,17 @@
-<template lang="pug">
-  #signin
-    h3 Entrez votre mot de passe ou phrase mnémotechnique
-    textarea(v-model="passphrase" placeholder="Votre mot de passe")
-    p: button.button(@click="loadAccount()") Se connecter
-    p: a(@click="signup()") Creer un compte
+<template>
+  <div id="signin">
+    <h3 class="text-center py-5">Entrez votre mot de passe ou phrase mnémotechnique</h3>
+    <div class="flex justify-center">
+      <textarea class="mx-auto" v-model="passphrase" placeholder="Votre mot de passe" />
+    </div>
+    <div class="text-center py-4">
+      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" @click="loadAccount()">
+        Se connecter
+      </button>
+    </div>
+    <div class="text-center">
+      <p><a @click="signup()">Creer un compte</a></p>
+    </div>
   </div>
 </template>
 
