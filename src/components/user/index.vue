@@ -1,31 +1,30 @@
-<template lang="pug">
-  #user.table
-    //Side(:address="address" :owned="myself")
-    #side
-      Avatar(:address="address")
-      div(v-if="myself")
-        button#account.button(@click="$router.push(`/signup`)") Mon compte
-      div(v-if="!myself")
-        button#privateMessage.button(@click="goToMessaging()") Envoyer un message privé
-        button#privateMessage.button(@click="goToMessaging()") Envoyer un lettre
-        button#addContact.button(@click="addContact()") Ajouter comme contact
-    #main
-      SignedMessageInput(:address="address")
-      #scope
-        hr
-        h4: a(v-bind:class="{ active: scope == 'published' }" @click="scope = 'published'")
-            | Publiés ({{ published.length }})
-        h4: a(v-bind:class="{ active: scope == 'inbox' }" @click="scope = 'inbox'")
-            | Reçus ({{ inbox.length }})
-        h4: a(v-bind:class="{ active: scope == 'outbox' }" @click="scope = 'outbox'")
-            | Envoyés ({{ outbox.length }})
-        hr
-      div(v-if="scope == 'published'")
-        Publication(v-for="(message, index) in published" :message="message" :key="index")
-      div(v-if="scope == 'inbox'")
-        SignedMessage(v-for="(message, index) in inbox" :message="message" :key="index")
-      div(v-if="scope == 'outbox'")
-        SignedMessage(v-for="(message, index) in outbox" :message="message" :key="index")
+<template>
+  <div class="table" id="user">
+    <div id="side">
+      <Avatar :address="address"></Avatar>
+      <div v-if="myself"><button class="button" id="account" @click="$router.push(`/signup`)">Mon compte</button></div>
+      <div v-if="!myself"><button class="button" id="privateMessage" @click="goToMessaging()">Envoyer un message privé</button><button class="button" id="privateMessage" @click="goToMessaging()">Envoyer un lettre</button><button class="button" id="addContact" @click="addContact()">Ajouter comme contact</button></div>
+    </div>
+    <div id="main">
+      <SignedMessageInput :address="address"></SignedMessageInput>
+      <div id="scope">
+        <hr />
+        <h4><a v-bind:class="{ active: scope == 'published' }" @click="scope = 'published'">Publiés ({{ published.length }})</a></h4>
+        <h4><a v-bind:class="{ active: scope == 'inbox' }" @click="scope = 'inbox'">Reçus ({{ inbox.length }})</a></h4>
+        <h4><a v-bind:class="{ active: scope == 'outbox' }" @click="scope = 'outbox'">Envoyés ({{ outbox.length }})</a></h4>
+        <hr />
+      </div>
+      <div v-if="scope == 'published'">
+        <Publication v-for="(message, index) in published" :message="message" :key="index"></Publication>
+      </div>
+      <div v-if="scope == 'inbox'">
+        <SignedMessage v-for="(message, index) in inbox" :message="message" :key="index"></SignedMessage>
+      </div>
+      <div v-if="scope == 'outbox'">
+        <SignedMessage v-for="(message, index) in outbox" :message="message" :key="index"></SignedMessage>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -35,8 +34,8 @@ import Avatar from '@/components/Avatar'
 import SignedMessageInput from '@/components/messages/SignedMessageInput'
 import SignedMessage from '@/components/messages/SignedMessage'
 import Publication from '@/components/messages/Publication'
-import Contact from '@/components/Contact'
-import Side from '@/components/Side'
+// import Contact from '@/components/Contact'
+// import Side from '@/components/Side'
 
 export default {
   name: 'Signup',
@@ -44,9 +43,9 @@ export default {
     Avatar,
     SignedMessageInput,
     SignedMessage,
-    Publication,
-    Contact,
-    Side
+    Publication
+    // Contact,
+    // Side
   },
   data () {
     return {
