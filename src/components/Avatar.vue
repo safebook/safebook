@@ -13,7 +13,7 @@
     <div id="qr">
       <!--
       <a @click="showAvatar()" v-bind:class="{ selected: showImg == 'avatar' }">Avatar</a>
-      - 
+      -
     -->
       <a :class="{ selected: showImg == 'qr' }" @click="showQR()"
         >QRCode</a
@@ -29,49 +29,48 @@
 </template>
 
 <script>
-const safebook = require("@/safebook");
-import AddressSquared from "./AddressSquared";
-import AddressQR from "./AddressQR";
-//import NameInput from "./NameInput"
+import AddressSquared from './AddressSquared'
+import AddressQR from './AddressQR'
+const safebook = require('@/safebook')
+// import NameInput from "./NameInput"
 
 export default {
-  name: "Avatar",
+  name: 'Avatar',
   components: {
     AddressSquared,
-    AddressQR /*NameInput*/,
+    AddressQR /* NameInput */
   },
-  props: ["address"],
-  data() {
+  props: ['address'],
+  data () {
     return {
-      avatarUrl: require("@/assets/stitch.jpg"),
-      showImg: "qr",
-    };
+      avatarUrl: require('@/assets/stitch.jpg'),
+      showImg: 'qr'
+    }
   },
   computed: {
-    name() {
-      if (this.address) {return safebook.name(this.address).join(" ");}
-      else {return "Sans nom";}
-    },
+    name () {
+      if (this.address) { return safebook.name(this.address).join(' ') } else { return 'Sans nom' }
+    }
   },
-  mounted() {
-    console.log(1);
-    console.log(this.address);
+  mounted () {
+    console.log(1)
+    console.log(this.address)
   },
   methods: {
-    showQR() {
-      this.showImg = "qr";
+    showQR () {
+      this.showImg = 'qr'
     },
-    showAddress() {
-      this.showImg = "address";
+    showAddress () {
+      this.showImg = 'address'
     },
-    showAvatar() {
-      this.showImg = "avatar";
+    showAvatar () {
+      this.showImg = 'avatar'
     },
-    goToAccount() {
-      this.$router.push("/signup");
-    },
-  },
-};
+    goToAccount () {
+      this.$router.push('/signup')
+    }
+  }
+}
 </script>
 
 <style scoped>

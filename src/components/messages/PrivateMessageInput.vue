@@ -27,17 +27,17 @@ export default {
       this.content = ''
       this.autogrow()
     },
-    refresh() {
+    refresh () {
       this.$store.commit({
         type: 'loadMessages',
         address: this.address
-      });
+      })
     },
     autogrow () {
       setTimeout(() => {
         const el = document.querySelector('textarea')
         el.style.cssText = 'height:auto;'
-        let height = el.scrollHeight - 20
+        const height = el.scrollHeight - 20
         el.style.height = height + 'px'
       }, 0)
     }
@@ -70,4 +70,3 @@ textarea {
   color: white;
 }
 </style>
-

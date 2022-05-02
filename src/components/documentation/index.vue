@@ -1,5 +1,5 @@
 <script>
-export default {};
+export default {}
 </script>
 
 <template lang="pug">
@@ -39,6 +39,6 @@ export default {};
       td Better
     tr
       td Mnemonic
-      td hello social font 
+      td hello social font
 
 </template>

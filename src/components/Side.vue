@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import Avatar from "@/components/Avatar"
+import Avatar from '@/components/Avatar'
 export default {
   components: { Avatar },
-  props: ["address", "owned"]
+  props: ['address', 'owned']
 }
 </script>

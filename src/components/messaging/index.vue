@@ -26,105 +26,106 @@
 </template>
 
 <script>
-import safebook from "@/safebook";
-import config from "@/config";
-import PrivateMessageInput from "@/components/messages/PrivateMessageInput";
-import PrivateMessage from "@/components/messages/PrivateMessage";
+import safebook from '@/safebook'
+import config from '@/config'
+import PrivateMessageInput from '@/components/messages/PrivateMessageInput'
+import PrivateMessage from '@/components/messages/PrivateMessage'
 
 export default {
-  name: "Messaging",
+  name: 'Messaging',
   components: { PrivateMessageInput, PrivateMessage },
-  data() {
+  data () {
     return {
       messages: [],
-      loader: 0,
-    };
+      loader: 0
+    }
   },
   computed: {
-    account() {
-      return this.$store.state.account;
+    account () {
+      return this.$store.state.account
     },
-    receiver() {
-      return this.$route.params.address;
+    receiver () {
+      return this.$route.params.address
     },
-    address_name() {
-      return safebook.name(this.address).join(" ");
+    address_name () {
+      return safebook.name(this.address).join(' ')
     },
-    contacts() {
-      return this.$store.getters.contacts;
-    },
+    contacts () {
+      return this.$store.getters.contacts
+    }
   },
-  mounted() {
-    this.$nextTick(() => this.loadMessages());
+  mounted () {
+    this.$nextTick(() => this.loadMessages())
     this.loader = setInterval(() => {
-      this.loadMessages();
-    }, 5000);
+      this.loadMessages()
+    }, 5000)
   },
-  destroyed() {
-    clearInterval(this.loader);
+  destroyed () {
+    clearInterval(this.loader)
   },
   methods: {
-    get_name(address) {
-      if (!address) {return "";}
-      return safebook.name(address).join(" ");
+    get_name (address) {
+      if (!address) { return '' }
+      return safebook.name(address).join(' ')
     },
-    goToUser(user) {
-      this.$router.push(`/m/${user}`);
+    goToUser (user) {
+      this.$router.push(`/m/${user}`)
     },
-    loadMessages() {
+    loadMessages () {
       fetch(`${config.url}/m/${this.account.address}`)
         .then((response) => response.json())
         .then((data) => {
           for (let i = 0; i < data.length; i++) {
             try {
-              if (data[i].author == this.account.address)
-                {data[i].content = safebook.decrypt(
+              if (data[i].author == this.account.address) {
+                data[i].content = safebook.decrypt(
                   this.$store.state.account,
                   data[i].receiver,
                   data[i].hidden_content
-                );}
-              else
-                {data[i].content = safebook.decrypt(
+                )
+              } else {
+                data[i].content = safebook.decrypt(
                   this.$store.state.account,
                   data[i].author,
                   data[i].hidden_content
-                );}
+                )
+              }
             } catch (e) {
-              data[i].content = "Error";
+              data[i].content = 'Error'
             }
           }
-          this.messages = data;
-        });
+          this.messages = data
+        })
     },
-    post(content) {
+    post (content) {
       const hidden_content = safebook.encrypt(
         this.account,
         this.receiver,
         content
-      );
+      )
       const message = {
         author: this.account.address,
         receiver: this.receiver,
-        hidden_content: hidden_content,
-      };
+        hidden_content: hidden_content
+      }
       fetch(`${config.url}/${this.account.address}/private_messages`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(message),
+        body: JSON.stringify(message)
       })
         .then((res) => {
-          console.log(res);
+          console.log(res)
         })
         .catch((res) => {
-          console.log(res);
-        });
-      this.messages.push({ ...message, ...{ content: content } });
-    },
-  },
-};
+          console.log(res)
+        })
+      this.messages.push({ ...message, ...{ content: content } })
+    }
+  }
+}
 </script>
 
 <style scoped>

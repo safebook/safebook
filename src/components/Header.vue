@@ -53,29 +53,29 @@
 
 <script>
 export default {
-  name: "Header",
+  name: 'Header',
   computed: {
-    account() {
-      return this.$store.state.account;
-    },
+    account () {
+      return this.$store.state.account
+    }
   },
   methods: {
-    logout() {
-      this.$store.commit("logout");
-      this.$router.push("/");
+    logout () {
+      this.$store.commit('logout')
+      this.$router.push('/')
     },
-    goToHome() {
-      this.$router.push(`/`);
+    goToHome () {
+      this.$router.push('/')
     },
-    goToAccount() {
-      this.$router.push(`/u/${this.$store.state.account.address}`);
+    goToAccount () {
+      this.$router.push(`/u/${this.$store.state.account.address}`)
     },
-    goToMessaging() {
-      this.$router.push(`/m`);
+    goToMessaging () {
+      this.$router.push('/m')
     },
-    signin() {
-      this.$router.push(`/signin`);
-    },
-  },
-};
+    signin () {
+      this.$router.push('/signin')
+    }
+  }
+}
 </script>

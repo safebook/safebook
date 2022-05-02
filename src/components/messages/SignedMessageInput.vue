@@ -20,42 +20,42 @@
 
 <script>
 export default {
-  name: "MessageInput",
-  props: ["address"],
-  data() {
+  name: 'MessageInput',
+  props: ['address'],
+  data () {
     return {
-      content: "",
-    };
+      content: ''
+    }
   },
-  created() {
-    this.autogrow();
+  created () {
+    this.autogrow()
   },
   methods: {
-    sendSignedMessage() {
+    sendSignedMessage () {
       this.$store.commit({
-        type: "sendSignedMessage",
+        type: 'sendSignedMessage',
         content: this.content,
-        receiver: this.address,
-      });
-      this.content = "";
-      this.autogrow();
+        receiver: this.address
+      })
+      this.content = ''
+      this.autogrow()
     },
-    refresh() {
+    refresh () {
       this.$store.commit({
-        type: "loadMessages",
-        address: this.address,
-      });
+        type: 'loadMessages',
+        address: this.address
+      })
     },
-    autogrow() {
+    autogrow () {
       setTimeout(() => {
-        const el = document.querySelector("textarea");
-        el.style.cssText = "height:auto;";
-        let height = el.scrollHeight - 20;
-        el.style.height = height + "px";
-      }, 0);
-    },
-  },
-};
+        const el = document.querySelector('textarea')
+        el.style.cssText = 'height:auto;'
+        const height = el.scrollHeight - 20
+        el.style.height = height + 'px'
+      }, 0)
+    }
+  }
+}
 </script>
 
 <style>
