@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="table">
+    <div v-if="!address">Loading...</div>
+    <div v-else class="table">
       <div class="table-cell w-1/3 align-top">
         <Avatar :address="address"></Avatar>
         <div v-if="myself"><button class="button" id="account" @click="$router.push(`/signup`)">Mon compte</button></div>
@@ -10,7 +11,7 @@
         <SignedMessageInput :address="address"></SignedMessageInput>
       </div>
     </div>
-    <div>
+    <!-- div>
       <div id="scope">
         <hr />
         <h4><a v-bind:class="{ active: scope == 'published' }" @click="scope = 'published'">Publiés ({{ published.length }})</a></h4>
@@ -27,7 +28,7 @@
       <div v-if="scope == 'outbox'">
         <SignedMessage v-for="(message, index) in outbox" :message="message" :key="index"></SignedMessage>
       </div>
-    </div>
+    </div-->
   </div>
 </template>
 
@@ -36,8 +37,8 @@ import config from '@/config'
 
 import Avatar from '@/components/Avatar'
 import SignedMessageInput from '@/components/messages/SignedMessageInput'
-import SignedMessage from '@/components/messages/SignedMessage'
-import Publication from '@/components/messages/Publication'
+// import SignedMessage from '@/components/messages/SignedMessage'
+// import Publication from '@/components/messages/Publication'
 // import Contact from '@/components/Contact'
 // import Side from '@/components/Side'
 
@@ -45,9 +46,9 @@ export default {
   name: 'Signup',
   components: {
     Avatar,
-    SignedMessageInput,
-    SignedMessage,
-    Publication
+    SignedMessageInput
+    // SignedMessage,
+    // Publication
     // Contact,
     // Side
   },

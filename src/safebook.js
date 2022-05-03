@@ -39,7 +39,7 @@ let safebook = {
     account.sign = nacl.sign.keyPair.fromSeed(account.seed);
     account.box = ed2curve.convertKeyPair(account.sign);
     account.address = safebook.encode(account.sign.publicKey);
-    account.name = safebook.name(account);
+    account.name = safebook.name(account.address);
     return account;
   },
   generate_account: () => {
@@ -52,8 +52,8 @@ let safebook = {
         return account;
     }
   },
-  name: (account) => {
-    let n = Buffer.from(safebook.decode(account.address).slice(0, 4)).reduce(
+  name: (address) => {
+    let n = Buffer.from(safebook.decode(address).slice(0, 4)).reduce(
       (a, b) => a * Math.pow(2, 8) + b,
       0
     );
