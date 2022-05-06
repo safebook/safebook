@@ -2,7 +2,11 @@
 div
   h2 Safebook
 
-  p Safebook est un réseau social cryptographique, libre (open source) et décentralisé de fait.
+  p Safebook est un réseau social appartenant à ses utilisateurs.
+
+  p C'est un logiciel libre de cryptographie, pour un internet décentralisé.
+
+  p Pas besoin d'internet, un identifiant contient toute l'information nécessaire pour communiquer.
 
   p
     | Contrairement aux réseaux sociaux traditionels,
@@ -66,10 +70,12 @@ div
 
 <script>
 export default {
-  name: 'What',
-  data() { return {} },
-  methods: {}
-}
+  name: "What",
+  data() {
+    return {};
+  },
+  methods: {},
+};
 </script>
 
 <style scoped>
