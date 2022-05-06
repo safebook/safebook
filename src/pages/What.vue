@@ -6,13 +6,9 @@ div
 
   p C'est un logiciel libre de cryptographie, pour un internet décentralisé.
 
-  p Pas besoin d'internet, un identifiant contient toute l'information nécessaire pour communiquer.
+  p Vous avez le contrôle sur votre vie privée.
 
-  p
-    | Contrairement aux réseaux sociaux traditionels,
-    | Safebook utilise la cryptographie pour assuer la souvraineté des utilisateurs.<br />
-    | Les utilisateurs ont le contrôle sur le chiffrement et la verification du contenu. <br />
-    | Ce qui garantie le bon fonctionnement sans avoir besoin de faire confiance à un tier (une entreprise, un serveur, ...).
+  p Pas besoin d'internet, un identifiant contient toute l'information nécessaire pour communiquer.
 
   h3 Carte d'identité
   p
