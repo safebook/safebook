@@ -15,94 +15,116 @@
     </div>
     <div id="main">
       <PrivateMessageInput :address="receiver" @post="post" />
-      <PrivateMessage v-for="(message, index) in messages" :message="message" :key="index" :sent="message.author == receiver" />
+      <PrivateMessage
+        v-for="(message, index) in messages"
+        :message="message"
+        :key="index"
+        :sent="message.author == receiver"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import safebook from "safebook"
-import config from '@/config'
-import PrivateMessageInput from "@/messages/PrivateMessageInput"
-import PrivateMessage from "@/messages/PrivateMessage"
+import safebook from "@/safebook";
+import config from "@/config";
+import PrivateMessageInput from "@/messages/PrivateMessageInput";
+import PrivateMessage from "@/messages/PrivateMessage";
 
 export default {
-  name: 'Messaging',
+  name: "Messaging",
   components: { PrivateMessageInput, PrivateMessage },
   data() {
     return {
       messages: [],
-      loader: 0
-    }
+      loader: 0,
+    };
   },
   methods: {
     get_name(address) {
-      if (!address) return ""
-      return safebook.name(address).join(" ")
+      if (!address) return "";
+      return safebook.name(address).join(" ");
     },
     goToUser(user) {
-      this.$router.push(`/m/${user}`)
+      this.$router.push(`/m/${user}`);
     },
     loadMessages() {
       fetch(`${config.url}/m/${this.account.address}`)
-        .then(response => response.json())
+        .then((response) => response.json())
         .then((data) => {
-          for (let i = 0; i < data.length; i++)
-          {
+          for (let i = 0; i < data.length; i++) {
             try {
               if (data[i].author == this.account.address)
-                data[i].content = safebook.decrypt(this.$store.state.account, data[i].receiver, data[i].hidden_content)
+                data[i].content = safebook.decrypt(
+                  this.$store.state.account,
+                  data[i].receiver,
+                  data[i].hidden_content
+                );
               else
-                data[i].content = safebook.decrypt(this.$store.state.account, data[i].author, data[i].hidden_content)
+                data[i].content = safebook.decrypt(
+                  this.$store.state.account,
+                  data[i].author,
+                  data[i].hidden_content
+                );
             } catch (e) {
-              data[i].content = "Error"
+              data[i].content = "Error";
             }
           }
-          this.messages = data
-        })
+          this.messages = data;
+        });
     },
     post(content) {
-      const hidden_content = safebook.encrypt(this.account, this.receiver, content)
+      const hidden_content = safebook.encrypt(
+        this.account,
+        this.receiver,
+        content
+      );
       const message = {
         author: this.account.address,
         receiver: this.receiver,
-        hidden_content: hidden_content
-      }
+        hidden_content: hidden_content,
+      };
       fetch(`${config.url}/${this.account.address}/private_messages`, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(message)
-      }).then((res) => { console.log(res) })
-      .catch((res) => { console.log(res) })
-      this.messages.push({...message, ...{content: content}});
-    }
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+      this.messages.push({ ...message, ...{ content: content } });
+    },
   },
   computed: {
     account() {
-      return this.$store.state.account
+      return this.$store.state.account;
     },
     receiver() {
-      return this.$route.params.address
+      return this.$route.params.address;
     },
     address_name() {
-      return safebook.name(this.address).join(" ")
+      return safebook.name(this.address).join(" ");
     },
     contacts() {
-      return this.$store.getters.contacts
+      return this.$store.getters.contacts;
     },
   },
   mounted() {
-    this.$nextTick(() =>
-      this.loadMessages()
-    )
+    this.$nextTick(() => this.loadMessages());
     this.loader = setInterval(() => {
-      this.loadMessages()
-    }, 5000)
+      this.loadMessages();
+    }, 5000);
   },
   destroyed() {
     clearInterval(this.loader);
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -122,4 +144,3 @@ export default {
   margin: 0;
 }
 </style>
-
