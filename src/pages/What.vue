@@ -74,7 +74,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .word {
   display: inline-block !important;
   width: 33%;
