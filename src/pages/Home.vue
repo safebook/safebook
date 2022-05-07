@@ -1,4 +1,14 @@
 <template>
+  <div class="flex font-sans">
+    <h3 class="font-extrabold	text-3xl text-green-700">Safebook</h3>
+    <div>
+      <p class="mx-auto">
+        Bonjour
+      </p>
+    </div>
+  </div>
+
+  <!--
   <div id="home" class="table">
     <div id="side">
       <img alt="Vue logo" src="../assets/logo.png">
@@ -40,35 +50,37 @@
       </div>
     </div>
   </div>
+-->
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: "Home",
   data() {
     return {
-      password: ''
-    }
+      password: "",
+    };
   },
   methods: {
     createAccount() {
-      this.$store.commit('createAccount');
-      this.$router.push('/signup')
+      this.$store.commit("createAccount");
+      this.$router.push("/signup");
     },
     signin() {
       this.$store.commit({
-        type: 'loadAccount',
-        mnemonic: this.password.trim()
-      })
+        type: "loadAccount",
+        mnemonic: this.password.trim(),
+      });
     },
     goToUserDoc() {
-      this.$router.push('/what')
+      this.$router.push("/what");
     },
     goToTechnicalDoc() {
-      window.location = 'https://github.com/mjal/safebook-doc/blob/master/technical.org';
-    }
-  }
-}
+      window.location =
+        "https://github.com/mjal/safebook-doc/blob/master/technical.org";
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -78,7 +90,8 @@ export default {
 h3 {
   margin: 20px 0 0;
 }
-#signin.active, #signup {
+#signin.active,
+#signup {
   color: white;
   background-color: green;
 }
@@ -103,9 +116,9 @@ h3 {
 #doc {
   margin: 15px;
 }
-#doc button, #signin {
+#doc button,
+#signin {
   margin: 5px;
   border: 1px solid green;
 }
 </style>
-
