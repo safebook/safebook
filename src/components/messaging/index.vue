@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import safebook from '@/safebook'
+import safebook from '@/lib/safebook'
 import config from '@/config'
 import PrivateMessageInput from '@/components/messages/PrivateMessageInput'
 import PrivateMessage from '@/components/messages/PrivateMessage'

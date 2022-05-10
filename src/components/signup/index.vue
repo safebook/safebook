@@ -53,7 +53,7 @@
 </template>
 
 <script>
-// const safebook = require('@/safebook')
+// const safebook = require('@/lib/safebook')
 import AddressSquared from '@/components/AddressSquared'
 import AddressQR from '@/components/AddressQR'
 
