@@ -58,6 +58,10 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/safebook/safebook"
+  },
   "lint-staged": {
     "src/*.{js,jsx,vue}": [
       "vue-cli-service lint",
