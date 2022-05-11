@@ -1,5 +1,5 @@
 {
-  "name": "safebook-vue",
+  "name": "safebook",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -62,6 +62,7 @@
     "type": "git",
     "url": "https://gitlab.com/safebook/safebook"
   },
+  "bin": "src/lib/safebook.js",
   "lint-staged": {
     "src/*.{js,jsx,vue}": [
       "vue-cli-service lint",
