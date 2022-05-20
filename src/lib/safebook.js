@@ -6,7 +6,7 @@ import nacl from "tweetnacl"
 import naclUtil from "tweetnacl-util"
 import bs58check from "bs58check"
 import bip32 from "bip32"
-import bip39 from "bip39"
+import * as bip39 from "bip39"
 import ed2curve from "ed2curve"
 
 import * as IPFS from 'ipfs-core'
@@ -59,9 +59,9 @@ let safebook = {
       (a, b) => a * Math.pow(2, 8) + b,
       0
     );
-    i1 = (n >> 0) & (Math.pow(2, 11) - 1);
-    i2 = (n >> 11) & (Math.pow(2, 11) - 1);
-    i3 = (n >> 22) & (Math.pow(2, 11) - 1);
+    const i1 = (n >> 0) & (Math.pow(2, 11) - 1);
+    const i2 = (n >> 11) & (Math.pow(2, 11) - 1);
+    const i3 = (n >> 22) & (Math.pow(2, 11) - 1);
     return [i1, i2, i3].map((i) => bip39.wordlists[lang][i]);
   },
   encrypt: (account, address, message) => {
