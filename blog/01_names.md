@@ -26,6 +26,7 @@ You rely on a third party for your identity, what a paradox.
 # The distributed web solution
 
 The name of a file is his hash (see IPFS for content addressing)
+
 The name of a user is his public key, or something derived from his public key
 
 # Decentralized name system
@@ -34,7 +35,7 @@ Some decentralized name system relies on blockchains
 - [ENS] (.eth)
 - [Namecoin] (.bit)
 - [Tezos Domains] (.tez)
-- [Unstoppable domains] (.crypto, .x, .nft, ...)
+- [Unstoppable domains] (.x, .crypto, ...)
 
 [ENS]: https://ens.domains
 [Namecoin]: https://www.namecoin.org
