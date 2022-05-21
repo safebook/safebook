@@ -44,6 +44,8 @@ Make a hierarchical deterministic wallets (BIP32/44/85) and generate :
 - Filecoin integration
 - BRAVE token economy
 
+- Feed-making and friend-making with zk-starks and homomorphic encryption
+
 ## See also
 
 - ZeroNet
