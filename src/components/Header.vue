@@ -54,6 +54,11 @@
 <script>
 export default {
   name: "Header",
+  computed: {
+    account() {
+      return this.$store.state.account;
+    },
+  },
   methods: {
     logout() {
       this.$store.commit("logout");
@@ -70,11 +75,6 @@ export default {
     },
     signin() {
       this.$router.push(`/signin`);
-    },
-  },
-  computed: {
-    account() {
-      return this.$store.state.account;
     },
   },
 };

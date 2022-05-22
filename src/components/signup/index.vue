@@ -13,7 +13,7 @@
       <AddressQR :address="account.address" />
     </div>
     <p v-if="generating" id="generating">
-      <a @click="stop()" href="#">arreter maintenant</a>
+      <a href="#" @click="stop()">arreter maintenant</a>
     </p>
     <div v-if="!generating">
       <p>
@@ -22,7 +22,7 @@
           >({{ showPassword ? "cacher" : "afficher" }})</a
         >
       </p>
-      <p id="password" v-if="showPassword">
+      <p v-if="showPassword" id="password">
         {{ account.entropy }}
       </p>
       <p>
@@ -31,20 +31,20 @@
           >({{ showPassphrase ? "cacher" : "afficher" }})</a
         >
       </p>
-      <p id="passphrase" v-if="showPassphrase">
+      <p v-if="showPassphrase" id="passphrase">
         <span
-          class="word"
           v-for="word in account.mnemonic.split(' ')"
           :key="word"
+          class="word"
         >
           <span>{{ word }} </span>
         </span>
       </p>
       <p class="center">
-        <button class="button" id="regenerate" @click="regenerate()">
+        <button id="regenerate" class="button" @click="regenerate()">
           Regenerer
         </button>
-        <button class="button" id="start" @click="start()">Ma page</button>
+        <button id="start" class="button" @click="start()">Ma page</button>
       </p>
     </div>
   </div>
@@ -82,6 +82,12 @@ export default {
       ];
     },
   },
+  beforeCreate() {
+    if (!this.$store.state.account) {
+      this.$store.commit("createAccount");
+    }
+  },
+  created() {},
   methods: {
     regenerate() {
       this.$store.commit("createAccount");
@@ -96,12 +102,6 @@ export default {
       this.$router.push(`/u/${this.account.address}`);
     },
   },
-  beforeCreate() {
-    if (!this.$store.state.account) {
-      this.$store.commit("createAccount");
-    }
-  },
-  created() {},
 };
 </script>
 

@@ -66,9 +66,18 @@ export default {
       return this.$route.params.address;
     },
     myself() {
-      if (this.account) return this.address == this.account.address;
+      if (this.account) {return this.address == this.account.address;}
       return false;
     },
+  },
+  watch: {
+    "$route.params.address": function() {
+      this.fetch();
+    },
+  },
+  mounted() {
+    this.scope = "published";
+    this.fetch();
   },
   methods: {
     logout() {
@@ -111,15 +120,6 @@ export default {
           this.followers = data.followers;
           this.following = data.following;
         });
-    },
-  },
-  mounted() {
-    this.scope = "published";
-    this.fetch();
-  },
-  watch: {
-    "$route.params.address": function() {
-      this.fetch();
     },
   },
 };

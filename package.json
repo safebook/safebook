@@ -13,7 +13,9 @@
     "babel-runtime": "^6.26.0",
     "core-js": "^3.19.1",
     "daisyui": "^1.24.2",
+    "eslint-plugin-import": "^2.26.0",
     "postcss": "^7",
+    "prettier": "^2.6.2",
     "qrious": "^4.0.2",
     "raw-loader": "^4.0.2",
     "safebook": "file:../safebook-lib",
@@ -29,7 +31,11 @@
     "@vue/cli-plugin-eslint": "^4.5.0",
     "@vue/cli-service": "^4.5.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
+    "eslint": "7.28.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-node": "@^11.1.0",
     "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^6.0.1",
     "pug": "^3.0.2",
@@ -37,20 +43,6 @@
     "sass-loader": "^12.3.0",
     "vue-cli-plugin-tailwind": "~2.2.18",
     "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
   },
   "browserslist": [
     "> 1%",

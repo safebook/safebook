@@ -1,6 +1,6 @@
 <template>
   <div id="addressSquared">
-    <div class="line" v-for="line in lines" :key="line">
+    <div v-for="line in lines" :key="line" class="line">
       {{ line }}
     </div>
   </div>
