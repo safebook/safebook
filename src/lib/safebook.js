@@ -2,14 +2,16 @@
 
 // https://github.com/ipfs-examples/js-ipfs-examples/tree/master/examples/browser-ipns-publish
 
-const nacl = require("tweetnacl");
-nacl.util = require("tweetnacl-util");
-const bs58check = require("bs58check");
-const bip32 = require("bip32");
-const bip39 = require("bip39");
-const ed2curve = require("ed2curve");
+import nacl from "tweetnacl"
+import naclUtil from "tweetnacl-util"
+import bs58check from "bs58check"
+import bip32 from "bip32"
+import * as bip39 from "bip39"
+import ed2curve from "ed2curve"
 
-lang = "french";
+import * as IPFS from 'ipfs-core'
+
+const lang = "french";
 bip39.setDefaultWordlist(lang);
 
 let safebook = {
@@ -57,9 +59,9 @@ let safebook = {
       (a, b) => a * Math.pow(2, 8) + b,
       0
     );
-    i1 = (n >> 0) & (Math.pow(2, 11) - 1);
-    i2 = (n >> 11) & (Math.pow(2, 11) - 1);
-    i3 = (n >> 22) & (Math.pow(2, 11) - 1);
+    const i1 = (n >> 0) & (Math.pow(2, 11) - 1);
+    const i2 = (n >> 11) & (Math.pow(2, 11) - 1);
+    const i3 = (n >> 22) & (Math.pow(2, 11) - 1);
     return [i1, i2, i3].map((i) => bip39.wordlists[lang][i]);
   },
   encrypt: (account, address, message) => {
@@ -120,6 +122,15 @@ let safebook = {
     bAddress = safebook.decode(address);
     return nacl.sign.detached.verify(plaintext, bSignature, bAddress);
   },
+
+  publish: async () => {
+    const ipfs = await IPFS.create()
+    const { cid } = await ipfs.add('Hello world')
+    console.info(cid)
+  }
 };
 
-module.exports = safebook;
+// module.exports = safebook;
+
+export default safebook
+
