@@ -10,6 +10,7 @@ A web3 social network
 
 ### Personnal page
 
+- Static site generator from ethereum and ipfs data
 - Give access to a personal IPNS filled with a CRDT feed of events and messages [TODO]
 - IPFS static website generator for every user, based on the state and messages.
   Once your website is created (using for now a default template), it is also accessible as yourlogin.eth [TODO]
