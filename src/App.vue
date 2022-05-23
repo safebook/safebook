@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import Header from "./components/Header";
+import Header from './components/Header'
 
 export default {
-  name: "App",
+  name: 'App',
   components: { Header },
-  mounted() {
-    this.$store.commit("restoreAccount");
-  },
-};
+  mounted () {
+    this.$store.commit('restoreAccount')
+  }
+}
 </script>
 
 <style></style>

@@ -51,58 +51,58 @@
 </template>
 
 <script>
-//const safebook = require('@/safebook')
-import AddressSquared from "@/components/AddressSquared";
-import AddressQR from "@/components/AddressQR";
+// const safebook = require('@/safebook')
+import AddressSquared from '@/components/AddressSquared'
+import AddressQR from '@/components/AddressQR'
 
 export default {
-  name: "Signup",
+  name: 'Signup',
   components: {
     AddressQR,
-    AddressSquared,
+    AddressSquared
   },
-  data() {
+  data () {
     return {
       showPassword: false,
       showPassphrase: false,
-      generating: false,
-    };
+      generating: false
+    }
   },
   computed: {
-    account() {
-      return this.$store.state.account;
+    account () {
+      return this.$store.state.account
     },
-    splittedMnemonic() {
-      let words = this.account.mnemonic.split(" ");
+    splittedMnemonic () {
+      const words = this.account.mnemonic.split(' ')
       return [
         words.slice(0, 3),
         words.slice(3, 6),
         words.slice(6, 9),
-        words.slice(9),
-      ];
-    },
-  },
-  beforeCreate() {
-    if (!this.$store.state.account) {
-      this.$store.commit("createAccount");
+        words.slice(9)
+      ]
     }
   },
-  created() {},
-  methods: {
-    regenerate() {
-      this.$store.commit("createAccount");
-    },
-    vanity() {
-      this.$store.commit("createVanityAccount");
-    },
-    stop() {
-      this.generating = false;
-    },
-    start() {
-      this.$router.push(`/u/${this.account.address}`);
-    },
+  beforeCreate () {
+    if (!this.$store.state.account) {
+      this.$store.commit('createAccount')
+    }
   },
-};
+  created () {},
+  methods: {
+    regenerate () {
+      this.$store.commit('createAccount')
+    },
+    vanity () {
+      this.$store.commit('createVanityAccount')
+    },
+    stop () {
+      this.generating = false
+    },
+    start () {
+      this.$router.push(`/u/${this.account.address}`)
+    }
+  }
+}
 </script>
 
 <style scoped>
