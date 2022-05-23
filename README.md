@@ -1,6 +1,6 @@
 # Safebook
 
-A web3 social network
+A (web3) social network
 
 ## Features
 
@@ -10,7 +10,7 @@ A web3 social network
 
 ### Personnal page
 
-- Static site generator from ethereum and ipfs data
+- Static site generator from ethereum and ipfs data [TODO]
 - Give access to a personal IPNS filled with a CRDT feed of events and messages [TODO]
 - IPFS static website generator for every user, based on the state and messages.
   Once your website is created (using for now a default template), it is also accessible as yourlogin.eth [TODO]
@@ -41,12 +41,6 @@ Make a hierarchical deterministic wallets (BIP32/44/85) and generate :
 - Filecoin integration
 - BRAVE token economy
 
-## Question
-
-Making a centralized "Safebook auth" service that allow using a shorter password to retrive the wallet,
-but has really strong security settings (ex: 2 or 3 fails start an alert)
-It seems a little antinomic and not possible on web3
-
 ## See also
 
 - Berty
@@ -54,3 +48,13 @@ It seems a little antinomic and not possible on web3
 
 - OrbitDB
 - Ceramic
+
+## Other
+
+- Gitlab open source program
+
+## Absurd question
+
+Making a centralized "Safebook auth" service that allow using a shorter password to retrive the wallet,
+but has really strong security settings (ex: 2 or 3 fails start an alert)
+It seems a little antinomic and not possible on web3
