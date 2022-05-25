@@ -46,6 +46,8 @@ Make a hierarchical deterministic wallets (BIP32/44/85) and generate :
 
 ## See also
 
+- ZeroNet
+
 - Berty
 - Secure scuttlebutt
 
