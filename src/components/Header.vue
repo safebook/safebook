@@ -28,7 +28,7 @@
       <div class="flex flex-row">
         <div class="p-4 basis-1/4">
           <router-link to="/">
-            <h3 class="font-extrabold	text-3xl text-green-700 tracking-tight">Safebook</h3>
+            <h3 class="font-extrabold text-3xl text-green-700 tracking-tight">Safebook</h3>
           </router-link>
         </div>
         <div class="p-4 basis-3/4 mx-auto">

@@ -41,6 +41,7 @@ Make a hierarchical deterministic wallets (BIP32/44/85) and generate :
 
 ## Wishlist
 
+- Bloom filters
 - Filecoin integration
 - BRAVE token economy
 
@@ -48,13 +49,20 @@ Make a hierarchical deterministic wallets (BIP32/44/85) and generate :
 
 ## See also
 
+- Lens protocol
+- Ceramic protocol
+
 - ZeroNet
 
 - Berty
 - Secure scuttlebutt
 
-- OrbitDB
 - Ceramic
+- OrbitDB
+
+---
+cheers.bio
+lens.xyz
 
 ## Other
 
