@@ -191,8 +191,10 @@
     <ul class="list-disc list-inside">
       <li><Link href="https://estuary.tech/">Estuary</Link></li>
     </ul>
+    <!--
     <Header2>About web3</Header2>
     <p>https://moxie.org/2022/01/07/web3-first-impressions.html</p>
+    -->
   </div>
 </template>
 

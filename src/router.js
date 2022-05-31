@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import Home from '@/components/home'
 import Presentation from '@/components/presentation'
 import Intro from '@/components/presentation/Intro'
+import SecretBonding from '@/components/presentation/SecretBonding'
+import SecretRendezVous from '@/components/presentation/SecretRendezVous'
+import MetaDataInSignal from '@/components/presentation/MetaDataInSignal'
 import Signup from '@/components/signup'
 import Signin from '@/components/signin'
 import User from '@/components/user'
@@ -18,15 +21,28 @@ export default new Router({
   mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
+    // <!-- Presentation
     {
       path: '/',
       component: Presentation
     },
     {
       path: '/intro',
-      name: 'intro',
       component: Intro
     },
+    {
+      path: '/secret_bonding',
+      component: SecretBonding
+    },
+    {
+      path: '/secret_rendez_vous',
+      component: SecretRendezVous
+    },
+    {
+      path: '/metadata_in_signal',
+      component: MetaDataInSignal
+    },
+    // Presentation -->
     {
       path: '/home',
       name: 'home',

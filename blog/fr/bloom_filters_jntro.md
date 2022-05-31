@@ -9,6 +9,6 @@ Query: 0b0101001011
 
 Answer: { total: 7, results: [{ msg }, { msg_2 }, ...]}
 
-Si le filtre n'est pas assez précise (on a trop de réponse), on peut passer sur un filtre plus précis, mais cela fait perdre en anonymité. \*
+Si le filtre n'est pas assez précis (on a trop de réponse), on peut passer sur un filtre plus précis, mais cela fait perdre en anonymité. \*
 
 \* On peut imaginer une attaque ou le pair renvoi toujours un grand nombre de faux message pour faire baisser le niveau de compression du filtre de bloom
