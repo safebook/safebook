@@ -15,7 +15,7 @@ export default {
   props: ['address'],
   computed: {
     url () {
-      return `${config.vue_url}/u/${this.address}`
+      return `${config.vueUrl}/u/${this.address}`
     }
   },
   methods: {

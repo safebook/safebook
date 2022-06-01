@@ -98,7 +98,7 @@ export default {
         })
     },
     post (content) {
-      const hidden_content = safebook.encrypt(
+      const hiddenContent = safebook.encrypt(
         this.account,
         this.receiver,
         content
@@ -106,7 +106,7 @@ export default {
       const message = {
         author: this.account.address,
         receiver: this.receiver,
-        hidden_content: hidden_content
+        hidden_content: hiddenContent
       }
       fetch(`${config.url}/${this.account.address}/private_messages`, {
         method: 'POST',

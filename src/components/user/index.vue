@@ -66,7 +66,7 @@ export default {
       return this.$route.params.address
     },
     myself () {
-      if (this.account) { return this.address == this.account.address }
+      if (this.account) { return this.address === this.account.address }
       return false
     }
   },
