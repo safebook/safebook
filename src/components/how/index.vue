@@ -6,6 +6,7 @@
 
 <script>
 import VueMarkdown from 'vue-markdown'
+// eslint-disable-next-line import/no-webpack-loader-syntax
 import content from 'raw-loader!@/assets/how.fr.md'
 export default {
   name: 'How',
