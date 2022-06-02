@@ -8,6 +8,8 @@
       <li>Qui parle à qui et quand, les heures d'activités, etc</li>
     </ul>
     <p>Un message dans signal contient un timestamp, l'addresse de l'envoyeur et du destinataire. <a class="text-blue-500" href="https://github.com/signalapp/Signal-Server/blob/main/service/src/main/proto/TextSecure.proto">(code source)</a></p>
+    <h2>Le champion: Bitmessage</h2>
+    <p>Aucune fuite de métadonnées</p>
     <h2>Berty</h2>
     <p>Meme problème il me semble.</p>
     <p>C'est d'autant plus embettant que la base de donnée est accessible de manière casi publique, car décentralisé (architecture distribuée sur IPFS).</p>
