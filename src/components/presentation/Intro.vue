@@ -1,14 +1,11 @@
 <template>
   <div id="intro" class="pt-10">
-    <p class="py-3">
-      <i>Own your data.</i>
-    </p>
     <p>
-      Safebook is a social network protocol.<br />
-      It's <b>free as in freedom</b>. Everyone can use it, read the code and
+      Safebook is a social network protocol.<br /><br />
+      It's a <b>free software</b> (free as in freedom). Everyone can use it, read the code and
       even modify it.<br />
-      It's <b>built for human rights</b>: It's decentralized and self-hostable
-      and uncensorable
+      You really <b>own your data and account</b>, it's self-hostable and uses decentralized computing
+      It's <b>built for human rights</b>: It works in various network conditions, prevent surveillance and is uncensorable <small>(but you have the choice to use an algorithm to filter offensive content, enabled by default)</small>
     </p>
     <Header3><Link href="/#/signup">Create an account</Link></Header3>
     <p>
