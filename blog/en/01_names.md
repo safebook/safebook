@@ -1,16 +1,19 @@
-# Context
+We will see what is the problem with name resolution, in the context of websites (which rely on DNS) ans usernames (which rely on a third-party)
+
+# DNS
 
 The mechanism that translate a web address (eg: wikipedia.org) to an Internet (IP) Address
 is the DNS (Domain Name System).
 
-We will see what's wrong with it and what are the alternatives
-
-# The problem with DNS (Domain Name System)
+The DNS servers are operated by central organizations. (Everyone can use a (intermediary)? to buy a domain)
+In most case, every router (internet box, etc) can potentially alternate the data
 
 This is DNS: Just send a bottle with a name and wait for an address.
 It's not secure at all, and require everyone to be honest.
 
-(Things got a little better with the DNSSEC security extenstion but still has flaws.)
+\*(Things got a little better with the DNSSEC security extenstion but still has flaws.)
+
+I will advocation that blockchains like namecoin(.bit) are a better alternative
 
 # The problem with IP address
 
