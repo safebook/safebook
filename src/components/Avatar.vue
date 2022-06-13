@@ -49,7 +49,7 @@ export default {
   },
   computed: {
     name () {
-      if (this.address) { return safebook.name(this.address).join(' ') } else { return 'Sans nom' }
+      if (this.address) { return safebook.name(this.$store.state.account).join(' ') } else { return 'Sans nom' }
     }
   },
   mounted () {
