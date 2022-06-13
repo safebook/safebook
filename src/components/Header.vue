@@ -18,7 +18,7 @@
       </form>
     </div>
 
-    <div v-if="true" class="pt-9">
+    <div v-if="!$store.state.account" class="pt-9">
       <router-link to="signin">
         <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           Signin
@@ -53,7 +53,7 @@
           <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-5">Add to favorites</a>
         </div>
         <div class="py-1" role="none">
-          <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Logout</a>
+          <a @click="logout" href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Logout</a>
         </div>
       </div>
     </div>
