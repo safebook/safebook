@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="table-cell">
-      <div id="side" class="inline-block w-1/3">
+    <div class="table">
+      <div class="table-cell w-1/3 align-top">
         <Avatar :address="address"></Avatar>
         <div v-if="myself"><button class="button" id="account" @click="$router.push(`/signup`)">Mon compte</button></div>
         <div v-if="!myself"><button class="button" id="privateMessage" @click="goToMessaging()">Envoyer un message privé</button><button class="button" id="privateMessage" @click="goToMessaging()">Envoyer un lettre</button><button class="button" id="addContact" @click="addContact()">Ajouter comme contact</button></div>
       </div>
-      <div id="main" class="inline-block w-2/3">
+      <div class="table-cell w-2/3 align-top">
         <SignedMessageInput :address="address"></SignedMessageInput>
       </div>
     </div>
