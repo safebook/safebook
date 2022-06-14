@@ -4,8 +4,19 @@
     <div v-else class="table">
       <div class="table-cell w-1/3 align-top">
         <Avatar :address="address"></Avatar>
-        <div v-if="myself"><button class="button" id="account" @click="$router.push(`/signup`)">Mon compte</button></div>
-        <div v-if="!myself"><button class="button" id="privateMessage" @click="goToMessaging()">Envoyer un message privé</button><button class="button" id="privateMessage" @click="goToMessaging()">Envoyer un lettre</button><button class="button" id="addContact" @click="addContact()">Ajouter comme contact</button></div>
+        <div v-if="myself">
+          <button
+            @click="$router.push(`/signup`)"
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-4"
+          >
+            Mon compte
+          </button>
+        </div>
+        <div v-if="!myself">
+          <button class="button" id="privateMessage" @click="goToMessaging()">Envoyer un message privé</button>
+          <button class="button" id="privateMessage" @click="goToMessaging()">Envoyer un lettre</button>
+          <button class="button" id="addContact" @click="addContact()">Ajouter comme contact</button>
+        </div>
       </div>
       <div class="table-cell w-2/3 align-top">
         <SignedMessageInput :address="address"></SignedMessageInput>
