@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import safebook from '@/safebook'
+import safebook from '@/lib/safebook'
 import config from '@/config'
 
 export default {

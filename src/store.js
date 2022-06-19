@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import safebook from '@/safebook'
+import safebook from '@/lib/safebook'
 import config from './config'
 import router from './router'
 

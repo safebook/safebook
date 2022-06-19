@@ -31,7 +31,7 @@
 <script>
 import AddressSquared from './AddressSquared'
 import AddressQR from './AddressQR'
-const safebook = require('@/safebook')
+const safebook = require('@/lib/safebook')
 // import NameInput from "./NameInput"
 
 export default {
