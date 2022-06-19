@@ -18,7 +18,7 @@
       </form>
     </div>
 
-    <div v-if="true" class="pt-9">
+    <div v-if="!$store.state.account" class="pt-9">
       <router-link to="signin">
         <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           Signin
@@ -41,19 +41,10 @@
 
       <div v-show="displayUserMenu" class="absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" id="dropdownId">
         <div class="py-1" role="none">
-          <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Edit</a>
-          <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Duplicate</a>
+          <a @click="goToAccount" href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">User page (profile?)</a>
         </div>
         <div class="py-1" role="none">
-          <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Archive</a>
-          <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Move</a>
-        </div>
-        <div class="py-1" role="none">
-          <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Share</a>
-          <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-5">Add to favorites</a>
-        </div>
-        <div class="py-1" role="none">
-          <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Logout</a>
+          <a @click="logout" href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Logout</a>
         </div>
       </div>
     </div>

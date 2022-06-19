@@ -1,17 +1,18 @@
 <template>
-  <div id="MessageInput">
-    <div>
-      <textarea
-        id="textbox"
-        v-model="content"
-        placeholder="Votre message publique"
-        rows="1"
-        autofocus
-        @keydown="autogrow"
-      />
-    </div>
+  <div class="pt-10">
+    <textarea
+      class="w-full"
+      v-model="content"
+      placeholder="Votre message publique"
+      rows="3"
+      autofocus
+      @keydown="autogrow"
+    />
     <div id="send">
-      <button class="button public" @click="sendSignedMessage()">
+      <button
+        @click="sendSignedMessage()"
+        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+      >
         Envoyer un message public
       </button>
     </div>

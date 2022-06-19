@@ -1,10 +1,10 @@
 <template>
-  <div id="signup">
-    <h3>
+  <div class="pt-10 text-center">
+    <h2>
       Bonjour
       <span id="name">{{ account.name.join(" ") }}</span>
-    </h3>
-    <h3>Votre crypto-addresse :</h3>
+    </h2>
+    <h3 class="py-5">Votre crypto-addresse :</h3>
     <div>
       <AddressSquared :address="account.address" />
       <div id="or">
@@ -16,7 +16,7 @@
       <a href="#" @click="stop()">arreter maintenant</a>
     </p>
     <div v-if="!generating">
-      <p>
+      <p class="py-5">
         Gardez précieusement votre mot de passe
         <a href="#" @click="showPassword = !showPassword"
           >({{ showPassword ? "cacher" : "afficher" }})</a
@@ -25,7 +25,7 @@
       <p v-if="showPassword" id="password">
         {{ account.entropy }}
       </p>
-      <p>
+      <p class="py-5">
         Ou votre phrase mnémotechnique
         <a href="#" @click="showPassphrase = !showPassphrase"
           >({{ showPassphrase ? "cacher" : "afficher" }})</a
@@ -40,11 +40,13 @@
           <span>{{ word }} </span>
         </span>
       </p>
-      <p class="center">
-        <button id="regenerate" class="button" @click="regenerate()">
+      <p class="py-5">
+        <button @click="regenerate()" class="px-5 mx-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
           Regenerer
         </button>
-        <button id="start" class="button" @click="start()">Ma page</button>
+        <button @click="start()" class="px-5 mx-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+          Ma page
+        </button>
       </p>
     </div>
   </div>
