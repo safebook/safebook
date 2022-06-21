@@ -8,10 +8,6 @@
 </template>
 
 <script>
-// let safebook = require("@/lib/safebook")
-
-// let account = safebook.generate_account()
-
 export default {
   name: 'Signup',
   data: () => {
