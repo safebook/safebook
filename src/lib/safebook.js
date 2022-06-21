@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* eslint-disable */
 
 // https://github.com/ipfs-examples/js-ipfs-examples/tree/master/examples/browser-ipns-publish
@@ -123,3 +125,7 @@ let safebook = {
 };
 
 module.exports = safebook;
+
+if (!module.parent) {
+  console.log("hello world")
+}
