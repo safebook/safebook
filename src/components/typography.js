@@ -1,20 +1,20 @@
 import Vue from 'vue'
 
-const Header2 = Vue.component('Header2', {
+const H2 = Vue.component('H2', {
   template: '<h2 class="py-3"><slot /></h2>'
 })
 
-const Header3 = Vue.component('Header3', {
+const H3 = Vue.component('H3', {
   template: '<h3 class="py-2"><slot /></h3>'
 })
 
-const Link = Vue.component('Link', {
+const A = Vue.component('A', {
   props: ['href'],
   template: '<a class="text-blue-500" :href="href"><slot /></a>'
 })
 
 export {
-  Header2,
-  Header3,
-  Link
+  H2,
+  H3,
+  A
 }

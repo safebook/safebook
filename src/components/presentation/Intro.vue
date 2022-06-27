@@ -7,7 +7,7 @@
       You really <b>own your data and account</b>, it's self-hostable and uses decentralized computing
       It's <b>built for human rights</b>: It works in various network conditions, prevent surveillance and is uncensorable <small>(but you have the choice to use an algorithm to filter offensive content, enabled by default)</small>
     </p>
-    <Header3><Link href="/#/signup">Create an account</Link></Header3>
+    <H3><A href="/#/signup">Create an account</A></H3>
     <p>
       Safebook uses modern and new cryptographic algorithm and borrow concepts
       from bitcoin and the web3 mouvement.<br />
@@ -27,7 +27,7 @@
         default</small
       >
     </p>
-    <Header2>Why ?</Header2>
+    <H2>Why ?</H2>
     <ul class="list-disc list-inside">
       <li>No third party, server or organisation (Code is law).</li>
       <li>Serverless. No centralized server.</li>
@@ -37,7 +37,7 @@
       </li>
       <li>Works with or without internet access.</li>
     </ul>
-    <Header2>Governed by mathematical rules</Header2>
+    <H2>Governed by mathematical rules</H2>
     <p>(WIP)</p>
     <p>
       Instead of relying on a server to manage access control, it's done by
@@ -50,7 +50,7 @@
       Cryptography helps us have trust in each others, and making informations
       unfalsifiables and uncensorables
     </p>
-    <Header2>Unbreachables accounts</Header2>
+    <H2>Unbreachables accounts</H2>
     <p class="pb-2">There is no server-side account.</p>
     <p>
       At first there is the passphrase. (Safebook generate a
@@ -78,7 +78,7 @@
       </li>
       <li>PGP keys for compability with other tools (wishlist)</li>
     </ul>
-    <Header2>Public profiles : Lightning fast decentralized websites</Header2>
+    <H2>Public profiles : Lightning fast decentralized websites</H2>
     <p>Store your website on the decentralized web using IPFS</p>
     <p>Authentificate your website by signing it with your IPNS private key</p>
     <p>
@@ -97,17 +97,17 @@
       </li>
       <li>The webpage is sent to IPFS and signed as a IPNS link</li>
     </ul>
-    <Header2>Private profile (Wishlist)</Header2>
+    <H2>Private profile (Wishlist)</H2>
     <p>
       (WIP) You can put hidden_data in your profile and give the key only to
       your friends
     </p>
-    <Header2>Almost invisible messaging (minimal metadata)</Header2>
+    <H2>Almost invisible messaging (minimal metadata)</H2>
     <p>(WIP)</p>
     <p>See here for metadata leak in the Signal protocol</p>
-    <Header2>Decentralized IDs</Header2>
+    <H2>Decentralized IDs</H2>
     <p>Cf blogpost</p>
-    <Header2>Features and wishlist</Header2>
+    <H2>Features and wishlist</H2>
     <ul class="list-disc list-inside">
       <li>
         No server-side stored account using instead a hierachical deterministic
@@ -135,27 +135,27 @@
       <li>Ephemeral messages (time if unread, time after read)</li>
       <li>False pin code go to false account or delete all messages</li>
     </ul>
-    <Header2>Similar projects</Header2>
-    <Header3
-      ><Link href="https://scuttlebutt.nz">Secure Scuttlebutt</Link></Header3
+    <H2>Similar projects</H2>
+    <H3
+      ><A href="https://scuttlebutt.nz">Secure Scuttlebutt</A></H3
     >
     <p>
       A gossip peer-to-peer protocol.<br />
       Feeds are represented as a hashchain of signed messages.
     </p>
-    <Header3><Link href="https://berty.tech">Berty</Link></Header3>
+    <H3><A href="https://berty.tech">Berty</A></H3>
     <p>
       A truly peer-to-peer, uncensorable and offline first messaging app.<br />
       Based on IPFS
     </p>
-    <Header3><Link href="https://bitmessage.org">Bitmessage</Link></Header3>
+    <H3><A href="https://bitmessage.org">Bitmessage</A></H3>
     <p>
       A radical no-metadata messaging app. Every message is a hidden blob that
       you will try to decipher with all your keys, if you succeed, the message
       is for you. (Scaling is a issue)<br />
       TOR-routing of messages is also offered.<br />
     </p>
-    <Header3><Link href="https://lens.xyz">Lens</Link></Header3>
+    <H3><A href="https://lens.xyz">Lens</A></H3>
     <p>A social network on a blockchain (Polygon).</p>
     <p>
       Personnal consideration : I don't know if a pure on-chain approch could
@@ -165,41 +165,41 @@
     <p>
       <small>
         See :
-        <Link href="https://lenster.xyz">lenster.xyz</Link>
+        <A href="https://lenster.xyz">lenster.xyz</A>
         ,
-        <Link href="https://mirror.xyz">mirror.xyz</Link>
+        <A href="https://mirror.xyz">mirror.xyz</A>
       </small>
     </p>
-    <Header3><Link href="https://ceramic.network/">Ceramic</Link></Header3>
+    <H3><A href="https://ceramic.network/">Ceramic</A></H3>
     <p>
       https://blog.ceramic.network/tiles-a-browser-for-open-source-information/
     </p>
-    <Header3><Link href="https://www.datprotocol.com/">DAT</Link></Header3>
-    <Header3><Link href="https://retroshare.cc">Retroshare</Link></Header3>
+    <H3><A href="https://www.datprotocol.com/">DAT</A></H3>
+    <H3><A href="https://retroshare.cc">Retroshare</A></H3>
     <p>Freenet, I2P, Zeronet</p>
-    <Header2>Other technologies</Header2>
-    <Header3>Zero-Knowledge proofs</Header3>
+    <H2>Other technologies</H2>
+    <H3>Zero-Knowledge proofs</H3>
     <p>
       https://twitter.com/LuozhuZhang/status/1530984087061929984?s=20&t=_6d66haeswHBHNn4cEB46A
       <br />
       https://research.protocol.ai/sites/snarks/
     </p>
-    <Header2>IPFS and Filecoin hubs</Header2>
+    <H2>IPFS and Filecoin hubs</H2>
     <ul class="list-disc list-inside">
-      <li><Link href="https://estuary.tech/">Estuary</Link></li>
+      <li><A href="https://estuary.tech/">Estuary</A></li>
     </ul>
     <!--
-    <Header2>About web3</Header2>
+    <H2>About web3</H2>
     <p>https://moxie.org/2022/01/07/web3-first-impressions.html</p>
     -->
   </div>
 </template>
 
 <script>
-import { Header2, Header3, Link } from '@/components/typography'
+import { H2, H3, A } from '@/components/typography'
 
 export default {
-  components: { Header2, Header3, Link },
+  components: { H2, H3, A },
   data () {
     return {}
   },
