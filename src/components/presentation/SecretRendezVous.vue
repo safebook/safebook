@@ -5,7 +5,7 @@
     <p>Dans Safebook Messenger, comme, par exemple, dans le protocol de Signal ou de de Berty, la cryptographie est utilisée pour rendre impossible de lire le contenu des messages si ils ne nous sont pas addressés.</p>
     <p>Cependant, même si le contenu des messages est chiffré et donc illisible, <b>les métadonnées ne sont pas chiffrés</b> car elles sont utiles au serveur pour savoir à qui sont destinés les messages, etc</p>
     <p>Cela inclut le ou les destinataires des messages, la date d'envoi, leur taille, etc... Des processus d'analyse existent pour utiliser les métadonnées pour desanonymiser les utilisateurs et récuperer toujours plus d'informations.</p>
-    <p>Pour plus de détails au sujet des métadonnées vous pouvez lire <router-link to="metadata_in_signal">une critique du protocol de signal<router-link>.</p>
+    <p>Pour plus de détails au sujet des métadonnées vous pouvez lire <router-link class="text-blue-500" to="metadata_in_signal">une critique du protocol de signal</router-link>.</p>
     <Header2>Objectif</Header2>
     <p>Nous voulons rendre inexploitable les métadonnées. </p>
     <Header2>Filtres de bloom</Header2>
@@ -16,7 +16,7 @@
       On peut se servir de cette propriété pour l'anonymité, lorsqu'on demande quelquechose (des messages, etc) à un pair.<br />
       Ainsi, on evite de fuiter des métadonnées sur quels sont nos contacts, etc
     </p>
-    <Header2>Exemple donstruction du filtre pour un ensemble de points de rendez-vous</Header2>
+    <Header2>Exemple de construction du filtre pour un ensemble de points de rendez-vous</Header2>
     <p>
       Pour simplifier on utilise une seule fonction de hash H<br />
       On rajoute un sel en redefinissant la fonction de hash comme <code>H'(x) = H(salt + x)</code>
