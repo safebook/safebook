@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/home'
+
 import Presentation from '@/components/presentation'
 import Intro from '@/components/presentation/Intro'
 import SecretBonding from '@/components/presentation/SecretBonding'
 import SecretRendezVous from '@/components/presentation/SecretRendezVous'
 import MetaDataInSignal from '@/components/presentation/MetaDataInSignal'
+import Names from '@/components/presentation/Names'
+
+import Home from '@/components/home'
 import Signup from '@/components/signup'
 import Signin from '@/components/signin'
 import User from '@/components/user'
@@ -42,7 +45,12 @@ export default new Router({
       path: '/metadata_in_signal',
       component: MetaDataInSignal
     },
+    {
+      path: '/names',
+      component: Names
+    },
     // Presentation -->
+    // <!-- App
     {
       path: '/home',
       name: 'home',
@@ -83,5 +91,6 @@ export default new Router({
       name: 'about',
       component: About
     }
+    // App -->
   ]
 })
