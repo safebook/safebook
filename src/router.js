@@ -7,6 +7,7 @@ import SecretBonding from '@/components/presentation/SecretBonding'
 import SecretRendezVous from '@/components/presentation/SecretRendezVous'
 import MetaDataInSignal from '@/components/presentation/MetaDataInSignal'
 import Names from '@/components/presentation/Names'
+import SimilarProjects from '@/components/presentation/SimilarProjects'
 
 import Home from '@/components/home'
 import Signup from '@/components/signup'
@@ -48,6 +49,10 @@ export default new Router({
     {
       path: '/names',
       component: Names
+    },
+    {
+      path: '/similar_projects',
+      component: SimilarProjects
     },
     // Presentation -->
     // <!-- App
