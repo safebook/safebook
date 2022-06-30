@@ -21,7 +21,7 @@ In most case, every router (internet box, etc) can potentially alternate the dat
 This is DNS: Just send a bottle with a name and wait for an address.
 It's not secure at all, and require everyone to be honest.
 
-\*(Things got a little better with the DNSSEC security extenstion but still has flaws.)
+\\*(Things got a little better with the DNSSEC security extenstion but still has flaws.)
 
 I will advocation that blockchains like namecoin(.bit) are a better alternative
 

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { H2 } from "@/components/typography"
+import { H2 } from '@/components/typography'
 export default {
   components: { H2 }
 }
