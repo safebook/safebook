@@ -49,6 +49,11 @@
       <br />
       https://research.protocol.ai/sites/snarks/
     </p>
+    <H2>Japanese P2P software :</H2>
+    <p>Winny</p>
+    <p>https://fr.wikipedia.org/wiki/Perfect_Dark_(P2P)</p>
+    <p>https://fr.wikipedia.org/wiki/Share</p>
+
     <H2>IPFS and Filecoin hubs</H2>
     <ul class="list-disc list-inside">
       <li><A href="https://estuary.tech/">Estuary</A></li>
