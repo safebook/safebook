@@ -44,14 +44,14 @@
 </template>
 
 <script>
-import config from '@/config'
+import config from '@/config.js'
 
-import Avatar from '@/components/Avatar'
-import SignedMessageInput from '@/components/messages/SignedMessageInput'
-// import SignedMessage from '@/components/messages/SignedMessage'
-// import Publication from '@/components/messages/Publication'
-// import Contact from '@/components/Contact'
-// import Side from '@/components/Side'
+import Avatar from '@/components/Avatar.vue'
+import SignedMessageInput from '@/components/messages/SignedMessageInput.vue'
+// import SignedMessage from '@/components/messages/SignedMessage.vue'
+// import Publication from '@/components/messages/Publication.vue'
+// import Contact from '@/components/Contact.vue'
+// import Side from '@/components/Side.vue'
 
 export default {
   name: 'Signup',

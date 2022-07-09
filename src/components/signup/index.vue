@@ -54,8 +54,8 @@
 
 <script>
 // const safebook = require('@/lib/safebook')
-import AddressSquared from '@/components/AddressSquared'
-import AddressQR from '@/components/AddressQR'
+import AddressSquared from '@/components/AddressSquared.vue'
+import AddressQR from '@/components/AddressQR.vue'
 
 export default {
   name: 'Signup',

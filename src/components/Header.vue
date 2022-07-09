@@ -18,7 +18,7 @@
       </form>
     </div>
 
-    <div v-if="!$store.state.account" class="pt-9">
+    <div v-if="!$store.account" class="pt-9">
       <router-link to="signin">
         <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           Signin
@@ -79,16 +79,19 @@
 </template>
 
 <script>
+import { useMainStore } from '@/stores/index.js';
+
 export default {
   name: 'Header',
   data () {
     return {
-      displayUserMenu: false
+      displayUserMenu: false,
+      $store: useMainStore()
     }
   },
   computed: {
     account () {
-      return this.$store.state.account
+      return this.$store.account
     }
   },
   methods: {

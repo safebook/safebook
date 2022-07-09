@@ -31,15 +31,15 @@
     <p>A safebook profile is a collection of a state (a key/value store, for every profile data like ecdh key, birthdate, links, etc and messages(including pictures)</p>
     <p>Everything is signed by the user pubkey, either at the message level, page level, or at the IPNS level.</p>
     <p>The safebook engine is at his core a static website generator to aggregate the state and the messages into a webpage for quick access, and for outsiders not using safebook. f(state) = page.html <small>(theming is optional</small></p>
-    <p>To embed the state inside the webpage, we could use the semantic web, allowing a function f -> f(page) = state
-    <p><small>Experiment: State as a CRDT signed hashchain of events (message events and state events) with data structure: { previous[], content{}, sig }</small>
+    <p>To embed the state inside the webpage, we could use the semantic web, allowing a function f -> f(page) = state</p>
+    <p><small>Experiment: State as a CRDT signed hashchain of events (message events and state events) with data structure: { previous[], content{}, sig }</small></p>
     <H3>Friends and followers</H3>
     <p>You can follow someone by signing his address. The web-of-followers and web-of-friends should follow the implementation of PGP web-of-trust.</p>
   </div>
 </template>
 
 <script>
-import { H2, H3 } from '@/components/typography'
+import { H2, H3 } from '@/components/typography/index.js'
 
 export default {
   components: { H2, H3 },

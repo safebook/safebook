@@ -9,7 +9,7 @@ import bip32 from "bip32"
 import * as bip39 from "bip39"
 import ed2curve from "ed2curve"
 
-import * as IPFS from 'ipfs-core'
+// import * as IPFS from 'ipfs-core'
 
 const lang = "french";
 bip39.setDefaultWordlist(lang);
@@ -124,9 +124,9 @@ let safebook = {
   },
 
   publish: async () => {
-    const ipfs = await IPFS.create()
-    const { cid } = await ipfs.add('Hello world')
-    console.info(cid)
+    // const ipfs = await IPFS.create()
+    // const { cid } = await ipfs.add('Hello world')
+    // console.info(cid)
   }
 };
 
