@@ -6,6 +6,7 @@ import Intro from '@/components/presentation/Intro'
 import SecretBonding from '@/components/presentation/SecretBonding'
 import SecretRendezVous from '@/components/presentation/SecretRendezVous'
 import MetaDataInSignal from '@/components/presentation/MetaDataInSignal'
+import Safebook from '@/components/presentation/Safebook'
 import Names from '@/components/presentation/Names'
 import SimilarProjects from '@/components/presentation/SimilarProjects'
 
@@ -33,6 +34,10 @@ export default new Router({
     {
       path: '/intro',
       component: Intro
+    },
+    {
+      path: '/safebook',
+      component: Safebook
     },
     {
       path: '/secret_bonding',

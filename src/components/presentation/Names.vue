@@ -1,7 +1,9 @@
 <template>
-<VueMarkdown>
-  {{ content }}
-</VueMarkdown>
+  <div class="prose lg:prose-xl">
+    <VueMarkdown>
+      {{ content }}
+    </VueMarkdown>
+  </div>
 </template>
 
 <script>
