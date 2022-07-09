@@ -1,16 +1,16 @@
 <template>
-<VueMarkdown>
-  {{ content }}
-</VueMarkdown>
+  <div class="prose lg:prose-xl">
+    <vue3-markdown-it :source="source" />
+  </div>
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
+const source = `
+## Your internet identity isn't yours
 
-const content = `
 We will see what is the problem with name resolution, in the context of websites (which rely on DNS) ans usernames (which rely on a third-party)
 
-# DNS
+### DNS
 
 The mechanism that translate a web address (eg: wikipedia.org) to an Internet (IP) Address
 is the DNS (Domain Name System).
@@ -25,24 +25,24 @@ It's not secure at all, and require everyone to be honest.
 
 I will advocation that blockchains like namecoin(.bit) are a better alternative
 
-# The problem with IP address
+### The problem with IP address
 
 Just send a bottle with an address and wait for the response.
 Everyone in the middle can temper with the communication
 
 (Things get better with HTTPS but still rely on many third parties (Certificate Authority))
 
-# The problem with Web 2.0 accounts
+### The problem with Web 2.0 accounts
 
 You rely on a third party for your identity, what a paradox.
 
-# The distributed web solution
+### The distributed web solution
 
 The name of a file is his hash (see IPFS for content addressing)
 
 The name of a user is his public key, or something derived from his public key
 
-# Decentralized name system
+### Decentralized name system
 
 Some decentralized name system relies on blockchains
 - [ENS] (.eth)
@@ -57,10 +57,9 @@ Some decentralized name system relies on blockchains
 `
 
 export default {
-  components: { VueMarkdown },
   data () {
     return {
-      content
+      source
     }
   }
 }

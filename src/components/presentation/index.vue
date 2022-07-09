@@ -3,7 +3,7 @@
     <center class="mt-10"><h1>Table of contents</h1></center>
     <ul class="list-disc list-inside">
       <li><router-link to="intro"><a class="text-blue-500">Presentation</a></router-link></li>
-      <li>Safebook Pages</li>
+      <li><router-link to="safebook"><a class="text-blue-500">Safebook Pages</a></router-link></li>
       <li>Safebook Drive</li>
       <li>Safebook Messenger</li>
       <li>Safebook Search</li>

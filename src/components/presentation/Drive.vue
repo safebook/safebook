@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { H2, H3, A } from '@/components/typography'
+import { H2, H3, A } from '@/components/typography/index.js'
 
 export default {
   components: { H2, H3, A },

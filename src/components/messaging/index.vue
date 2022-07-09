@@ -26,10 +26,10 @@
 </template>
 
 <script>
-import safebook from '@/lib/safebook'
-import config from '@/config'
-import PrivateMessageInput from '@/components/messages/PrivateMessageInput'
-import PrivateMessage from '@/components/messages/PrivateMessage'
+import safebook from '@/lib/safebook.js'
+import config from '@/config.js'
+import PrivateMessageInput from '@/components/messages/PrivateMessageInput.vue'
+import PrivateMessage from '@/components/messages/PrivateMessage.vue'
 
 export default {
   name: 'Messaging',

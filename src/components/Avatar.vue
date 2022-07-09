@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import AddressSquared from './AddressSquared'
-import AddressQR from './AddressQR'
-const safebook = require('@/lib/safebook')
+import AddressSquared from './AddressSquared.vue'
+import AddressQR from './AddressQR.vue'
+import safebook from '@/lib/safebook.js'
 // import NameInput from "./NameInput"
 
 export default {
