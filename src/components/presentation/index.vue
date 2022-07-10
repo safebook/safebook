@@ -3,10 +3,10 @@
     <center class="mt-10"><h1>Table of contents</h1></center>
     <ul class="list-disc list-inside">
       <li><router-link to="intro"><a class="text-blue-500">Presentation</a></router-link></li>
-      <li><router-link to="safebook"><a class="text-blue-500">Safebook Pages</a></router-link></li>
-      <li>Safebook Drive</li>
+      <li><router-link to="safebook"><a class="text-blue-500">Safebook Profile (Main app)</a></router-link></li>
       <li>Safebook Messenger</li>
-      <li>Safebook Search</li>
+      <li><router-link to="drive">Safebook Drive</router-link></li>
+      <li><small>Safebook Search (based on aggressive caching of every search, default to offline search, and with an additionnal YaCy backend</small></li>
       <li><router-link to="names"><a class="text-blue-500">Safebook Names</a></router-link></li>
       <li><router-link to="similar_projects"><a class="text-blue-500">Related projects</a></router-link></li>
     </ul>

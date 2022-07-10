@@ -7,6 +7,7 @@ import SecretRendezVous from '@/components/presentation/SecretRendezVous.vue'
 import MetaDataInSignal from '@/components/presentation/MetaDataInSignal.vue'
 import Safebook from '@/components/presentation/Safebook.vue'
 import Names from '@/components/presentation/Names.vue'
+import Drive from '@/components/presentation/Drive.vue'
 import SimilarProjects from '@/components/presentation/SimilarProjects.vue'
 
 import Home from '@/components/home/index.vue'
@@ -50,6 +51,10 @@ const router = createRouter({
     {
       path: '/names',
       component: Names
+    },
+    {
+      path: '/drive',
+      component: Drive
     },
     {
       path: '/similar_projects',
