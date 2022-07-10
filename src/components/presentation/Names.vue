@@ -25,7 +25,7 @@ It's not secure at all, and require everyone to be honest.
 
 I will advocation that blockchains like namecoin(.bit) are a better alternative
 
-### The problem with IP address
+### The problem with IP addresses
 
 Just send a bottle with an address and wait for the response.
 Everyone in the middle can temper with the communication
