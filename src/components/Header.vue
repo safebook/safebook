@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex mb-[30px]">
     <router-link to="/">
       <h3 class="font-extrabold text-3xl tracking-tight mt-6">Safebook</h3>
     </router-link>
