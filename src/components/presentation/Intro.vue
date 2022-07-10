@@ -1,152 +1,104 @@
+<script setup>
+const source = `
+Safebook is a social network protocol.
+
+It's a **free software** (free as in freedom). Everyone can use it, read the code and even modify it.
+
+You really **own your data and account**, it's self-hostable and uses decentralized computing
+
+It's **built for human rights**: It works in various network conditions, prevent surveillance and is uncensorable <small>(but you have the choice to use an algorithm to filter offensive content, enabled by default)</small>
+
+### [Create an account](/signup)
+
+Safebook uses modern and new cryptographic algorithm and borrow concepts from bitcoin and the web3 mouvement.
+
+Cryptography give us the tools for truly owning our data and accounts.
+
+It also allow us to deny network surveillance when necessary.
+
+<small>* here web3 isn't only about cryptocurrencies, but about cryptographic protocols (eg: git and bittorrent)</small>
+<small>** spam and unappropriate content is filtered by the user by default</small>
+
+## Why ?
+
+- No third party, server or organisation (Code is law).
+- Serverless. No centralized server.
+- You don't have to trust the network or anyone (Trust is inherited from cryptography).
+- Works with or without internet access.
+
+## Governed by mathematical rules
+
+(WIP)
+
+Instead of relying on a server to manage access control, it's done by encryption.
+
+For identification, no third-party needed thanks to digital signatures
+
+Cryptography helps us have trust in each others, and making informations unfalsifiables and uncensorables
+
+## Unbreachables accounts
+
+There is no server-side account
+
+At first there is the passphrase. (Safebook generate a cryptographically-strong passphrase for you. Some people may learn it by heart.)
+
+Everything is generated from there. That means that if you login from a different device you're already good to go
+
+We can derive :
+
+- A signing key for the public profile, if necessary
+- Multiples keys for storage (drive/photos)
+- Multiples keys for private messaging
+- A wallet addresses for bitcoin, ethereum, and other cryptocurrencies
+- A password manager master key (wishlist) <span class="text-xs">(can support both classic hidden_passwords and deterministic passwords (ex: m/58/passwords/website_name))</span>
+- PGP keys for compability with other tools (wishlist)
+
+## Public profiles : Lightning fast decentralized websites
+
+Store your website on the decentralized web using IPFS
+
+Authentificate your website by signing it with your IPNS private key
+
+Build a static pages at compile time to make your website lightning fast
+
+Step by step :
+
+- The user add keys to his state (username, picture, various info, public friends).
+- The user add messages to his feed.
+- Using a choosen template, a static webpage representing the user profile is generated.
+- The webpage is sent to IPFS and signed as a IPNS link
+
+## Private profile (Wishlist)
+
+(WIP) You can put hidden_data in your profile and give the key only to your friends
+
+## Almost invisible messaging (minimal metadata)
+
+(WIP)
+
+See here for metadata leak in the Signal protocol
+
+## Decentralized IDs
+
+Cf blogpost
+
+## Features and wishlist
+
+- No server-side stored account using instead a hierachical deterministic wallet to derive all the secrets
+- Authentification and permission management is based on electronic signatures (like in bitcoin)
+- Secure messaging is based on asymetric cryptography (think of a light version of the Signal protocol)
+- Distributed file storage is base on IPFS and filecoin
+- Static feed and personal webpage generator hosted on the decentralized web to allow a fast-accessed trusted (signed) profile (using decentrelized ids and decentralized domains, and hosting the website on the peer-to-peer web using IPFS and IPNS
+- Bloom filters are used to avoid giving away rendez-vous points addresses
+- Quantum resistant
+- Ephemeral messages (time if unread, time after read)
+- False pin code go to false account or delete all messages
+- Machine learning using homomorphic encryption
+`
+</script>
+
 <template>
-  <div id="intro" class="pt-10">
-    <p>
-      Safebook is a social network protocol.<br /><br />
-      It's a <b>free software</b> (free as in freedom). Everyone can use it, read the code and
-      even modify it.<br />
-      You really <b>own your data and account</b>, it's self-hostable and uses decentralized computing
-      It's <b>built for human rights</b>: It works in various network conditions, prevent surveillance and is uncensorable <small>(but you have the choice to use an algorithm to filter offensive content, enabled by default)</small>
-    </p>
-    <H3><A href="/#/signup">Create an account</A></H3>
-    <p>
-      Safebook uses modern and new cryptographic algorithm and borrow concepts
-      from bitcoin and the web3 mouvement.<br />
-      Cryptography give us the tools for truly owning our data and accounts.<br />
-      It also allow us to deny network surveillance when necessary.
-    </p>
-    <p class="py-1"></p>
-    <p>
-      <small
-        >* here web3 isn't only about cryptocurrencies, but about cryptographic
-        protocols (eg: git and bittorrent)</small
-      >
-    </p>
-    <p>
-      <small
-        >** spam and unappropriate content is filtered by the user by
-        default</small
-      >
-    </p>
-    <H2>Why ?</H2>
-    <ul class="list-disc list-inside">
-      <li>No third party, server or organisation (Code is law).</li>
-      <li>Serverless. No centralized server.</li>
-      <li>
-        You don't have to trust the network or anyone (Trust is inherited from
-        cryptography).
-      </li>
-      <li>Works with or without internet access.</li>
-    </ul>
-    <H2>Governed by mathematical rules</H2>
-    <p>(WIP)</p>
-    <p>
-      Instead of relying on a server to manage access control, it's done by
-      encryption.
-    </p>
-    <p>
-      For identification, no third-party needed thanks to digital signatures
-    </p>
-    <p>
-      Cryptography helps us have trust in each others, and making informations
-      unfalsifiables and uncensorables
-    </p>
-    <H2>Unbreachables accounts</H2>
-    <p class="pb-2">There is no server-side account.</p>
-    <p>
-      At first there is the passphrase. (Safebook generate a
-      cryptographically-strong passphrase for you. Some people may learn it by
-      heart.)
-    </p>
-    <p>
-      Everything is generated from there. That means that if you login from a
-      different device you're already good to go
-    </p>
-    <p class="pt-2">We can derive :</p>
-    <ul class="list-disc list-inside">
-      <li>A signing key for the public profile, if necessary</li>
-      <li>Multiples keys for storage (drive/photos)</li>
-      <li>Multiples keys for private messaging</li>
-      <li>
-        A wallet addresses for bitcoin, ethereum, and other cryptocurrencies
-      </li>
-      <li>
-        A password manager master key (wishlist)
-        <span class="text-xs"
-          >(can support both classic hidden_passwords and deterministic
-          passwords (ex: m/58/passwords/website_name))</span
-        >
-      </li>
-      <li>PGP keys for compability with other tools (wishlist)</li>
-    </ul>
-    <H2>Public profiles : Lightning fast decentralized websites</H2>
-    <p>Store your website on the decentralized web using IPFS</p>
-    <p>Authentificate your website by signing it with your IPNS private key</p>
-    <p>
-      Build a static pages at compile time to make your website lightning fast
-    </p>
-    <p>Step by step :</p>
-    <ul class="list-disc list-inside">
-      <li>
-        The user add keys to his state (username, picture, various info, public
-        friends).
-      </li>
-      <li>The user add messages to his feed.</li>
-      <li>
-        Using a choosen template, a static webpage representing the user profile
-        is generated.
-      </li>
-      <li>The webpage is sent to IPFS and signed as a IPNS link</li>
-    </ul>
-    <H2>Private profile (Wishlist)</H2>
-    <p>
-      (WIP) You can put hidden_data in your profile and give the key only to
-      your friends
-    </p>
-    <H2>Almost invisible messaging (minimal metadata)</H2>
-    <p>(WIP)</p>
-    <p>See here for metadata leak in the Signal protocol</p>
-    <H2>Decentralized IDs</H2>
-    <p>Cf blogpost</p>
-    <H2>Features and wishlist</H2>
-    <ul class="list-disc list-inside">
-      <li>
-        No server-side stored account using instead a hierachical deterministic
-        wallet to derive all the secrets
-      </li>
-      <li>
-        Authentification and permission management is based on electronic
-        signatures (like in bitcoin)
-      </li>
-      <li>
-        Secure messaging is based on asymetric cryptography (think of a light
-        version of the Signal protocol)
-      </li>
-      <li>Distributed file storage is base on IPFS and filecoin</li>
-      <li>
-        Static feed and personal webpage generator hosted on the decentralized
-        web to allow a fast-accessed trusted (signed) profile (using
-        decentrelized ids and decentralized domains, and hosting the website on
-        the peer-to-peer web using IPFS and IPNS
-      </li>
-      <li>
-        Bloom filters are used to avoid giving away rendez-vous points addresses
-      </li>
-      <li>Quantum resistant</li>
-      <li>Ephemeral messages (time if unread, time after read)</li>
-      <li>False pin code go to false account or delete all messages</li>
-      <li>Machine learning using homomorphic encryption</li>
-    </ul>
+  <div class="prose lg:prose-xl">
+    <vue3-markdown-it :source="source" html=true />
   </div>
 </template>
-
-<script>
-import { H2, H3, A } from '@/components/typography/index.js'
-
-export default {
-  components: { H2, H3, A },
-  data () {
-    return {}
-  },
-  methods: {}
-}
-</script>
