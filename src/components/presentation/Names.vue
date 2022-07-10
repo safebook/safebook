@@ -1,10 +1,4 @@
-<template>
-  <div class="prose lg:prose-xl">
-    <vue3-markdown-it :source="source" />
-  </div>
-</template>
-
-<script>
+<script setup>
 const source = `
 ## Your internet identity isn't yours
 
@@ -55,19 +49,10 @@ Some decentralized name system relies on blockchains
 [Tezos Domains]: https://tezos.domains
 [Unstoppable domains]: https://unstoppabledomains.com
 `
-
-export default {
-  data () {
-    return {
-      source
-    }
-  }
-}
 </script>
 
-<style scoped>
-a {
-  color: blue !important;
-  text-decoration: underline;
-}
-</style>
+<template>
+  <div class="prose lg:prose-xl">
+    <vue3-markdown-it :source="source" />
+  </div>
+</template>
