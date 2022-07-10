@@ -15,6 +15,7 @@
       <li><router-link to="secret_bonding"><a class="text-blue-500">Secret Bonding</a></router-link></li>
       <li>How to discover your friends on the network (using phone numbers for exemples) without giving away your friendlist</li>
       <li><router-link to="secret_rendez_vous"><a class="text-blue-500">Secret Rendez-vous</a></router-link></li>
+      <li>Hash payement. Where customers pays but the company makes no money. Could be a PoW difficulty target for different hash difficulty (cpu,gpu,memory,proof of space-time?) or even useful work like folding proteins or finding primes. The organisator or DOA sets the difficulty target. Could be used for - Requesting ressource - Sending message (ex: Bitmessage) - DDNS name registration - Tokenless blockchain</li>
     </ul>
   </div>
 </template>
