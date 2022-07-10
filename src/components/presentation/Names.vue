@@ -48,7 +48,7 @@ Some decentralized name system relies on blockchains
 [Namecoin]: https://www.namecoin.org
 [Tezos Domains]: https://tezos.domains
 [Unstoppable domains]: https://unstoppabledomains.com
-`
+`;
 </script>
 
 <template>

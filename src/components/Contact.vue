@@ -7,26 +7,26 @@
 </template>
 
 <script>
-import safebook from '@/lib/safebook'
-import config from '@/config'
+import safebook from "@/lib/safebook";
+import config from "@/config";
 
 export default {
-  name: 'Contact',
-  props: ['address'],
+  name: "Contact",
+  props: ["address"],
   computed: {
-    url () {
-      return `${config.vueUrl}/u/${this.address}`
-    }
+    url() {
+      return `${config.vueUrl}/u/${this.address}`;
+    },
   },
   methods: {
-    goToUser () {
-      this.$router.push(`/u/${this.address}`)
+    goToUser() {
+      this.$router.push(`/u/${this.address}`);
     },
-    nameOf (address) {
-      return safebook.name(address).join(' ')
-    }
-  }
-}
+    nameOf(address) {
+      return safebook.name(address).join(" ");
+    },
+  },
+};
 </script>
 
 <style scoped></style>

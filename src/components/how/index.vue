@@ -1,5 +1,5 @@
 <template>
-<vue3-markdown-it :source="source" />
+  <vue3-markdown-it :source="source" />
 </template>
 
 <script>
@@ -147,16 +147,16 @@ Nous utiliseront une même clé Curve25519 pour DH ET la signatures.
 (Le papier [[https://eprint.iacr.org/2011/615][On the Joint Security of Encryption and Signature in EMV]] [[[https://crypto.stackexchange.com/questions/3260/using-same-keypair-for-diffie-hellman-and-signing][2]]] prouve la sécurité d'un tel usage dans des conditions similaires.
 
 
-`
+`;
 
 export default {
-  name: 'How',
-  data () {
+  name: "How",
+  data() {
     return {
-      source
-    }
-  }
-}
+      source,
+    };
+  },
+};
 </script>
 
 <style>

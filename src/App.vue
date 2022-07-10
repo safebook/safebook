@@ -1,10 +1,10 @@
 <script setup>
 //import { RouterLink, RouterView } from "vue-router";
-import Header from '@/components/Header.vue'
+import Header from "@/components/Header.vue";
 
-import { useMainStore } from '@/stores/index.js';
+import { useMainStore } from "@/stores/index.js";
 const mainStore = useMainStore();
-mainStore.restoreAccount()
+mainStore.restoreAccount();
 </script>
 
 <template>

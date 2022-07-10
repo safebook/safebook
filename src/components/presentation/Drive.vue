@@ -19,11 +19,11 @@ There is no know mean of preventing pirate content to be stored. Thus legally it
 - https://files.chainsafe.io
 - https://storage.chainsafe.io
 - https://fleek.co
-`
+`;
 </script>
 
 <template>
   <div class="prose lg:prose-xl">
-    <vue3-markdown-it :source="source" html=true />
+    <vue3-markdown-it :source="source" html="true" />
   </div>
 </template>

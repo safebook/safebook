@@ -7,23 +7,23 @@
 
 <script>
 export default {
-  name: 'NameInput',
-  model () {
+  name: "NameInput",
+  model() {
     return {
-      name: this.oldName
-    }
+      name: this.oldName,
+    };
   },
-  props: ['oldName'],
+  props: ["oldName"],
   methods: {
-    send () {
+    send() {
       this.$store.commit({
-        type: 'attr',
-        kind: 'name',
-        value: this.message
-      })
-    }
-  }
-}
+        type: "attr",
+        kind: "name",
+        value: this.message,
+      });
+    },
+  },
+};
 </script>
 
 <style>

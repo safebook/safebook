@@ -69,8 +69,7 @@ To embed the state inside the webpage, we could use the semantic web, allowing a
 ### Friends and followers
 
 You can follow someone by signing his address. The web-of-followers and web-of-friends should follow the implementation of PGP web-of-trust.
-`
-
+`;
 </script>
 
 <template>

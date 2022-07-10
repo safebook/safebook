@@ -1,7 +1,7 @@
 <script>
 export default {
-  props: ["href"]
-}
+  props: ["href"],
+};
 </script>
 
 <template>

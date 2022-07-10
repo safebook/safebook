@@ -1,9 +1,7 @@
 <template>
   <div id="home" class="table">
     <div id="side">
-      <p>
-        réseau social cryptographique
-      </p>
+      <p>réseau social cryptographique</p>
       <div id="doc">
         <button class="button" @click="$router.push('/what')">
           Documentation utilisateur
@@ -11,9 +9,7 @@
         <button class="button" @click="$router.push('/how')">
           Documentation technique
         </button>
-        <button class="button" @click="$router.push('/about')">
-          A propos
-        </button>
+        <button class="button" @click="$router.push('/about')">A propos</button>
       </div>
     </div>
     <div id="main">
@@ -22,9 +18,7 @@
           Créer un compte
         </button>
       </div>
-      <p>
-        --- ou ---
-      </p>
+      <p>--- ou ---</p>
       <div>
         <h4>
           Entrez votre mot de passe, <br />
@@ -53,32 +47,32 @@
 
 <script>
 export default {
-  name: 'Home',
-  data () {
+  name: "Home",
+  data() {
     return {
-      password: ''
-    }
+      password: "",
+    };
   },
   methods: {
-    createAccount () {
-      this.$store.commit('createAccount')
-      this.$router.push('/signup')
+    createAccount() {
+      this.$store.commit("createAccount");
+      this.$router.push("/signup");
     },
-    signin () {
+    signin() {
       this.$store.commit({
-        type: 'loadAccount',
-        mnemonic: this.password.trim()
-      })
+        type: "loadAccount",
+        mnemonic: this.password.trim(),
+      });
     },
-    goToUserDoc () {
-      this.$router.push('/what')
+    goToUserDoc() {
+      this.$router.push("/what");
     },
-    goToTechnicalDoc () {
+    goToTechnicalDoc() {
       window.location =
-        'https://github.com/mjal/safebook-doc/blob/master/technical.org'
-    }
-  }
-}
+        "https://github.com/mjal/safebook-doc/blob/master/technical.org";
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -1,9 +1,7 @@
 <template>
   <div>
     <H2>Similar projects</H2>
-    <H3
-      ><A href="https://scuttlebutt.nz">Secure Scuttlebutt</A></H3
-    >
+    <H3><A href="https://scuttlebutt.nz">Secure Scuttlebutt</A></H3>
     <p>
       A gossip peer-to-peer protocol.<br />
       Feeds are represented as a hashchain of signed messages.
@@ -49,19 +47,23 @@
       <br />
       https://research.protocol.ai/sites/snarks/
     </p>
-    <H3><A href="https://fr.wikipedia.org/wiki/Perfect_Dark_(P2P)">Perfect Dark</A></H3>
+    <H3
+      ><A href="https://fr.wikipedia.org/wiki/Perfect_Dark_(P2P)"
+        >Perfect Dark</A
+      ></H3
+    >
     <H3>Retroshare</H3>
   </div>
 </template>
 
 <script>
-import { H2, H3, A } from '@/components/typography/index.js'
+import { H2, H3, A } from "@/components/typography/index.js";
 
 export default {
   components: { H2, H3, A },
-  data () {
-    return {}
+  data() {
+    return {};
   },
-  methods: {}
-}
+  methods: {},
+};
 </script>

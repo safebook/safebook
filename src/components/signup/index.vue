@@ -7,9 +7,7 @@
     <h3 class="py-5">Votre crypto-addresse :</h3>
     <div>
       <AddressSquared :address="account.address" />
-      <div id="or">
-        ou
-      </div>
+      <div id="or">ou</div>
       <AddressQR :address="account.address" />
     </div>
     <p v-if="generating" id="generating">
@@ -41,10 +39,16 @@
         </span>
       </p>
       <p class="py-5">
-        <button @click="regenerate()" class="px-5 mx-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+        <button
+          @click="regenerate()"
+          class="px-5 mx-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+        >
           Regenerer
         </button>
-        <button @click="start()" class="px-5 mx-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        <button
+          @click="start()"
+          class="px-5 mx-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        >
           Ma page
         </button>
       </p>
@@ -54,57 +58,57 @@
 
 <script>
 // const safebook = require('@/lib/safebook')
-import AddressSquared from '@/components/AddressSquared.vue'
-import AddressQR from '@/components/AddressQR.vue'
+import AddressSquared from "@/components/AddressSquared.vue";
+import AddressQR from "@/components/AddressQR.vue";
 
 export default {
-  name: 'Signup',
+  name: "Signup",
   components: {
     AddressQR,
-    AddressSquared
+    AddressSquared,
   },
-  data () {
+  data() {
     return {
       showPassword: false,
       showPassphrase: false,
-      generating: false
-    }
+      generating: false,
+    };
   },
   computed: {
-    account () {
-      return this.$store.state.account
+    account() {
+      return this.$store.state.account;
     },
-    splittedMnemonic () {
-      const words = this.account.mnemonic.split(' ')
+    splittedMnemonic() {
+      const words = this.account.mnemonic.split(" ");
       return [
         words.slice(0, 3),
         words.slice(3, 6),
         words.slice(6, 9),
-        words.slice(9)
-      ]
-    }
+        words.slice(9),
+      ];
+    },
   },
-  beforeCreate () {
+  beforeCreate() {
     if (!this.$store.state.account) {
-      this.$store.commit('createAccount')
+      this.$store.commit("createAccount");
     }
   },
-  created () {},
+  created() {},
   methods: {
-    regenerate () {
-      this.$store.commit('createAccount')
+    regenerate() {
+      this.$store.commit("createAccount");
     },
-    vanity () {
-      this.$store.commit('createVanityAccount')
+    vanity() {
+      this.$store.commit("createVanityAccount");
     },
-    stop () {
-      this.generating = false
+    stop() {
+      this.generating = false;
     },
-    start () {
-      this.$router.push(`/u/${this.account.address}`)
-    }
-  }
-}
+    start() {
+      this.$router.push(`/u/${this.account.address}`);
+    },
+  },
+};
 </script>
 
 <style scoped>

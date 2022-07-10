@@ -9,26 +9,26 @@
 
 <script>
 export default {
-  name: 'Signup',
+  name: "Signup",
   data: () => {
     return {
-      passphrase: ''
-    }
+      passphrase: "",
+    };
   },
   methods: {
-    loadAccount () {
+    loadAccount() {
       this.$store.commit({
-        type: 'loadAccount',
-        mnemonic: this.passphrase.trim()
-      })
-      this.$router.push('/signup')
+        type: "loadAccount",
+        mnemonic: this.passphrase.trim(),
+      });
+      this.$router.push("/signup");
     },
-    signup () {
-      this.$store.commit('createAccount')
-      this.$router.push('/signup')
-    }
-  }
-}
+    signup() {
+      this.$store.commit("createAccount");
+      this.$router.push("/signup");
+    },
+  },
+};
 </script>
 
 <style scoped>

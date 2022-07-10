@@ -94,11 +94,11 @@ Cf blogpost
 - Ephemeral messages (time if unread, time after read)
 - False pin code go to false account or delete all messages
 - Machine learning using homomorphic encryption
-`
+`;
 </script>
 
 <template>
   <div class="prose lg:prose-xl">
-    <vue3-markdown-it :source="source" html=true />
+    <vue3-markdown-it :source="source" html="true" />
   </div>
 </template>

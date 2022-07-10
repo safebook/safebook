@@ -15,13 +15,9 @@
       <a @click="showAvatar()" v-bind:class="{ selected: showImg == 'avatar' }">Avatar</a>
       -
     -->
-      <a :class="{ selected: showImg == 'qr' }" @click="showQR()"
-        >QRCode</a
-      >
+      <a :class="{ selected: showImg == 'qr' }" @click="showQR()">QRCode</a>
       -
-      <a
-        :class="{ selected: showImg == 'address' }"
-        @click="showAddress()"
+      <a :class="{ selected: showImg == 'address' }" @click="showAddress()"
         >Address</a
       >
     </div>
@@ -29,48 +25,52 @@
 </template>
 
 <script>
-import AddressSquared from './AddressSquared.vue'
-import AddressQR from './AddressQR.vue'
-import safebook from '@/lib/safebook.js'
+import AddressSquared from "./AddressSquared.vue";
+import AddressQR from "./AddressQR.vue";
+import safebook from "@/lib/safebook.js";
 // import NameInput from "./NameInput"
 
 export default {
-  name: 'Avatar',
+  name: "Avatar",
   components: {
     AddressSquared,
-    AddressQR /* NameInput */
+    AddressQR /* NameInput */,
   },
-  props: ['address'],
-  data () {
+  props: ["address"],
+  data() {
     return {
-      avatarUrl: require('@/assets/stitch.jpg'),
-      showImg: 'qr'
-    }
+      avatarUrl: require("@/assets/stitch.jpg"),
+      showImg: "qr",
+    };
   },
   computed: {
-    name () {
-      if (this.address) { return safebook.name(this.address).join(' ') } else { return 'Sans nom' }
-    }
+    name() {
+      if (this.address) {
+        return safebook.name(this.address).join(" ");
+      } else {
+        return "Sans nom";
+      }
+    },
   },
-  mounted () {
-    console.log(1)
-    console.log(this.address)
+  mounted() {
+    console.log(1);
+    console.log(this.address);
   },
   methods: {
-    showQR () {
-      this.showImg = 'qr'
+    showQR() {
+      this.showImg = "qr";
     },
-    showAddress () {
-      this.showImg = 'address'
+    showAddress() {
+      this.showImg = "address";
     },
-    showAvatar () {
-      this.showImg = 'avatar'
+    showAvatar() {
+      this.showImg = "avatar";
     },
-    goToAccount () {
-      this.$router.push('/signup')
-    }
-  }
-}
+    goToAccount() {
+      this.$router.push("/signup");
+    },
+  },
+};
 </script>
 
 <style scoped>

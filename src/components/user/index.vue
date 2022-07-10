@@ -13,9 +13,15 @@
           </button>
         </div>
         <div v-if="!myself">
-          <button class="button" id="privateMessage" @click="goToMessaging()">Envoyer un message privé</button>
-          <button class="button" id="privateMessage" @click="goToMessaging()">Envoyer un lettre</button>
-          <button class="button" id="addContact" @click="addContact()">Ajouter comme contact</button>
+          <button class="button" id="privateMessage" @click="goToMessaging()">
+            Envoyer un message privé
+          </button>
+          <button class="button" id="privateMessage" @click="goToMessaging()">
+            Envoyer un lettre
+          </button>
+          <button class="button" id="addContact" @click="addContact()">
+            Ajouter comme contact
+          </button>
         </div>
       </div>
       <div class="table-cell w-2/3 align-top">
@@ -44,101 +50,102 @@
 </template>
 
 <script>
-import config from '@/config.js'
+import config from "@/config.js";
 
-import Avatar from '@/components/Avatar.vue'
-import SignedMessageInput from '@/components/messages/SignedMessageInput.vue'
+import Avatar from "@/components/Avatar.vue";
+import SignedMessageInput from "@/components/messages/SignedMessageInput.vue";
 // import SignedMessage from '@/components/messages/SignedMessage.vue'
 // import Publication from '@/components/messages/Publication.vue'
 // import Contact from '@/components/Contact.vue'
 // import Side from '@/components/Side.vue'
 
 export default {
-  name: 'Signup',
+  name: "Signup",
   components: {
     Avatar,
-    SignedMessageInput
+    SignedMessageInput,
     // SignedMessage,
     // Publication
     // Contact,
     // Side
   },
-  data () {
+  data() {
     return {
-      scope: 'published',
+      scope: "published",
       inbox: [],
       outbox: [],
       published: [],
       followers: [],
-      following: []
-    }
+      following: [],
+    };
   },
   computed: {
-    account () {
-      return this.$store.state.account
+    account() {
+      return this.$store.state.account;
     },
-    address () {
-      return this.$route.params.address
+    address() {
+      return this.$route.params.address;
     },
-    myself () {
-      if (this.account) { return this.address === this.account.address }
-      return false
-    }
+    myself() {
+      if (this.account) {
+        return this.address === this.account.address;
+      }
+      return false;
+    },
   },
   watch: {
-    '$route.params.address': function () {
-      this.fetch()
-    }
+    "$route.params.address": function () {
+      this.fetch();
+    },
   },
-  mounted () {
-    this.scope = 'published'
-    this.fetch()
+  mounted() {
+    this.scope = "published";
+    this.fetch();
   },
   methods: {
-    logout () {
-      this.$router.push('/')
+    logout() {
+      this.$router.push("/");
     },
-    goToMessaging () {
-      this.$router.push(`/m/${this.address}`)
+    goToMessaging() {
+      this.$router.push(`/m/${this.address}`);
     },
-    goToAccount () {
-      this.$router.push('/signup')
+    goToAccount() {
+      this.$router.push("/signup");
     },
-    addContact () {
+    addContact() {
       const follow = {
         author: this.account.address,
-        receiver: this.address
-      }
+        receiver: this.address,
+      };
       fetch(`${config.url}/${this.address}/contacts`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(follow)
+        body: JSON.stringify(follow),
       })
         .then((res) => {
-          console.log(res)
+          console.log(res);
         })
         .catch((res) => {
-          console.log(res)
-        })
-      this.followers.push(follow.author)
+          console.log(res);
+        });
+      this.followers.push(follow.author);
     },
-    fetch () {
+    fetch() {
       fetch(`${config.api}/u/${this.address}`)
         .then((response) => response.json())
         .then((data) => {
-          this.published = data.published
-          this.inbox = data.inbox
-          this.outbox = data.outbox
-          this.followers = data.followers
-          this.following = data.following
-        })
-    }
-  }
-}
+          this.published = data.published;
+          this.inbox = data.inbox;
+          this.outbox = data.outbox;
+          this.followers = data.followers;
+          this.following = data.following;
+        });
+    },
+  },
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

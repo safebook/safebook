@@ -1,5 +1,5 @@
 <template>
-<vue3-markdown-it :source="source" />
+  <vue3-markdown-it :source="source" />
 </template>
 
 <script>
@@ -47,17 +47,16 @@ nacl
 celle de l'auteur de real world crypto
 openssl
 ...
-`
+`;
 
 export default {
-  name: 'About',
-  data () {
+  name: "About",
+  data() {
     return {
-      source
-    }
-  }
-}
+      source,
+    };
+  },
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

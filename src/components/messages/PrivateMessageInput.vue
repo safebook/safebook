@@ -1,48 +1,57 @@
 <template>
   <div id="MessageInput">
     <div>
-      <textarea id="textbox" v-model="content" placeholder="Votre message privé" rows=1 autofocus @keydown="autogrow"/>
+      <textarea
+        id="textbox"
+        v-model="content"
+        placeholder="Votre message privé"
+        rows="1"
+        autofocus
+        @keydown="autogrow"
+      />
     </div>
     <div id="send">
-      <button class="button private" @click="sendPrivateMessage()">Envoyer un message privé</button>
+      <button class="button private" @click="sendPrivateMessage()">
+        Envoyer un message privé
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MessageInput',
-  props: ['address'],
-  data () {
+  name: "MessageInput",
+  props: ["address"],
+  data() {
     return {
-      content: ''
-    }
+      content: "",
+    };
   },
-  created () {
-    this.autogrow()
+  created() {
+    this.autogrow();
   },
   methods: {
-    sendPrivateMessage () {
-      this.$emit('post', this.content)
-      this.content = ''
-      this.autogrow()
+    sendPrivateMessage() {
+      this.$emit("post", this.content);
+      this.content = "";
+      this.autogrow();
     },
-    refresh () {
+    refresh() {
       this.$store.commit({
-        type: 'loadMessages',
-        address: this.address
-      })
+        type: "loadMessages",
+        address: this.address,
+      });
     },
-    autogrow () {
+    autogrow() {
       setTimeout(() => {
-        const el = document.querySelector('textarea')
-        el.style.cssText = 'height:auto;'
-        const height = el.scrollHeight - 20
-        el.style.height = height + 'px'
-      }, 0)
-    }
-  }
-}
+        const el = document.querySelector("textarea");
+        el.style.cssText = "height:auto;";
+        const height = el.scrollHeight - 20;
+        el.style.height = height + "px";
+      }, 0);
+    },
+  },
+};
 </script>
 
 <style>

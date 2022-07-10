@@ -1,9 +1,9 @@
-import { defineStore } from 'pinia'
-import safebook from '@/lib/safebook'
-import config from '@/config'
-import router from '@/router'
+import { defineStore } from "pinia";
+import safebook from "@/lib/safebook";
+import config from "@/config";
+import router from "@/router";
 
-export const useMainStore = defineStore('main', {
+export const useMainStore = defineStore("main", {
   state: () => {
     return {
       account: null,
@@ -11,52 +11,54 @@ export const useMainStore = defineStore('main', {
       inbox: [],
       outbox: [],
       pms: [],
-      contacts: []
-    }
+      contacts: [],
+    };
   },
 
   actions: {
-    createAccount () {
-      this.account = safebook.generate_account()
-      localStorage.setItem('mnemonic', this.account.mnemonic)
+    createAccount() {
+      this.account = safebook.generate_account();
+      localStorage.setItem("mnemonic", this.account.mnemonic);
     },
-    restoreAccount () {
-      const mnemonic = localStorage.getItem('mnemonic')
-      if (mnemonic) { this.account = safebook.load(mnemonic) }
-    },
-    loadAccount (payload) {
-      try {
-        this.account = safebook.load(payload.mnemonic)
-        localStorage.setItem('mnemonic', this.account.mnemonic)
-        router.push('/signup')
-      } catch (e) {
-        window.alert('Mot de passe invalide')
+    restoreAccount() {
+      const mnemonic = localStorage.getItem("mnemonic");
+      if (mnemonic) {
+        this.account = safebook.load(mnemonic);
       }
     },
-    logout () {
-      this.account = null
-      localStorage.removeItem('mnemonic')
+    loadAccount(payload) {
+      try {
+        this.account = safebook.load(payload.mnemonic);
+        localStorage.setItem("mnemonic", this.account.mnemonic);
+        router.push("/signup");
+      } catch (e) {
+        window.alert("Mot de passe invalide");
+      }
     },
-    selectUser (payload) {
-      this.user = payload.address
+    logout() {
+      this.account = null;
+      localStorage.removeItem("mnemonic");
     },
-    loadInbox (payload) {
-      this.inbox = []
+    selectUser(payload) {
+      this.user = payload.address;
+    },
+    loadInbox(payload) {
+      this.inbox = [];
       fetch(`${config.url}/${payload.address}/inbox`)
         .then((response) => response.json())
         .then((data) => {
-          this.inbox = data
-        })
+          this.inbox = data;
+        });
     },
-    loadOutbox (payload) {
-      this.outbox = []
+    loadOutbox(payload) {
+      this.outbox = [];
       fetch(`${config.url}/${payload.address}/outbox`)
         .then((response) => response.json())
         .then((data) => {
-          this.outbox = data
-        })
+          this.outbox = data;
+        });
     },
-    loadPrivateMessages () {
+    loadPrivateMessages() {
       fetch(`${config.url}/${this.account.address}/private_messages`)
         .then((response) => response.json())
         .then((data) => {
@@ -67,100 +69,102 @@ export const useMainStore = defineStore('main', {
                   this.account,
                   data[i].receiver,
                   data[i].hidden_content
-                )
+                );
               } else {
                 data[i].content = safebook.decrypt(
                   this.account,
                   data[i].author,
                   data[i].hidden_content
-                )
+                );
               }
             } catch (e) {
-              data[i].content = 'Error'
+              data[i].content = "Error";
             }
           }
-          this.pms = data
-        })
+          this.pms = data;
+        });
     },
-    sendSignedMessage (payload) {
-      const sig = safebook.sign(this.account, payload.content) // TODO: also sign metadata
+    sendSignedMessage(payload) {
+      const sig = safebook.sign(this.account, payload.content); // TODO: also sign metadata
       const message = {
         author: this.account.address,
         receiver: payload.receiver,
         content: payload.content,
-        sig
-      }
+        sig,
+      };
       fetch(`${config.url}/${this.account.address}/inbox`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(message)
+        body: JSON.stringify(message),
       })
         .then((res) => {
-          console.log(res)
+          console.log(res);
         })
         .catch((res) => {
-          console.log(res)
-        })
-      this.inbox.push(message)
-      if (message.receiver === this.account.address) { this.outbox.push(message) }
+          console.log(res);
+        });
+      this.inbox.push(message);
+      if (message.receiver === this.account.address) {
+        this.outbox.push(message);
+      }
     },
-    sendPrivateMessage (payload) {
-      console.log(this.account, payload.receiver, payload.content)
+    sendPrivateMessage(payload) {
+      console.log(this.account, payload.receiver, payload.content);
       const hiddenContent = safebook.encrypt(
         this.account,
         payload.receiver,
         payload.content
-      )
+      );
       const message = {
         author: this.account.address,
         receiver: payload.receiver,
-        hidden_content: hiddenContent
-      }
+        hidden_content: hiddenContent,
+      };
       fetch(`${config.url}/${this.account.address}/private_messages`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(message)
+        body: JSON.stringify(message),
       })
         .then((res) => {
-          console.log(res)
+          console.log(res);
         })
         .catch((res) => {
-          console.log(res)
-        })
-      this.pms.push({ ...message, ...{ content: payload.content } })
+          console.log(res);
+        });
+      this.pms.push({ ...message, ...{ content: payload.content } });
     },
-    loadContacts (payload) {
-      this.contacts = []
+    loadContacts(payload) {
+      this.contacts = [];
       fetch(`${config.url}/${payload.address}/contacts`)
         .then((response) => response.json())
         .then((data) => {
-          this.contacts = data
-        })
+          this.contacts = data;
+        });
     },
-    deleteContact (payload) {
+    deleteContact(payload) {
       fetch(`${config.url}/${payload.address}/contacts`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           author: this.account.address,
-          receiver: payload.address
-        })
+          receiver: payload.address,
+        }),
       })
         .then((res) => {
-          console.log(res)
+          console.log(res);
         })
         .catch((res) => {
-          console.log(res)
-        })
-    }
-  }
-})
+          console.log(res);
+        });
+    },
+  },
+});
