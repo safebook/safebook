@@ -51,13 +51,6 @@
     </p>
     <H3><A href="https://fr.wikipedia.org/wiki/Perfect_Dark_(P2P)">Perfect Dark</A></H3>
     <H3>Retroshare</H3>
-    <H2>IPFS and Filecoin hubs</H2>
-    <ul class="list-disc list-inside">
-      <li><A href="https://estuary.tech/">Estuary</A></li>
-      <li>Web3.storage</li>
-      <li>https://files.chainsafe.io and https://storage.chainsafe.io</li>
-      <li>https://fleek.co</li>
-    </ul>
   </div>
 </template>
 
