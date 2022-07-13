@@ -5,7 +5,7 @@
     </router-link>
 
     <div
-      class="mx-auto h-12 mt-6 bg-transparent border rounded-lg dark:border-gray-700 lg:w-1/3 focus-within:border-primary focus-within:ring focus-within:ring-primary dark:focus-within:border-primary focus-within:ring-opacity-20"
+      class="hidden lg:block mx-auto h-12 mt-6 bg-transparent border rounded-lg dark:border-gray-700 focus-within:border-primary focus-within:ring focus-within:ring-primary dark:focus-within:border-primary focus-within:ring-opacity-20"
     >
       <form action="/search" class="flex flex-wrap justify-between md:flex-row">
         <input
@@ -13,11 +13,11 @@
           name="query"
           placeholder="Search users"
           required="required"
-          class="flex-1 h-10 px-4 text-gray-700 placeholder-gray-400 bg-transparent border-none appearance-none lg:h-12 dark:text-gray-200 focus:outline-none focus:placeholder-transparent focus:ring-0 border-gray-800"
+          class="flex-1 px-4 text-gray-700 placeholder-gray-400 bg-transparent border-none appearance-none h-12 dark:text-gray-200 focus:outline-none focus:placeholder-transparent focus:ring-0 border-gray-800 w-36 lg:w-full"
         />
         <button
           type="submit"
-          class="flex items-center justify-center w-full p-2 m-1 text-white transition-colors duration-300 transform rounded-lg lg:w-10 lg:h-10 lg:p-0 bg-black hover:bg-success/70 focus:outline-none focus:bg-success/70"
+          class="flex items-center justify-center p-2 m-1 text-white transition-colors duration-300 transform rounded-lg w-10 h-10 p-0 bg-black hover:bg-success/70 focus:outline-none focus:bg-success/70"
         >
           <!-- bg-success -->
           <svg
@@ -38,17 +38,17 @@
       </form>
     </div>
 
-    <div v-if="!$store.account" class="pt-9">
+    <div v-if="!$store.account" class="ml-2 pt-6">
       <router-link to="signin">
         <button
-          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 rounded md:text-base text-xs px-2"
         >
           Signin
         </button>
       </router-link>
       <router-link to="signup">
         <button
-          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-4"
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 rounded md:text-base text-xs px-2 md:px-4 ml-2"
         >
           Signup
         </button>
