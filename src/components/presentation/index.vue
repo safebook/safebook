@@ -17,8 +17,8 @@
           ><a class="text-blue-500">Safebook messenger</a></router-link
         >
       </li>
-      <li><a class="text-blue-500" href="messenger">Safebook messenger</a></li>
-      <li><router-link to="drive">Safebook Drive</router-link></li>
+      <li><router-link to="drive">
+        <a class="text-blue-500">Safebook Drive</a></router-link></li>
       <li>
         <small
           >Safebook Search (based on aggressive caching of every search, default
