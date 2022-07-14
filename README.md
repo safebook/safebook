@@ -76,3 +76,5 @@ lens.xyz
 Making a centralized "Safebook auth" service that allow using a shorter password to retrive the wallet,
 but has really strong security settings (ex: 2 or 3 fails start an alert)
 It seems a little antinomic and not possible on web3
+
+test
