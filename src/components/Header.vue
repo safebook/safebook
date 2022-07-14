@@ -4,6 +4,7 @@
       <h3 class="font-extrabold text-3xl tracking-tight mt-6">Safebook</h3>
     </router-link>
 
+    <!--
     <div
       class="hidden lg:block mx-auto h-12 mt-6 bg-transparent border rounded-lg dark:border-gray-700 focus-within:border-primary focus-within:ring focus-within:ring-primary dark:focus-within:border-primary focus-within:ring-opacity-20"
     >
@@ -19,7 +20,6 @@
           type="submit"
           class="flex items-center justify-center p-2 m-1 text-white transition-colors duration-300 transform rounded-lg w-10 h-10 p-0 bg-black hover:bg-success/70 focus:outline-none focus:bg-success/70"
         >
-          <!-- bg-success -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -108,6 +108,7 @@
       </div>
     </div>
   </div>
+  -->
 
   <!--
   <div class="flex flex-row">
@@ -133,8 +134,8 @@
         </div>
       </div>
     </div>
-  </div>
   -->
+  </div>
 </template>
 
 <script>

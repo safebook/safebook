@@ -8,7 +8,7 @@ You really **own your data and account**, it's self-hostable and uses decentrali
 
 It's **built for human rights**: It works in various network conditions, prevent surveillance and is uncensorable <small>(but you have the choice to use an algorithm to filter offensive content, enabled by default)</small>
 
-### [Create an account](/signup)
+<!-- ### [Create an account](/signup) -->
 
 Safebook uses modern and new cryptographic algorithm and borrow concepts from bitcoin and the web3 mouvement.
 

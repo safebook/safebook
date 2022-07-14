@@ -60,7 +60,7 @@
         semi-trusted setup
       </li>
       <li>
-        Rendez-voud point pre-computation advantages for a social dark web.<br />
+        Rendez-vous point pre-computation advantages for a social dark web.<br />
         Solution for the metadata problem on a messaging app<br />
         Let's say there is 10B users and we can precompute 30M per second. less
         that 1h and less than 10GB are necessary to precompute all
