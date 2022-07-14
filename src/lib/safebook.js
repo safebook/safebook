@@ -12,7 +12,7 @@ import ed2curve from "ed2curve"
 // import * as IPFS from 'ipfs-core'
 
 const lang = "french";
-bip39.setDefaultWordlist(lang);
+//bip39.setDefaultWordlist(lang);
 
 let safebook = {
   create: () => {
