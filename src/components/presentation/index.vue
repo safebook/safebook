@@ -20,14 +20,14 @@
       <li><router-link to="drive">
         <a class="text-blue-500">Safebook Drive</a></router-link></li>
       <li>
-        <small
-          >Safebook Search (based on aggressive adveserial caching of every search from the search provider, and p2p sharing of those results, default
-          to offline search, and with an additionnal YaCy backend</small
+        <router-link to="names"
+          ><a class="text-blue-500">Safebook Names</a></router-link
         >
       </li>
       <li>
-        <router-link to="names"
-          ><a class="text-blue-500">Safebook Names</a></router-link
+        <small
+          >Safebook Search (based on aggressive adveserial caching of every search from the search provider, and p2p sharing of those results, default
+          to offline search, and with an additionnal YaCy backend</small
         >
       </li>
       <li>
