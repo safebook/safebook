@@ -2,19 +2,19 @@
 const source = `
 ## Safebook Drive
 
-An experiment toward a **fully decentralized cloud engine**, based on a mesh of user-operated IPFS gateways.
+An experiment toward a **fully decentralized cloud engine**.
+
+**P2P networks** can work everywhere, even on a **censored internet**.
 
 **Data encryption** avoid **surveillance**.
-
-**P2P networks** works everywhere, even on a **censored internet**.
 
 Cost should be **much cheaper** than google drive, AWS or mega.
 
 ### Technology
 
-The cloud server (that should be run directly on the client whenever possible) is implemented as a IPFS gateway for hot storage, and a Filecoin client (Lotus) for cold storage.
+We store everything on IPFS, on servers of our federation. It's a mesh of user-operated nodes.
 
-We store everything on IPFS, on servers of our federation.
+The node (that should be run directly on the client whenever possible) can store data, ask peers if they have the data, or even ask the Filecoin network for cold storage.
 
 Everything could be duplicated into Filecoin, for access for everywhere.
 
