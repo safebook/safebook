@@ -21,10 +21,12 @@ export const useMainStore = defineStore("main", {
       localStorage.setItem("mnemonic", this.account.mnemonic);
     },
     restoreAccount() {
+      console.log("restoreAccount")
       const mnemonic = localStorage.getItem("mnemonic");
       if (mnemonic) {
         this.account = safebook.load(mnemonic);
       }
+      console.log(this.account)
     },
     loadAccount(payload) {
       try {

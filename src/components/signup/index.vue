@@ -1,5 +1,8 @@
 <template>
-  <div class="pt-10 text-center">
+  <div v-if="!account">
+    <p>You are not logged. <a href @click="regenerate">Signup</a></p>
+  </div>
+  <div v-else class="pt-10 text-center">
     <h2>
       Bonjour
       <span id="name">{{ account.name.join(" ") }}</span>
@@ -57,6 +60,7 @@
 </template>
 
 <script>
+import { useMainStore } from "@/stores/index.js";
 // const safebook = require('@/lib/safebook')
 import AddressSquared from "@/components/AddressSquared.vue";
 import AddressQR from "@/components/AddressQR.vue";
@@ -72,11 +76,12 @@ export default {
       showPassword: false,
       showPassphrase: false,
       generating: false,
+      store: useMainStore(),
     };
   },
   computed: {
     account() {
-      return this.$store.state.account;
+      return this.store.account;
     },
     splittedMnemonic() {
       const words = this.account.mnemonic.split(" ");
@@ -88,18 +93,18 @@ export default {
       ];
     },
   },
-  beforeCreate() {
-    if (!this.$store.state.account) {
-      this.$store.commit("createAccount");
+  mounted() {
+    if (!this.store.account) {
+      this.store.createAccount()
     }
   },
   created() {},
   methods: {
     regenerate() {
-      this.$store.commit("createAccount");
+      this.store.createAccount()
     },
     vanity() {
-      this.$store.commit("createVanityAccount");
+      this.store.createVanityAccount()
     },
     stop() {
       this.generating = false;
