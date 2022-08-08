@@ -2,28 +2,11 @@
   <div class="prose">
     <center class="mt-10"><h1>Subprojects</h1></center>
     <ul class="list-disc list-inside">
-      <li>
-        <router-link to="intro"
-          ><a class="text-blue-500">Presentation</a></router-link
-        >
-      </li>
-      <li>
-        <router-link to="safebook"
-          ><a class="text-blue-500">Safebook Profile (Main app)</a></router-link
-        >
-      </li>
-      <li>
-        <router-link to="messenger"
-          ><a class="text-blue-500">Safebook messenger</a></router-link
-        >
-      </li>
-      <li><router-link to="drive">
-        <a class="text-blue-500">Safebook Drive</a></router-link></li>
-      <li>
-        <router-link to="names"
-          ><a class="text-blue-500">Safebook Names</a></router-link
-        >
-      </li>
+      <li><router-link to="intro"><a class="text-blue-500">Presentation</a></router-link></li>
+      <li><router-link to="safebook"><a class="text-blue-500">Safebook Profile (Main app)</a></router-link></li>
+      <li><router-link to="messenger"><a class="text-blue-500">Safebook messenger</a></router-link></li>
+      <li><router-link to="drive"><a class="text-blue-500">Safebook Drive</a></router-link></li>
+      <li><router-link to="names"><a class="text-blue-500">Safebook Names</a></router-link></li>
       <li>
         <small
           >Safebook Search (based on aggressive adveserial caching of every search from the search provider, and p2p sharing of those results, default
@@ -32,9 +15,7 @@
       </li>
       <li><small>Safebook Password Manager. A state of the art determinist and non-deterministic password manager. <b>Best might be just generating the seed for an open source pw manager</b></small></li>
       <li>
-        <router-link to="similar_projects"
-          ><a class="text-blue-500">Related projects</a></router-link
-        >
+        <router-link to="similar_projects"><a class="text-blue-500">Related projects</a></router-link>
       </li>
     </ul>
     <h1><center>Cryptographic protocols</center></h1>
@@ -85,6 +66,7 @@
           associating a pubkey to a phone number. You could get tokens or money to
           verify someone's else number
         </small>
+        <p>Ex: WoT for associating a pubkey to a phone number.</p>
       </li>
     </ul>
   </div>
