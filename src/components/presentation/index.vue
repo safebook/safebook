@@ -1,5 +1,11 @@
 <template>
   <div class="prose">
+    <h3>Decentralizing signal</h3>
+    <h3>The safebook project</h3>
+    <h3>Cryptographic protocols</h3>
+
+    <center class="mt-10"><h1>Legacy</h1></center>
+
     <center class="mt-10"><h1>Subprojects</h1></center>
     <ul class="list-disc list-inside">
       <li><router-link to="intro"><a class="text-blue-500">Presentation</a></router-link></li>
@@ -67,6 +73,22 @@
           verify someone's else number
         </small>
         <p>Ex: WoT for associating a pubkey to a phone number.</p>
+      </li>
+      <li>
+        Safebook started as a browser plugin for encrypting
+        facebook messages before they are sent and decrypting safebook messages when
+        found.
+        <br />
+        Quite similary of what mask.io do now.
+        <br />
+        Because facebook is listening to every keystroke (for bad and good reasons (ex: suggestions etc)) it is
+        not possible to inject a script in the page that hide messages after they have been typed without leaking informations, so the on-facebook encyption (and decryption) has been abandoned in profit of encryptiong on a separate page.
+        <br />
+        It was abandonned for before this new attemps, in a totally different direction.
+        <br />
+        New ideas are borrowed from other projects like bitcoin, bitmessages. etc.
+        Ex:  base58 encoding for address with SB prefix vanity addresses, shadow addresses, signing for publication,
+        and now aim to be server independant to allow different server implementations (and hopefully a decentralised one)
       </li>
     </ul>
   </div>

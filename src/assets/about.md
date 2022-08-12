@@ -9,19 +9,20 @@
 
 ## History
 
-Safebook is a personal project that started as a browser plugin encrypting
+Safebook started as a browser plugin for encrypting
 facebook messages before they are sent and decrypting safebook messages when
-found
+found.
 
-Because facebook is listening to every keystroke (for suggestions, etc) it is
-not possible to hide messages this way so it has been abandoned in profit of
-a separate website.
+Quite similary of what mask.io do now.
 
-It was abandonned for 5+ years before this new attemps.
-New ideas were coined like base58 encoding for address
-with SB prefix vanity addresses, shadow addresses, signing for publication,
-and now aim to be server independant to allow different server
-implementations (and hopefully a decentralised one)
+Because facebook is listening to every keystroke (for bad and good reasons (ex: suggestions etc)) it is
+not possible to inject a script in the page that hide messages after they have been typed without leaking informations, so the on-facebook encyption (and decryption) has been abandoned in profit of encryptiong on a separate page.
+
+It was abandonned for before this new attemps, in a totally different direction.
+
+New ideas are borrowed from other projects like bitcoin, bitmessages. etc.
+Ex:  base58 encoding for address with SB prefix vanity addresses, shadow addresses, signing for publication,
+and now aim to be server independant to allow different server implementations (and hopefully a decentralised one)
 
 ## Other tools
 

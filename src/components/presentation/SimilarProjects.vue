@@ -48,6 +48,11 @@ https://blog.ceramic.network/tiles-a-browser-for-open-source-information/
 
 ### Retroshare
 
+### PGP
+
+PGP is the reference.
+It's quite old but it provides state-of-the-art cryptographic. difficult to use
+
 ## Interesting technologies
 
 ### Zero-Knowledge proofs
