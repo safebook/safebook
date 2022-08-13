@@ -20,9 +20,6 @@
         >
       </li>
       <li><small>Safebook Password Manager. A state of the art determinist and non-deterministic password manager. <b>Best might be just generating the seed for an open source pw manager</b></small></li>
-      <li>
-        <router-link to="similar_projects"><a class="text-blue-500">Related projects</a></router-link>
-      </li>
     </ul>
     <h1><center>Cryptographic protocols</center></h1>
     <ul class="list-disc list-inside">

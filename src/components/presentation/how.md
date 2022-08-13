@@ -53,27 +53,6 @@ We can also imagine
   sender, receiver, data: {hidden_group, hidden_private_key}
 }
 
-## Tree of interest
-
-The tree of interest is a way to share what address range
-we are interested in without sharing the exact addresses
-
-We use it to ask the federation or another user what messages we
-are interested in without sharing the exact addresses
-
-For exemple if we are SBMyself and follow SBUser1 and SBUser2
-and we are interested is 2 users * nb shadow advance * 2 (incoming,
-outcoming) shadow addresses 
-we can craft a tree for this addresses
-S
-|
-B
-|   |   |   |   |
-k   j   1   4   5
-| |         | |
-j r         3 N
-every leaf is for a address when listen
-
 ## Account recomputation
 
 Encrypting keys and addresses tend to be generated and thus a safebook
