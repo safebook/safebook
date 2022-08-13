@@ -9,7 +9,6 @@
         <button class="button" @click="$router.push('/how')">
           Documentation technique
         </button>
-        <button class="button" @click="$router.push('/about')">A propos</button>
       </div>
     </div>
     <div id="main">

@@ -16,7 +16,6 @@ import Messaging from "@/components/messaging/index.vue";
 
 import What from "@/components/what/index.vue";
 import How from "@/components/how/index.vue";
-import About from "@/components/about/index.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -86,11 +85,6 @@ const router = createRouter({
       path: "/how",
       name: "how",
       component: How,
-    },
-    {
-      path: "/about",
-      name: "about",
-      component: About,
     },
     // App -->
   ],
