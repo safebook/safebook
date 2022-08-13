@@ -6,7 +6,6 @@ import SecretBonding from "@/components/presentation/SecretBonding.vue";
 import SecretRendezVous from "@/components/presentation/SecretRendezVous.vue";
 import MetaDataInSignal from "@/components/presentation/MetaDataInSignal.vue";
 import Safebook from "@/components/presentation/Safebook.vue";
-import Names from "@/components/presentation/Names.vue";
 import Drive from "@/components/presentation/Drive.vue";
 
 import Home from "@/components/home/index.vue";
@@ -46,10 +45,6 @@ const router = createRouter({
     {
       path: "/metadata_in_signal",
       component: MetaDataInSignal,
-    },
-    {
-      path: "/names",
-      component: Names,
     },
     {
       path: "/drive",

@@ -6,7 +6,6 @@
       <li><router-link to="safebook"><a class="text-blue-500">Safebook Profile (Main app)</a></router-link></li>
       <li><router-link to="messenger"><a class="text-blue-500">Safebook messenger</a></router-link></li>
       <li><router-link to="drive"><a class="text-blue-500">Safebook Drive</a></router-link></li>
-      <li><router-link to="names"><a class="text-blue-500">Safebook Names</a></router-link></li>
       <li>
         <small
           >Safebook Search: Yacy + advesarial caching of every search from the search provide
