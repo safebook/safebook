@@ -1,7 +1,7 @@
+/* eslint-disable no-undef */
 const nacl      = require('tweetnacl')
 nacl.util       = require('tweetnacl-util')
 const bs58check = require('bs58check')
-const bip32     = require('bip32')
 const bip39     = require('bip39')
 const ed2curve  = require('ed2curve')
 
@@ -39,7 +39,7 @@ let safebook = {
     return safebook.load(bip39.generateMnemonic())
   },
   generate_vanity_account: () => {
-    while (1) {
+    while (1) { /* eslint-disable-line */
       let account = safebook.generate_account()
       if (['sb','sB','Sb','SB'].includes(account.address.substr(0,2)))
         return account

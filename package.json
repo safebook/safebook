@@ -9,15 +9,20 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
+    "bip32": "^3.0.1",
+    "bip39": "^3.0.4",
+    "bs58check": "^2.1.2",
     "core-js": "^3.19.1",
+    "ed2curve": "^0.3.0",
     "qrious": "^4.0.2",
     "raw-loader": "^4.0.2",
-    "safebook": "file:../safebook-lib",
+    "tweetnacl-util": "^0.15.1",
     "vue": "^2.6.11",
     "vue-markdown": "^2.2.4",
     "vue-qr": "^3.2.2",
     "vue-router": "^3.5.2",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "webpack": "^5.74.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.0",
